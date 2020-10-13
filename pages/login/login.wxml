@@ -1,0 +1,22 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="head">
+    <image src=""></image>
+    <view class="headtext">欢迎使用智慧警保系统</view>
+  </view>
+  <view class="iptbox">
+    <view class="it flex_between">
+      <image src="" style="width:27rpx;height:31rpx;margin-right:15rpx;background-color: #ccc;"></image>
+      <input placeholder="请输入用户名" value="{{username}}" type="text"></input>
+    </view>
+    <view class="it flex_between">
+      <view class="flex">
+        <image src="" style="width:25rpx;height:29rpx;margin-right:15rpx;background-color: #ccc;"></image>
+        <input placeholder="请输入密码" value="{{pwd}}" type="text"></input>
+      </view>
+      <image src="/images/login/hidepwd.png" style="width:40rpx;height:34rpx;"></image>
+    </view>
+    <view class="confirm">确认</view>
+    <view class="forgetpwd">忘记密码 ？</view>
+  </view>
+</view>

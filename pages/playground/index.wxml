@@ -1,0 +1,92 @@
+<!--pages/playground/index.wxml-->
+<view class="container">
+	<!-- 顶部自定义 -->
+	<view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
+		<view class="nav-title flex">
+			<van-icon name="arrow-left" color="#fff" size="24px" />
+			<text style="padding-left:30rpx;">运动场</text>
+		</view>
+	</view>
+
+
+	<view class="nav_btns flex" >
+		<view class="n_it {{curid==1?'current':''}}" bindtap="check" data-id='1'>室内运动场</view>
+		<view class="n_it {{curid==2?'current':''}}" bindtap="check" data-id='2'>室外运动场</view>
+		<view class="n_it {{curid==3?'current':''}}" bindtap="check" data-id='3'>澡堂</view>
+	</view>
+
+	<!-- 室内运动 -->
+	<view class="center_box" wx:if='{{curid==1}}'>
+		<view class="c_it flex">
+			<image src="/images/admin/basketball.png" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
+			<view class="c_right">
+				<text>篮球场</text>
+				<view class="">篮球比赛场地是一个长方形的坚实平面，篮球场地长28米，宽15米，无障碍物。</view>
+			</view>
+		</view>
+		<view class="c_it flex">
+			<image src="/images/admin/football.png" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
+			<view class="c_right">
+				<text>足球场</text>
+				<view class="">足球场地比赛场地必须是长方形，长度90-120 米，宽度45-90米，球门高2.44米 ，宽7.32米。</view>
+			</view>
+		</view>
+		<view class="c_it flex">
+			<image src="/images/admin/tennis.png" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
+			<view class="c_right">
+				<text>网球场</text>
+				<view class="">一片标准网球场地的占地面积不小于670平方米 (长36.60米×宽18.30米)</view>
+			</view>
+		</view>
+		<view class="c_it flex">
+			<image src="/images/admin/badminton.png" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
+			<view class="c_right">
+				<text>羽毛球场</text>
+				<view class="">羽毛球场是一个长13.40米，双打宽6.10米，单 打宽5.18米，双打球场对角线长=14.723米。</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 室外运动场 -->
+	<view class="center_box" wx:elif='{{curid==2}}'>
+		<view class="c_it flex">
+			<image src="/images/admin/basketball.png" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
+			<view class="c_right">
+				<text>篮球场</text>
+				<view class="">篮球比赛场地是一个长方形的坚实平面，篮球场地长28米，宽15米，无障碍物。</view>
+			</view>
+		</view>
+		<view class="c_it flex">
+			<image src="/images/admin/football.png" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
+			<view class="c_right">
+				<text>足球场</text>
+				<view class="">足球场地比赛场地必须是长方形，长度90-120 米，宽度45-90米，球门高2.44米 ，宽7.32米。</view>
+			</view>
+		</view>
+		<view class="c_it flex">
+			<image src="/images/admin/tennis.png" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
+			<view class="c_right">
+				<text>网球场</text>
+				<view class="">一片标准网球场地的占地面积不小于670平方米 (长36.60米×宽18.30米)</view>
+			</view>
+		</view>
+		<view class="c_it flex">
+			<image src="/images/admin/badminton.png" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
+			<view class="c_right">
+				<text>羽毛球场</text>
+				<view class="">羽毛球场是一个长13.40米，双打宽6.10米，单 打宽5.18米，双打球场对角线长=14.723米。</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 澡堂 -->
+	<view class="baths" wx:else>
+		<image src="/images/admin/baths.png" style="width:100vw;height:345rpx;margin-bottom:19rpx;"></image>
+		<view class="business">
+			<text class="bus">营业时间</text>
+			<text class="time">周一到周日 9:00-22:00</text>
+		</view>
+	</view>
+
+
+</view>

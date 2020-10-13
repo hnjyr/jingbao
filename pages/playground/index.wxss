@@ -1,0 +1,99 @@
+/* pages/playground/index.wxss */
+/* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
+.container{
+  min-height: 100vh;
+  background-color: #F5F5F5;
+}
+.nav-wrap {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  z-index: 9999999;
+}
+/* 标题要居中 */
+.nav-title {
+  font-size: 39rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 38rpx;
+}
+
+.headbox{
+  position: relative;
+  height: 140rpx;
+  background-color: #2963DF;
+}
+.userinfo{
+  position: absolute;
+  top: 163rpx;
+  left: 38rpx;
+  width: 686rpx;
+  height: 222rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 6.9rpx 0px rgba(0, 0, 0, 0.2);
+  border-radius: 13.8rpx;
+  padding: 8.28rpx 38rpx 15.18rpx 10.5rpx;
+}
+.nav_btns{
+  justify-content: space-around;
+  background-color: #fff;
+}
+.n_it{
+  padding:34rpx 0rpx;
+  margin: 0 39rpx;
+  border-bottom: 5rpx solid #fff;
+}
+.current{
+  border-bottom: 5rpx solid #2963DF;
+}
+.center_box{
+  padding: 30.36rpx 22.08rpx 0 22.08rpx;
+}
+
+.c_it{
+  padding: 10rpx 0;
+  background-color: #fff;
+  border-radius: 9rpx;
+  padding-right: 25rpx;
+}
+
+.c_right{
+  flex:1; 
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #000000;
+  line-height: 46rpx;
+}
+.c_right>view{
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 300;
+  color: #999999;
+  line-height: 35rpx;
+  margin-top: 6rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.business{
+  padding: 35rpx 0rpx;
+  background-color: #fff;
+}
+.bus{
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #1B1B1B;
+  padding: 0 19rpx;
+  border-right: 3rpx solid #E5E5E5;
+}
+.time{ 
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  padding: 0 19rpx;
+}

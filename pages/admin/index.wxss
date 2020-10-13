@@ -1,0 +1,139 @@
+/* pages/admin/index.wxss */
+/* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
+.nav-wrap {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  z-index: 9999999;
+}
+/* 标题要居中 */
+.nav-title {
+  font-size: 39rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 38rpx;
+  padding-left: 37.4rpx;
+}
+
+.headbox{
+  position: relative;
+  width: 110vw;
+  height: 369rpx;
+  background: linear-gradient(135deg, #1860FF, #2A86FF, #38D2FF);
+  border-radius: 0 0 50% 50%;
+  margin-left: -30rpx;
+}
+.userinfo{
+  position: absolute;
+  top: 163rpx;
+  left: 38rpx;
+  width: 686rpx;
+  height: 222rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 6.9rpx 0px rgba(0, 0, 0, 0.2);
+  border-radius: 13.8rpx;
+  padding: 8.28rpx 38rpx 15.18rpx 10.5rpx;
+}
+.u_oneline_left>.log{
+  font-size: 30.36rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #222222;
+}
+.u_twoline{
+  justify-content: center;
+  padding: 0 38rpx 0 78.66rpx;
+}
+.u_twoline .u_twoline_it{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 101rpx;
+  font-size: 32.43rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #222222;
+  margin-top: 15.87rpx;
+}
+.u_twoline .u_twoline_it:nth-child(1){
+  margin-left: 0rpx;
+}
+.hui{
+  width: 100%;
+  font-size: 23.46rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #929292;
+  text-align: center;
+  margin-top:6rpx;
+}
+.navterboxs{
+  justify-content: center;
+  margin-top: 56rpx;
+}
+.n_it{
+  flex: 1;
+  justify-content:center;
+  flex-wrap: wrap;
+  font-size: 26.22rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #343434;
+}
+.n_text{
+  width: 100%;
+  text-align: center;
+  margin-top: 13rpx;
+}
+.wallet{
+  margin: 0  27.6rpx;
+  margin-top: 34.5rpx;
+  padding: 35.19rpx 17.25rpx 24.15rpx 40.02rpx;
+  padding-bottom: 22.8rpx;
+  border-bottom: 1rpx solid #DCDCDC;
+  border-top: 1rpx solid #DCDCDC;
+}
+
+.btns{
+  padding-top: 22rpx;
+}
+
+.w_right>view{
+  font-size: 27rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  padding: 8rpx 24.15rpx;
+  border-radius: 10.35rpx;
+}
+.w_right>view:nth-child(1){
+  color: #FF9600;
+  border: 2rpx solid #FF9600;
+
+}
+.w_right>view:nth-child(2){
+  color: #fff;
+  background: #FF9600;
+  margin-left: 34rpx;
+}
+
+.w_left_top{
+  font-size: 26.22rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #222222;
+}
+.w_left_bottom{
+  font-size: 42rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #222222;
+  text-align: center;
+  margin-top: 30rpx;
+}
+.b_it{
+  padding: 36rpx 27.6rpx;
+  border-bottom: 1rpx solid #DDDDDD;
+}
