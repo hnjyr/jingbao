@@ -1,0 +1,22 @@
+{
+  "name": "jingbao",
+  "version": "1.0.0",
+  "description": "智慧警保微信小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hnjyr/jingbao.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hnjyr/jingbao/issues"
+  },
+  "homepage": "https://github.com/hnjyr/jingbao#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.5.1"
+  }
+}

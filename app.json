@@ -5,10 +5,9 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#2963E0",
+    "navigationBarTitleText": "烟台公安智慧警保",
+    "navigationBarTextStyle":"white"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

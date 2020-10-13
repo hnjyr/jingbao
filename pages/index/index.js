@@ -4,16 +4,82 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    navList:[
+      {
+        name:'餐厅',
+        src:'',
+        url:'',
+      },
+      {
+        name:'理发店',
+        src:'',
+        url:'',
+      },
+      {
+        name:'药店',
+        src:'',
+        url:'',
+      },
+      {
+        name:'班车',
+        src:'',
+        url:'',
+      },
+      {
+        name:'洗衣店',
+        src:'',
+        url:'',
+      },
+      {
+        name:'运动场',
+        src:'',
+        url:'',
+      },
+      {
+        name:'警营维修',
+        src:'',
+        url:'',
+      },
+      {
+        name:'理疗',
+        src:'',
+        url:'',
+      }
+    ],
+    record:[
+      {
+        name:'订餐记录',
+        src:'',
+        url:'',
+      },
+      {
+        name:'维修记录',
+        src:'',
+        url:'',
+      },
+      {
+        name:'预约记录',
+        src:'',
+        url:'',
+      },
+      {
+        name:'购药记录',
+        src:'',
+        url:'',
+      }
+    ],
+    declare:[
+      {
+        name:'办公用品申报',
+        src:'',
+        url:'',
+      },
+      {
+        name:'用车管理申报',
+        src:'',
+        url:'',
+      }
+    ]
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

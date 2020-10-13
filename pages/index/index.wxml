@@ -1,13 +1,42 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <!-- 头部图片 -->
+  <view class="img_box">
+    <image src=""></image>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <!-- 导航 -->
+  <view class="pub_bgc">
+    <view class="list_ul">
+      <view class="list_li" wx:for="{{navList}}" wx:key='{{index}}' data-src='{{item.src}}' bindtap="navTo">
+        <image src="{{item.src}}"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 通告 -->
+  <view class="announcement">
+    <view class="ann_left">
+      <image src=''></image>
+      <text>公告</text>
+    </view>
+    <view class="ann_right">今天运动场预约已满</view>
+  </view>
+  <!-- 记录 -->
+  <view class="pub_bgc">
+    <view class="list_ul record">
+      <view class="list_li" wx:for="{{record}}" wx:key='{{index}}' data-src='{{item.src}}' bindtap="navTo">
+        <image src="{{item.src}}"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 申报 -->
+  <view class="pub_bgc declare">
+    <view class="list_ul">
+      <view class="list_li" wx:for="{{declare}}" wx:key='{{index}}' data-src='{{item.src}}' bindtap="navTo">
+        <image src="{{item.src}}"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
   </view>
 </view>
