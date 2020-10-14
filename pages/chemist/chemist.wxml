@@ -1,0 +1,38 @@
+<!--pages/chemist/chemist.wxml-->
+<view class="container">
+  <view class="search">
+    <van-search
+      value="{{ value }}"
+      placeholder="搜索"
+      bind:change="onChange"
+      bind:search="onSearch"
+      background="#f1f1f1"
+      shape="round"
+      use-action-slot
+    >
+      <view slot="action" class="search_btn" bind:tap="onClick">搜索</view>
+    </van-search>
+  </view>
+  <!-- 内容 -->
+  <view class="che_box">
+    <view class="che_left">
+      <van-sidebar active-key="{{ activeKey }}" bind:change="onChange" custom-class='custom_cla'>
+        <van-sidebar-item title="标签名 1" />
+        <van-sidebar-item title="标签名 2" />
+        <van-sidebar-item title="标签名 3" />
+      </van-sidebar>
+    </view>
+    <scroll-view class="che_right" scroll-y="true">
+      <view class="che_li">
+        <image></image>
+        <view class="che_li_cont">
+          <view class="li_h2">连花清瘟胶囊</view>
+          <view class="li_info">连花清瘟胶囊连花清瘟胶囊</view>
+          <view class="li_price">￥14</view>
+          <view class="li_tip">库存<text>10</text>份</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+

@@ -1,0 +1,90 @@
+/* pages/chemist/chemist.wxss */
+page {
+  height: 100vh;
+}
+.search {
+  background-color: #f1f1f1;
+  padding: 0 20rpx;
+}
+.search .search_btn {
+  background-color: #2963E0;
+  color:#fff;
+  width: 110rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 8rpx;
+  text-align: center;
+}
+.che_box {
+  height: calc(100% - 108rpx);
+  display: flex;
+}
+.che_left {
+  height: 100%;
+  border-right: 1rpx solid #f1f1f1;
+  flex-shrink: 0;
+}
+.custom_cla {
+  height: 100%;
+  background-color: #fff;
+}
+.custom_cla .van-sidebar-item--selected {
+  border-color: #2963E0;
+}
+
+.che_li {
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.che_li image {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 20rpx;
+  background-color: #ccc;
+  border-radius: 12rpx;
+}
+.che_li_cont {
+  width: 380rpx;
+  position: relative;
+}
+.li_h2 {
+  overflow:hidden;
+  text-overflow:ellipsis; 
+  white-space:nowrap; 
+  width: 90%;
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 14rpx;
+}
+.li_info {
+  overflow:hidden;
+  text-overflow:ellipsis; 
+  white-space:nowrap; 
+  width: 90%;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #999999;
+  margin-bottom: 34rpx;
+}
+.li_price {
+  font-size: 28rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FF8400;
+}
+.li_tip {
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #999999;
+  position: absolute;
+  right: 8rpx;
+  top: 6rpx;
+}
+.li_tip text {
+  color: #FF8400;
+}

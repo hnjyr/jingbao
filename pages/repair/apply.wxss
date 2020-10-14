@@ -1,0 +1,71 @@
+/* pages/repair/apply.wxss */
+page {
+  padding: 20rpx;
+  background-color: #f1f1f1;
+}
+.ha_info {
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+.label_cla {
+  width: 200rpx;
+}
+.app_btns {
+  position: fixed;
+  width: 100%;
+  left:0;
+  bottom:0;
+  display: flex;
+  align-items: center;
+}
+.app_btns .app_btn {
+  width: 50%;
+  padding: 30rpx 0;
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #999999;
+  background-color: #fff;
+  text-align: center;
+}
+.app_btns .app_btn:last-child {
+  color: #fff;
+  background-color: #2963E0;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 68%;
+  height: 438rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+.block image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.tc_h3 {
+  text-align: center;
+  font-size: 30rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  margin-bottom: 50rpx;
+}
+.tc_btn {
+  padding: 18rpx 0;
+  width: 250rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #E51B1B;
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+}

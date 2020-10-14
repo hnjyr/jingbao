@@ -1,0 +1,39 @@
+<!--预约时间-->
+<view class="container">
+  <scroll-view class="scroll" scroll-x="true" enable-flex="true" scroll-anchoring="true">
+      <view class="ti_li active">
+        <text>周二</text>
+        <text>13</text>
+      </view>
+      <view class="ti_li">
+        <text>周二</text>
+        <text>13</text>
+      </view>
+      <view class="ti_li">
+        <text>周二</text>
+        <text>13</text>
+      </view>
+      <view class="ti_li">
+        <text>周二</text>
+        <text>13</text>
+      </view>
+      <view class="ti_li">
+        <text>周二</text>
+        <text>13</text>
+      </view>
+      <view class="ti_li">
+        <text>周二</text>
+        <text>13</text>
+      </view>
+      <view class="ti_li">
+        <text>周二</text>
+        <text>13</text>
+      </view>
+      <view class="ti_li">
+        <text>周二</text>
+        <text>13</text>
+      </view>
+  </scroll-view>
+
+  <view class="ti_btn">确定</view>
+</view>

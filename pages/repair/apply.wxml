@@ -1,0 +1,91 @@
+<!-- 提交维修申请 -->
+<view class="container">
+  <!-- 信息 -->
+  <view class="ha_info">
+    <van-cell-group>
+      <van-field
+        value="{{ username }}"
+        clearable
+        label="维修人姓名："
+        placeholder="请输入姓名"
+        readonly="{{ readonly }}"
+        maxlength="{{4}}"
+      />
+
+      <van-field
+        value="{{ phone }}"
+        clearable
+        label="维修人手机号："
+        placeholder="请输入手机号"
+        readonly="{{ readonly }}"
+        maxlength='{{11}}'
+        border="{{ false }}"
+      />
+    </van-cell-group>
+  </view>
+  <view class="ha_info">
+    <van-cell-group>
+      <van-field
+        value="{{ username }}"
+        clearable
+        label="维修装备名称："
+        placeholder="请输入维修装备名称"
+        readonly="{{ readonly }}"
+        maxlength="{{44}}"
+      />
+
+      <van-field
+        value="{{ address }}"
+        clearable
+        label="维修地点部门："
+        placeholder="请输维修地点部门"
+        readonly="{{ readonly }}"
+        maxlength='{{11}}'
+        border="{{ false }}"
+      />
+      <van-field
+        value="{{ time }}"
+        clearable
+        label="维修预约时间："
+        placeholder="请输维修预约时间"
+        readonly="{{ readonly }}"
+        maxlength='{{100}}'
+        border="{{ false }}"
+      />
+      <van-field
+        type='textarea'
+        value="{{ phone }}"
+        clearable
+        placeholder="请填写你维修的问题"
+        readonly="{{ readonly }}"
+        maxlength='{{100}}'
+        border="{{ false }}"
+        autosize
+      />
+    </van-cell-group>
+  </view>
+  <view class="up_date">
+    <view class="up_h2">上传图片</view>
+    <van-uploader
+      file-list="{{ fileList }}"
+      max-count="2"
+      bind:after-read="afterRead"
+      bind:delete="deleteImg"
+    />
+  </view>
+
+  <view class="app_btns">
+    <view class="app_btn">返回</view>
+    <view class="app_btn" bindtap="onClickShow">提交</view>
+  </view>
+
+  <van-overlay show="{{ show }}" bind:click="onClickHide">
+    <view class="wrapper">
+      <view class="block" catch:tap="noop">
+        <image></image>
+        <view class="tc_h3">提交成功</view>
+        <view class="tc_btn">确定</view>
+      </view>
+    </view>
+  </van-overlay>
+</view>

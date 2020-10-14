@@ -1,0 +1,66 @@
+/* pages/haircut/haircut.wxss */
+page {
+  padding: 20rpx;
+  background-color: #F1F1F1;
+}
+.ra_li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border: 1rpx solid #fff;
+  padding: 50rpx;
+  font-size: 30rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 20rpx;
+  border-radius: 12rpx;
+}
+.ra_li.active {
+  border: 1rpx solid #FF8400;
+}
+.ha_info {
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+.ha_pro {
+  margin-top: 20rpx;
+  border-radius: 12rpx;
+  background-color: #fff;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.pro_ul {
+  display: flex;
+  align-items: center;
+}
+.ha_pro .pro_h2 {
+  font-size: 30rpx;
+  margin-right: 50rpx;
+}
+.pro_ul text {
+  border-radius: 26rpx;
+  padding: 8rpx 26rpx;
+  border: 1rpx solid #F1F1F1;
+  margin-right: 30rpx;
+  font-size: 24rpx;
+}
+.pro_ul .active {
+  background-color: #2963E0;
+  color: #fff;
+}
+
+.ha_time {
+  
+}
+.time_h2 {
+  margin: 20rpx 0;
+  font-size: 30rpx;
+  color: #333;
+}
+.time_box {
+  border-radius: 12rpx;
+  background-color: #fff;
+}

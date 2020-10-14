@@ -1,0 +1,45 @@
+<!--班车-->
+<view class="container">
+  <scroll-view class="vh_ul" scroll-y="true">
+    <view class="vh_li">
+      <view class="vh_h2">班车信息</view>
+      <view class="vh_box">
+        <image></image>
+        <view class="vh_info">
+          <view class="in_cp">车 牌 号：<text>鲁A 23567</text></view>
+          <view class="in_sj">司    机：张师傅</view>
+          <view class="in_time">发车时间：上午12:00    下午15:30</view>
+          <view class="in_phone">联系方式：13312345678</view>
+        </view>
+      </view>
+      <view class="vh_tip">
+        <view class="tip_h2">备注信息：</view>
+        <view class="tip_text">
+          1、早班车汉口——学校江兴路与常青路拐弯处(华厦银行6:40)—青年路地铁站(6:50)—五里墩公交站(7:05)—江大道四新南路公交站(7:15)—文化大道一品名...
+          2.中班车(轮班大客)地大正门(12:00)—尖东智能花园(12:03)—中南民族大学...
+          3.晚班车三教门口(17:10)—行政楼(17:15)
+        </view>
+      </view>
+    </view>
+    <view class="vh_li">
+      <view class="vh_h2">班车信息</view>
+      <view class="vh_box">
+        <image></image>
+        <view class="vh_info">
+          <view class="in_cp">车 牌 号：<text>鲁A 23567</text></view>
+          <view class="in_sj">司    机：张师傅</view>
+          <view class="in_time">发车时间：上午12:00    下午15:30</view>
+          <view class="in_phone">联系方式：13312345678</view>
+        </view>
+      </view>
+      <view class="vh_tip">
+        <view class="tip_h2">备注信息：</view>
+        <view class="tip_text">
+          1、早班车汉口——学校江兴路与常青路拐弯处(华厦银行6:40)—青年路地铁站(6:50)—五里墩公交站(7:05)—江大道四新南路公交站(7:15)—文化大道一品名...
+          2.中班车(轮班大客)地大正门(12:00)—尖东智能花园(12:03)—中南民族大学...
+          3.晚班车三教门口(17:10)—行政楼(17:15)
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

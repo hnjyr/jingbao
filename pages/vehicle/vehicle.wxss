@@ -1,0 +1,84 @@
+/* pages/vehicle/vehicle.wxss */
+page {
+  background-color: #f1f1f1;
+  padding-top: 20rpx;
+  height: 100%;
+}
+.vh_ul {
+  height: 100%;
+}
+.vh_li {
+  width: 100%;
+  border-radius: 12rpx;
+  background-color: #fff;
+  padding: 16rpx;
+  margin-bottom: 20rpx;
+}
+.vh_h2 {
+  font-size: 40rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #4C4C4C;
+  line-height: 52rpx;
+  text-align: right;
+  position: relative;
+  margin-bottom: 10rpx;
+}
+.vh_h2::after {
+  content: "";
+  position: absolute;
+  width: 8rpx;
+  height: 80%;
+  background-color: #2963E0;
+  right: 180rpx;
+  top: 10%;
+}
+.vh_box {
+  display: flex;
+  margin-bottom: 16rpx;
+}
+.vh_box image {
+  width: 238rpx;
+  height: 150rpx;
+  background-color: #ccc;
+  margin-right: 10rpx;
+}
+.vh_info {
+  height: 100%;
+  border-left: 1rpx solid #939292;
+  padding-left: 10rpx;
+  font-size: 28rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #686868;
+}
+.vh_tip {
+  border: 1rpx solid #939292;
+  border-radius: 12rpx;
+  padding: 16rpx;
+}
+.vh_tip .tip_h2 {
+  font-size: 34rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #4C4C4C;
+  line-height: 40rpx;
+  position: relative;
+  margin-bottom: 10rpx;
+  padding-left: 25rpx;
+}
+.tip_h2::after {
+  content: "";
+  position: absolute;
+  width: 8rpx;
+  height: 90%;
+  background-color: #2963E0;
+  left: 7rpx;
+  top: 5%;
+}
+.tip_text {
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  color: #686868;
+  line-height: 40rpx;
+}

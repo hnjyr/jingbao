@@ -1,0 +1,43 @@
+/* pages/haircut/time.wxss */
+page {
+  background-color: #f1f1f1;
+  padding: 20rpx;
+}
+.scroll {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.ti_ul {
+  
+}
+
+.ti_li {
+  flex-shrink: 0;
+  padding: 24rpx;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #3E3E3E;
+}
+.ti_li text {
+  display: block;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+.ti_li.active {
+  color: #2963E0;
+}
+
+.ti_btn {
+  width: 680rpx;
+  position: fixed;
+  bottom: 50rpx;
+  left: 35rpx;
+  background-color: #2963E0;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  padding: 14rpx 0;
+}

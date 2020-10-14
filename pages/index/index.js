@@ -1,7 +1,8 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const url = require('../../utils/config.js');
+const http = require('../../utils/http.js');
 Page({
   data: {
     navList:[
@@ -82,6 +83,11 @@ Page({
     ]
   },
   onLoad: function () {
+    http.post(url.login,{
+
+    },(res) =>{
+      console.log(res)
+    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

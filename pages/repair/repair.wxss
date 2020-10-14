@@ -1,0 +1,47 @@
+/* pages/repair/repair.wxss */
+page {
+  height: 100vh;
+  padding-top: 20rpx;
+  background-color: #f1f1f1;
+}
+.che_box {
+  height: 100%;
+  display: flex;
+}
+.che_left {
+  height: 100%;
+  border-right: 1rpx solid #f1f1f1;
+  flex-shrink: 0;
+}
+.custom_cla {
+  height: 100%;
+  background-color: #fff;
+}
+.custom_cla .van-sidebar-item--selected {
+  border-color: #2963E0;
+}
+.che_right {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+.che_li {
+  padding: 20rpx;
+  width: 50%;
+}
+.che_li image {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 20rpx;
+  background-color: #ccc;
+  border-radius: 12rpx;
+  display: block;
+  margin: 0 auto ;
+}
+.che_name {
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 /**app.wxss**/
-view, text, navigator, image, button {
+page, view, text, navigator, image, button, scroll-view {
   box-sizing: border-box;
 } 
 .container {
