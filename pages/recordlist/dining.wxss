@@ -1,0 +1,64 @@
+/* pages/recordlist/dining.wxss */
+/* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
+.container{
+  min-height: 100vh;
+  background-color: #F5F5F5;
+}
+.nav-wrap {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  z-index: 9999999;
+}
+/* 标题要居中 */
+.nav-title {
+  font-size: 39rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 38rpx;
+}
+
+.headbox{
+  position: fixed;
+  height: 140rpx;
+  width: 100vw;
+  background-color: #2963DF;
+}
+.c_it{
+  padding: 20rpx;
+}
+
+.c_right{
+  flex: 1;
+}
+
+.c_right_oneline{ 
+  font-size: 30rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 10rpx;
+}
+.red{
+  color: red;
+  font-size: 24rpx;
+}
+
+.c_right_twoline,
+.c_right_threeline,
+.c_right_foreline{
+  font-size: 20rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #999;
+  line-height: 34rpx;
+}
+
+.money{
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #000000;
+  line-height: 30rpx;
+}

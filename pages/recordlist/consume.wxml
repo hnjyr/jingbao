@@ -1,0 +1,16 @@
+<!--pages/recordlist/consume.wxml-->
+<!-- 消费记录 -->
+<view class="container">
+  	<!-- 顶部自定义 -->
+	<view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
+		<view class="nav-title flex">
+			<van-icon name="arrow-left" color="#fff" size="24px" />
+			<text style="padding-left:30rpx;">消费记录</text>
+		</view>
+	</view>
+  <view class="none" style="padding-top: 140rpx;">
+    <image src="/images/admin/basketball.png" style="width:125rpx;height:114rpx;margin-bottom:15rpx;"></image>
+    <text>暂无数据</text>
+  </view>
+
+</view>

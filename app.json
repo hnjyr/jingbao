@@ -4,7 +4,11 @@
     "pages/logs/logs",
     "pages/login/login",
     "pages/admin/index",
-    "pages/playground/index"
+    "pages/playground/index",
+    "pages/list/order",
+    "pages/recordlist/dining",
+    "pages/recordlist/maintain",
+    "pages/recordlist/consume"
   ],
   "window":{
     "backgroundTextStyle":"light",

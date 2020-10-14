@@ -1,0 +1,98 @@
+/* pages/recordlist/maintain.wxss */
+/* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
+.container{
+  min-height: 100vh;
+  background-color: #F5F5F5;
+}
+.nav-wrap {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  z-index: 9999999;
+}
+/* 标题要居中 */
+.nav-title {
+  font-size: 39rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 38rpx;
+}
+
+.headbox{
+  position: fixed;
+  width: 100vw;
+  height: 140rpx;
+  background-color: #2963DF;
+}
+
+.center_box,
+.yuy_box{
+  padding: 0 15rpx;
+  padding-bottom: 50rpx;
+}
+
+.c_it,
+.y_it{
+  border-radius: 20rpx;
+  border: 1rpx solid #eee;
+  background-color: #fff;
+  padding: 15rpx;
+  margin-top: 20rpx;
+}
+
+.c_oneline,
+.y_oneline{
+  font-size: 30rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 10rpx;
+}
+.yellow{
+  color: #FF8400;
+  padding-left: 50rpx;
+  font-size: 22rpx;
+}
+
+.c_twoline,
+.y_twoline{
+  font-size: 20rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #6E6F78;
+  line-height: 40rpx;
+}
+
+.c_threeline{
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #000;
+  margin-top: 6rpx;
+  line-height: 40rpx;
+}
+.hui{
+  font-size: 20rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #6E6F78;
+  padding-left: 20rpx;
+}
+.textarea{
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #6E6F78;
+  line-height: 40rpx;
+}
+
+/* 预约 */
+.name{
+  padding-left: 50rpx;
+  font-size: 22rpx;
+}
+
+.y_twoline{
+  color: #000;
+}

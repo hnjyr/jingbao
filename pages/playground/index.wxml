@@ -9,7 +9,7 @@
 	</view>
 
 
-	<view class="nav_btns flex" >
+	<view class="nav_btns flex" style="margin-top: 52rpx;">
 		<view class="n_it {{curid==1?'current':''}}" bindtap="check" data-id='1'>室内运动场</view>
 		<view class="n_it {{curid==2?'current':''}}" bindtap="check" data-id='2'>室外运动场</view>
 		<view class="n_it {{curid==3?'current':''}}" bindtap="check" data-id='3'>澡堂</view>

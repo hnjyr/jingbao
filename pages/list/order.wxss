@@ -1,0 +1,148 @@
+/* pages/list/order.wxss */
+/* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
+.container {
+  height: 100vh;
+  background-color: #fff;
+  overflow-y: hidden;
+}
+
+.nav-wrap {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  z-index: 9999999;
+}
+
+/* 标题要居中 */
+.nav-title {
+  font-size: 39rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 38rpx;
+}
+
+.headbox {
+  position: fixed;
+  width: 100vw;
+  height: 140rpx;
+  background-color: #2963DF;
+}
+
+.nav_btns {
+  justify-content: space-around;
+  background-color: #2963DF;
+}
+
+.n_it {
+  padding: 24rpx 13rpx;
+  color: #fff;
+  border-bottom: 5rpx solid #2963DF;
+}
+
+.current {
+  border-bottom: 5rpx solid #FF8400;
+}
+
+.c_left {
+  min-height: 82.7vh;
+  max-height: 82.7vh;
+  border-right: 1rpx solid #EBEBEB;
+}
+
+.v_sidebar {
+  max-height: 100%;
+  padding: 0 0 100rpx 0;
+
+}
+
+.v_sidebar .van-sidebar-item--selected {
+  border-color: var(--sidebar-selected-border-color, #259CEE);
+}
+
+scroll-view{
+  width: 157rpx;
+}
+
+.v_sidebar .van-sidebar-item {
+  border-bottom: 2rpx solid #EBEBEB;
+  padding:32rpx 36rpx;
+  padding-right: 46rpx;
+}
+
+.position_btm{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 110rpx;
+  border-top: 1rpx solid #CCCCCC;
+  background-color: #fff;
+}
+.imgbox{
+  position: absolute;
+  bottom: 33rpx;
+  left: 31rpx;
+  width: 110rpx;
+  height: 110rpx;
+  background: linear-gradient(-45deg, #E5E2E2 0%, #CFCACA 100%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.kong{
+  margin-left: 150rpx;
+  font-size: 30rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #9A9A9A;
+}
+
+.settle{
+  box-sizing: border-box;
+  height: 100%;
+  padding: 32rpx 82rpx;
+  background: #CCCCCC;
+  font-size: 33rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.c_right{
+  flex: 1;
+  padding: 0 21rpx;
+  min-height: 82.7vh;
+  max-height: 82.7vh;
+}
+
+.box{
+  padding-bottom:130rpx;
+}
+.c_right_it{
+  width: 233rpx;
+  margin: 22rpx 18rpx 0;
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #343434;
+}
+
+.c_num{
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FF8400;
+}
+
+.center_box{
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}

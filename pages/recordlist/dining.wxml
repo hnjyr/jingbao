@@ -1,0 +1,93 @@
+<!--pages/recordlist/dining.wxml-->
+<!-- 订餐记录 -->
+<view class="container">
+	<!-- 顶部自定义 -->
+	<view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
+		<view class="nav-title flex">
+			<van-icon name="arrow-left" color="#fff" size="24px" />
+			<text style="padding-left:30rpx;">订餐记录</text>
+		</view>
+	</view>
+
+	<view class="center_box" style="padding-top: 140rpx;">
+
+		<view class="c_it flex_between">
+			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
+			<view class="c_right">
+				<view class="c_right_oneline flex_between">
+					<text>公安局第一餐厅</text>
+					<text class="red">已关闭</text>
+				</view>
+				<view class="c_right_twoline flex_between">订单号：13246321321</view>
+				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
+				<view class="c_right_foreline flex_between">
+					<text>付款方式：</text>
+					<text class="money">￥36</text>
+				</view>
+			</view>
+		</view>
+		<view class="c_it flex_between">
+			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
+			<view class="c_right">
+				<view class="c_right_oneline flex_between">
+					<text>公安局第一餐厅</text>
+					<text class="red">已关闭</text>
+				</view>
+				<view class="c_right_twoline flex_between">订单号：13246321321</view>
+				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
+				<view class="c_right_foreline flex_between">
+					<text>付款方式：</text>
+					<text class="money">￥36</text>
+				</view>
+			</view>
+		</view>
+		<view class="c_it flex_between">
+			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
+			<view class="c_right">
+				<view class="c_right_oneline flex_between">
+					<text>公安局第一餐厅</text>
+					<text class="red">已关闭</text>
+				</view>
+				<view class="c_right_twoline flex_between">订单号：13246321321</view>
+				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
+				<view class="c_right_foreline flex_between">
+					<text>付款方式：</text>
+					<text class="money">￥36</text>
+				</view>
+			</view>
+		</view>
+		<view class="c_it flex_between">
+			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
+			<view class="c_right">
+				<view class="c_right_oneline flex_between">
+					<text>公安局第一餐厅</text>
+					<text class="red">已关闭</text>
+				</view>
+				<view class="c_right_twoline flex_between">订单号：13246321321</view>
+				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
+				<view class="c_right_foreline flex_between">
+					<text>付款方式：</text>
+					<text class="money">￥36</text>
+				</view>
+			</view>
+		</view>
+		<view class="c_it flex_between">
+			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
+			<view class="c_right">
+				<view class="c_right_oneline flex_between">
+					<text>公安局第一餐厅</text>
+					<text class="red">已关闭</text>
+				</view>
+				<view class="c_right_twoline flex_between">订单号：13246321321</view>
+				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
+				<view class="c_right_foreline flex_between">
+					<text>付款方式：</text>
+					<text class="money">￥36</text>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+
+</view>

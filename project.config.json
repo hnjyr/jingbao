@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"useMultiFrameRuntime": false,
 		"useApiHook": true,
@@ -71,15 +71,22 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/admin/index",
-					"pathName": "pages/admin/index",
+					"name": "pages/recordlist/maintain",
+					"pathName": "pages/recordlist/maintain",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 1,
-					"name": "pages/playground/index",
-					"pathName": "pages/playground/index",
+					"name": "pages/list/order",
+					"pathName": "pages/list/order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/recordlist/consume",
+					"pathName": "pages/recordlist/consume",
 					"query": "",
 					"scene": null
 				}

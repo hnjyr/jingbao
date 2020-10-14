@@ -1,0 +1,118 @@
+<!--pages/list/order.wxml-->
+<!-- 订餐列表 -->
+<view class="container">
+	<!-- 顶部自定义 -->
+	<view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
+		<view class="nav-title flex">
+			<van-icon name="arrow-left" color="#fff" size="24px" />
+			<text style="padding-left:30rpx;">{{tittext}}</text>
+		</view>
+	</view>
+
+	<view class="nav_btns flex" >
+		<view class="n_it {{curid==1?'current':''}}" bindtap="check" data-id='1'>订餐</view>
+		<view class="n_it {{curid==2?'current':''}}" bindtap="check" data-id='2'>就餐</view>
+	</view>
+
+	<view class="center_box flex" style="margin-top: 52rpx;">
+		<scroll-view class="c_left" scroll-y>
+			<van-sidebar custom-class='v_sidebar' active-key="{{ activeKey }}" bind:change="onChange">
+				<van-sidebar-item title="{{item.text}}" wx:for='{{curid==1?list:jclist}}' wx:key='*this' />
+			</van-sidebar>
+		</scroll-view>
+
+
+		<scroll-view class="c_right " scroll-y>
+			<view class="box">
+				<view class="c_right_it">
+					<image src="/images/admin/badminton.png" style="width:233rpx;height:187rpx;"></image>
+					<view>酸汤肥牛</view>
+					<view class="c_num flex_between">
+						<text>¥16</text>
+						<van-icon name="add" color="#FF8400" size="24" />
+					</view>
+				</view>
+				<view class="c_right_it">
+					<image src="/images/admin/badminton.png" style="width:233rpx;height:187rpx;"></image>
+					<view>酸汤肥牛</view>
+					<view class="c_num flex_between">
+						<text>¥16</text>
+						<van-icon name="add" color="#FF8400" size="24" />
+					</view>
+				</view>
+				<view class="c_right_it">
+					<image src="/images/admin/badminton.png" style="width:233rpx;height:187rpx;"></image>
+					<view>酸汤肥牛</view>
+					<view class="c_num flex_between">
+						<text>¥16</text>
+						<van-icon name="add" color="#FF8400" size="24" />
+					</view>
+				</view>
+				<view class="c_right_it">
+					<image src="/images/admin/badminton.png" style="width:233rpx;height:187rpx;"></image>
+					<view>酸汤肥牛</view>
+					<view class="c_num flex_between">
+						<text>¥16</text>
+						<van-icon name="add" color="#FF8400" size="24" />
+					</view>
+				</view>
+
+        <view class="c_right_it">
+					<image src="/images/admin/badminton.png" style="width:233rpx;height:187rpx;"></image>
+					<view>酸汤肥牛</view>
+					<view class="c_num flex_between">
+						<text>¥16</text>
+						<van-icon name="add" color="#FF8400" size="24" />
+					</view>
+				</view>
+        <view class="c_right_it">
+					<image src="/images/admin/badminton.png" style="width:233rpx;height:187rpx;"></image>
+					<view>酸汤肥牛</view>
+					<view class="c_num flex_between">
+						<text>¥16</text>
+						<van-icon name="add" color="#FF8400" size="24" />
+					</view>
+				</view>
+        <view class="c_right_it">
+					<image src="/images/admin/badminton.png" style="width:233rpx;height:187rpx;"></image>
+					<view>酸汤肥牛</view>
+					<view class="c_num flex_between">
+						<text>¥16</text>
+						<van-icon name="add" color="#FF8400" size="24" />
+					</view>
+				</view>
+        <view class="c_right_it">
+					<image src="/images/admin/badminton.png" style="width:233rpx;height:187rpx;"></image>
+					<view>酸汤肥牛</view>
+					<view class="c_num flex_between">
+						<text>¥16</text>
+						<van-icon name="add" color="#FF8400" size="24" />
+					</view>
+				</view>
+        <view class="c_right_it">
+					<image src="/images/admin/badminton.png" style="width:233rpx;height:187rpx;"></image>
+					<view>酸汤肥牛</view>
+					<view class="c_num flex_between">
+						<text>¥16</text>
+						<van-icon name="add" color="#FF8400" size="24" />
+					</view>
+				</view>
+
+			</view>
+		</scroll-view>
+
+	</view>
+
+	<view class="position_btm flex_between" wx:if='{{curid==1}}'>
+		<view style="padding-top:0rpx; ">
+			<view class="imgbox">
+				<image src="/images/list/cart.png" style="width:52.44rpx;height:52.44rpx;"></image>
+			</view>
+			<text class="kong">购物车空哦</text>
+		</view>
+		<view class="settle">结算</view>
+	</view>
+
+
+
+</view>
