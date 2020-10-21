@@ -1,20 +1,54 @@
 // pages/repair/repair.js
+const app=getApp();
+const url = require('../../utils/config.js');
+const http = require('../../utils/http.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imgUrl:url.imgUrl,
+    page:1,
+    limit:20,
+    dataList:[],
+    list:[],
+    activeKey:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getDataList();
   },
-
+  onChange(e) {
+    this.setData({
+      list:this.data.dataList[e.detail].goodsList
+    })
+  },
+  navTo(e){
+    let i = e.currentTarget.dataset.i;
+    let obj = this.data.list[i];
+    wx.navigateTo({
+      url: `/pages/repair/apply?goodsName=${obj.goodsName}&goodsId=${obj.goodsId}`,
+    })
+  },
+  //获取数据
+  getDataList() {
+    let page = this.data.page,
+    limit = this.data.limit;
+    http(url.listLabelGoods,{
+      "labelType":"1",
+      "shopId":"12",
+    },res=>{
+      console.log(res);
+      this.setData({
+        dataList:res.page.list,
+        list:res.page.list[0].goodsList
+      })
+    },'GET')
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

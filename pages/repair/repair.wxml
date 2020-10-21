@@ -4,19 +4,13 @@
   <view class="che_box">
     <view class="che_left">
       <van-sidebar active-key="{{ activeKey }}" bind:change="onChange" custom-class='custom_cla'>
-        <van-sidebar-item title="标签名 1" />
-        <van-sidebar-item title="标签名 2" />
-        <van-sidebar-item title="标签名 3" />
+        <van-sidebar-item title="{{item.labelName}}" wx:for="{{dataList}}" wx:key='data'/>
       </van-sidebar>
     </view>
     <scroll-view class="che_right" enable-flex='true' scroll-anchoring='true' scroll-y="true">
-      <view class="che_li">
-        <image></image>
-        <view class="che_name">冰箱</view>
-      </view>
-      <view class="che_li">
-        <image></image>
-        <view class="che_name">冰箱</view>
+      <view class="che_li" bindtap="navTo" data-i='{{index}}' wx:for="{{list}}" wx:key='li'>
+        <image mode="aspectFill" src="{{imgUrl + item.imageId}}"></image>
+        <view class="che_name">{{item.goodsName}}</view>
       </view>
     </scroll-view>
   </view>

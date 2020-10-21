@@ -1,0 +1,16 @@
+<!--菜品详情-->
+<view class="container">
+  <image class="dt_image" src="{{imgUrl + mealInfo.shopGoodsEntity.imageId}}"></image>
+  <view class="info">
+    <view class="dt_h2">{{mealInfo.shopGoodsEntity.goodsName}}</view>
+    <view class="dt_ys">月售{{mealInfo.shopGoodsEntity.orderNumber}}</view>
+    <view class="dt_price">
+      <text>¥{{mealInfo.shopGoodsEntity.price}}</text>
+      <view wx:if='{{type == 2}}' bindtap="addCar">+加入购物车</view>
+    </view>
+  </view>
+  <view class="info_xq">
+    <view class="dt_h3">商品详情</view>
+    <view class="dt_info">{{mealInfo.shopGoodsEntity.description || '暂无'}}</view>
+  </view>
+</view>

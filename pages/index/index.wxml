@@ -2,12 +2,12 @@
 <view class="container">
   <!-- 头部图片 -->
   <view class="img_box">
-    <image src=""></image>
+    <image src="/images/banner.png"></image>
   </view>
   <!-- 导航 -->
   <view class="pub_bgc">
     <view class="list_ul">
-      <view class="list_li" wx:for="{{navList}}" wx:key='{{index}}' data-src='{{item.src}}' bindtap="navTo">
+      <view class="list_li" wx:for="{{navList}}" wx:key='nav' bindtap="navTo" data-url='{{item.url}}'>
         <image src="{{item.src}}"></image>
         <text>{{item.name}}</text>
       </view>
@@ -16,27 +16,49 @@
   <!-- 通告 -->
   <view class="announcement">
     <view class="ann_left">
-      <image src=''></image>
+      <image src='/images/home/home_notice.png'></image>
       <text>公告</text>
     </view>
-    <view class="ann_right">今天运动场预约已满</view>
+    <swiper class="swiper" autoplay='{{true}}' interval='4000' duration='1000' circular='true' vertical='{{true}}'>
+      <block wx:for="{{ lunboList }}" wx:key="lb">
+        <swiper-item>
+          <view class="ann_right">{{index+1}}. {{item.noticeValue}}</view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- <view class="ann_right">今天运动场预约已满</view> -->
   </view>
   <!-- 记录 -->
   <view class="pub_bgc">
     <view class="list_ul record">
-      <view class="list_li" wx:for="{{record}}" wx:key='{{index}}' data-src='{{item.src}}' bindtap="navTo">
+      <view class="list_li" wx:for="{{record}}" wx:key='record' data-url='{{item.url}}' bindtap="navTo">
         <image src="{{item.src}}"></image>
         <text>{{item.name}}</text>
       </view>
     </view>
   </view>
   <!-- 申报 -->
-  <view class="pub_bgc declare">
+  <view class="pub_bgc declare" style="margin-bottom: 120rpx;">
     <view class="list_ul">
-      <view class="list_li" wx:for="{{declare}}" wx:key='{{index}}' data-src='{{item.src}}' bindtap="navTo">
+      <view class="list_li" wx:for="{{declare}}" wx:key='declare' data-src='{{item.src}}' bindtap="navTo">
         <image src="{{item.src}}"></image>
         <text>{{item.name}}</text>
       </view>
     </view>
+  </view>
+
+  <!-- tab -->
+  <view class="tab_box">
+    <view class="tab_li">
+      <image src="/images/home/logistics1.png"></image>
+      <view>后勤</view>
+    </view>
+    <navigator open-type="redirect" url="/pages/admin/index" class="tab_li">
+      <image src="/images/home/my.png"></image>
+      <view>我的</view>
+    </navigator>
+    <navigator url="/pages/index/code" class="code">
+      <image src="/images/home/scan_code.png"></image>
+    </navigator>
   </view>
 </view>

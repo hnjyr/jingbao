@@ -1,52 +1,44 @@
-<view class="container">
-	<!-- 顶部自定义 -->
-	<view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
-		<view class="nav-title flex">
-			<van-icon name="arrow-left" color="#fff" size="24px" />
-			<text style="padding-left:30rpx;">个人中心</text>
-		</view>
-	</view>
+<view class="container" style="padding-top:{{height*2 + 168}}rpx;">
+  <!-- 顶部自定义 -->
+  <view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
+    <view class="nav-title flex" style="line-height:{{height*2+44}}rpx;">
+      <van-icon name="noen" color="#fff" size="24px" />
+      <text style="padding-left:30rpx;">个人中心</text>
+    </view>
+  </view>
 
-	<view class="userinfo">
-		<view class="u_oneline flex_between">
-			<view class="u_oneline_left flex">
-				<image src="/images/admin/ava.png" style="width:117.3rpx;height:117.3rpx;margin-right:18.63rpx;"></image>
-				<view class="log">登录 / 注册</view>
-			</view>
-			<image class="u_oneline_right" src="/images/admin/edit.png" style="width: 27rpx;height: 27rpx;"></image>
-		</view>
-    <view class="u_twoline flex">
+  <view class="userinfo">
+    <view class="u_oneline flex_between">
+      <view class="u_oneline_left flex">
+        <!-- <image src="/images/admin/ava.png" style="width:117.3rpx;height:117.3rpx;margin-right:18.63rpx;"></image> -->
+        <view class="image">
+          <open-data type='userAvatarUrl' default-avatar='/images/admin/ava.png'></open-data>
+        </view>
+        <navigator wx:if='{{!userInfo}}' class="log" hover-class="none" url="/pages/login/login">登录 / 注册</navigator> 
+        <view wx:else>{{userInfo.nickName}}</view>
+      </view>
+      <image class="u_oneline_right" src="/images/admin/edit.png" style="width: 27rpx;height: 27rpx;"></image>
+    </view>
+    <!-- <view class="u_twoline flex">
       <view class="u_twoline_it">
         <text>0</text>
         <view class="hui">浏览历史</view>
       </view>
       <view class="u_twoline_it">
         <text>0</text>
-       <view class="hui">收藏</view>
+        <view class="hui">收藏</view>
       </view>
       <view class="u_twoline_it">
         <text>0</text>
-       <view class="hui">红包优惠券</view>
+        <view class="hui">红包优惠券</view>
       </view>
-    </view>
-	</view>
+    </view> -->
+  </view>
 
   <view class="navterboxs flex">
-    <view class="n_it flex">
-      <image src="/images/admin/Ordermeal.png" style="width:80rpx;height:80rpx;"></image>
-      <view class="n_text">订餐记录</view>
-    </view>
-    <view class="n_it flex">
-      <image src="/images/admin/maintain.png" style="width:80rpx;height:80rpx;"></image>
-      <view class="n_text">维修记录</view>
-    </view>
-    <view class="n_it flex">
-      <image src="/images/admin/makeAppointment.png" style="width:80rpx;height:80rpx;"></image>
-      <view class="n_text">预约记录</view>
-    </view>
-    <view class="n_it flex">
-      <image src="/images/admin/buydrug.png" style="width:80rpx;height:80rpx;"></image>
-      <view class="n_text">消费记录</view>
+    <view class="n_it flex" wx:for='{{list}}' wx:key='list' bindtap="navTo" data-url='{{item.url}}'>
+      <image src="{{item.imgsrc}}" style="width:80rpx;height:80rpx;"></image>
+      <view class="n_text">{{item.text}}</view>
     </view>
   </view>
 
@@ -78,13 +70,13 @@
       </view>
       <van-icon name="arrow" size="20px" color="#CCCCCC" />
     </view>
-    <view class="b_it flex_between">
+    <!-- <view class="b_it flex_between">
       <view class="b_it_left flex">
         <image src="/images/admin/clearSaorage.png" style="width:36rpx;height:36rpx;margin-right:37rpx;"></image>
         <text>清除缓存</text>
       </view>
       <van-icon name="arrow" size="20px" color="#CCCCCC" />
-    </view>
+    </view> -->
     <view class="b_it flex_between">
       <view class="b_it_left flex">
         <image src="/images/admin/shezi.png" style="width:36rpx;height:36rpx;margin-right:37rpx;"></image>
@@ -94,3 +86,17 @@
     </view>
   </view>
 </view>
+
+<!-- tab -->
+<view class="tab_box">
+  <navigator open-type="redirect" url="/pages/index/index" class="tab_li">
+    <image src="/images/home/logistics.png"></image>
+    <view>后勤</view>
+  </navigator>
+  <view  class="tab_li">
+    <image src="/images/home/my1.png"></image>
+    <view>我的</view>
+  </view>
+  <image class="code" src="/images/home/scan_code.png"></image>
+</view>
+<van-toast id="van-toast" />

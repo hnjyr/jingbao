@@ -1,3 +1,7 @@
+const app = getApp()
+const url = require('../../utils/config.js');
+const http = require('../../utils/http.js');
+import Notify from '../../miniprogram/@vant/weapp/notify/notify.js';
 // pages/login/login.js
 Page({
 
@@ -5,14 +9,72 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    username:'test1',
+    pwd:'111111',
+    loginType:'wx'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that=this
+  },
+  // 输入框赋值
+  userInput(e) {
+    this.setData({
+      username:e.detail.value
+    })
+  },
+  pwdInput(e) {
+    this.setData({
+      pwd:e.detail.value
+    })
+  },
+  confirm(){
+    const {username,pwd,loginType}=this.data;
+    if(!username) {
+      Notify({ type: 'danger', message: '请输入用户名' });
+      return false;
+    }
+    if(!pwd) {
+      Notify({ type: 'danger', message: '请输入密码' });
+      return false;
+    }
+    let header='application/x-www-form-urlencoded'
+    wx.request({
+      url: url.login,
+      method:'post',
+      data:{
+        userName:username,
+        password:pwd,
+        loginType
+      },
+      header:{
+        "Content-Type": header
+      },
+      success:(res)=>{
+        console.log(res)
+        if(res.data.code == 0) {
+          var Cookie=res.header['Set-Cookie'].split(';')[0];
+          wx.setStorageSync('cookie', Cookie);
+          wx.setStorageSync('userInfo', res.data.user);
+          wx.setStorageSync('dataList', res.data.data);
+          // if(wx.getStorageSync('page')) {
+          //   wx.redirectTo({
+          //     url:'/'+wx.getStorageSync('page')
+          //   })
+          // }else {
+          //   wx.navigateBack();
+          // }
+          wx.reLaunch({
+            url:'/pages/index/index'
+          })
+        }else {
+          Notify({ type: 'danger', message: res.data.msg });
+        }
+      }
+    })
   },
 
   /**

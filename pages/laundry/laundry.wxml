@@ -4,37 +4,9 @@
   <view class="select_time">
     <view class="time_h2">选择日期</view>
     <scroll-view class="scroll" scroll-x="true" enable-flex="true" scroll-anchoring="true">
-      <view class="ti_li active">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
+      <view class="ti_li {{activeTime == index?'active':''}}" wx:for='{{weekList}}' wx:key='{{week}}' data-i='{{index}}' bindtap="seleTime">
+        <text>{{item.week}}</text>
+        <text>{{item.day}}</text>
       </view>
     </scroll-view>
   </view>
@@ -42,10 +14,29 @@
   <!-- 选择衣服 -->
   <view class="select_yf">
     <view class="yf_ul">
-      <view class="yf_li active">便服</view>
-      <view class="yf_li">警服</view>
+      <view class="yf_li {{active == 1?'active':''}}" bindtap="toogle" data-i='1'>便服</view>
+      <view class="yf_li {{active == 2?'active':''}}" bindtap="toogle" data-i='2'>警服</view>
+    </view>
+    <view class="yf_box" wx:if='{{active == 1}}'>
+      <view class="box_li" wx:for='{{seleList1}}' wx:key='se1' data-i='{{index}}' bindtap="delYf1">
+        <text>{{item.labelName}}</text>
+        <text wx:if='{{item.num > 1}}'>x{{item.num}}</text>
+      </view>
+    </view>
+    <view class="yf_box" wx:else>
+      <view class="box_li" wx:for='{{seleList2}}' wx:key='se2' data-i='{{index}}' bindtap="delYf1">
+        <text>{{item.labelName}}</text>
+        <text wx:if='{{item.num > 1}}'>x{{item.num}}</text>
+      </view>
     </view>
   </view>
 
-  <view class="ti_btn">提交洗衣申请</view>
+  <!-- 衣服分类 -->
+  <view class="yf_tag">
+    <view class="tag_li" wx:for='{{yifuList}}' wx:key='yf' data-i='{{index}}' bindtap="seleYf">
+      {{item.labelName}}
+    </view>
+  </view>
+
+  <view class="ti_btn" bindtap="submit">提交洗衣申请</view>
 </view>

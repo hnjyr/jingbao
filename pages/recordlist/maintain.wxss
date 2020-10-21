@@ -4,32 +4,13 @@
   min-height: 100vh;
   background-color: #F5F5F5;
 }
-.nav-wrap {
-  width: 100%;
-  background: #fff;
-  color: #000;
-  z-index: 9999999;
-}
-/* 标题要居中 */
-.nav-title {
-  font-size: 39rpx;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
-  line-height: 38rpx;
-}
-
-.headbox{
-  position: fixed;
-  width: 100vw;
-  height: 140rpx;
-  background-color: #2963DF;
+scroll-view {
+  height: 100vh;
 }
 
 .center_box,
 .yuy_box{
-  padding: 0 15rpx;
-  padding-bottom: 50rpx;
+  padding: 15rpx 15rpx 0;
 }
 
 .c_it,
@@ -37,8 +18,8 @@
   border-radius: 20rpx;
   border: 1rpx solid #eee;
   background-color: #fff;
-  padding: 15rpx;
-  margin-top: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .c_oneline,
@@ -57,7 +38,7 @@
 
 .c_twoline,
 .y_twoline{
-  font-size: 20rpx;
+  font-size: 22rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #6E6F78;

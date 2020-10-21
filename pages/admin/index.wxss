@@ -1,4 +1,8 @@
 /* pages/admin/index.wxss */
+.container {
+  overflow: hidden;
+  padding-bottom: 100rpx;
+}
 /* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
 .nav-wrap {
   width: 100%;
@@ -17,23 +21,24 @@
 }
 
 .headbox{
-  position: relative;
+  position: absolute;
   width: 110vw;
   height: 369rpx;
   background: linear-gradient(135deg, #1860FF, #2A86FF, #38D2FF);
   border-radius: 0 0 50% 50%;
   margin-left: -30rpx;
+  top: 0;
 }
 .userinfo{
-  position: absolute;
-  top: 163rpx;
+  position: relative;
+  /* top: 163rpx; */
   left: 38rpx;
   width: 686rpx;
-  height: 222rpx;
+  /* height: 222rpx; */
   background: #FFFFFF;
   box-shadow: 0px 0px 6.9rpx 0px rgba(0, 0, 0, 0.2);
   border-radius: 13.8rpx;
-  padding: 8.28rpx 38rpx 15.18rpx 10.5rpx;
+  padding: 12rpx 38rpx 60rpx 12rpx;
 }
 .u_oneline_left>.log{
   font-size: 30.36rpx;
@@ -41,9 +46,16 @@
   font-weight: bold;
   color: #222222;
 }
+.u_oneline_left .image{
+  overflow:hidden;
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right:18rpx;
+}
 .u_twoline{
-  justify-content: center;
-  padding: 0 38rpx 0 78.66rpx;
+  justify-content: space-around;
 }
 .u_twoline .u_twoline_it{
   flex: 1;
@@ -51,15 +63,11 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-left: 101rpx;
   font-size: 32.43rpx;
   font-family: Source Han Sans CN;
   font-weight: bold;
   color: #222222;
   margin-top: 15.87rpx;
-}
-.u_twoline .u_twoline_it:nth-child(1){
-  margin-left: 0rpx;
 }
 .hui{
   width: 100%;
@@ -73,6 +81,7 @@
 .navterboxs{
   justify-content: center;
   margin-top: 56rpx;
+  position: relative;
 }
 .n_it{
   flex: 1;
@@ -134,6 +143,40 @@
   margin-top: 30rpx;
 }
 .b_it{
-  padding: 36rpx 27.6rpx;
+  padding: 26rpx 26rpx;
   border-bottom: 1rpx solid #DDDDDD;
+}
+
+.tab_box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: calc(env(safe-area-inset-bottom) / 2);
+}
+.tab_box .tab_li {
+  padding: 10rpx 50rpx;
+}
+.tab_box .tab_li image {
+  width: 37rpx;
+  height:43rpx;
+  display: block;
+  margin: 0 auto 6rpx;
+}
+.tab_box .tab_li view {
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #9A9A9A;
+}
+.tab_box .code {
+  width: 84rpx;
+  height: 84rpx;
+  position: absolute;
+  top: -42rpx;
+  left: 50%;
+  margin-left: -42rpx;
 }

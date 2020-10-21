@@ -4,20 +4,20 @@
   <view class="ha_info">
     <van-cell-group>
       <van-field
-        value="{{ username }}"
+        value="{{ userInfo.userName }}"
         clearable
         label="姓名"
         placeholder="请输入姓名"
-        readonly="{{ readonly }}"
+        readonly="{{ userInfo.userName }}"
         maxlength="{{4}}"
       />
 
       <van-field
-        value="{{ phone }}"
+        value="{{ userInfo.mobile }}"
         clearable
         label="手机号"
         placeholder="请输入手机号"
-        readonly="{{ readonly }}"
+        readonly="{{ userInfo.mobile }}"
         maxlength='{{11}}'
         border="{{ false }}"
       />
@@ -28,40 +28,31 @@
   <view class="select_time">
     <view class="time_h2">选择日期</view>
     <scroll-view class="scroll" scroll-x="true" enable-flex="true" scroll-anchoring="true">
-      <view class="ti_li active">
-        <text>周二</text>
-        <text>13</text>
+      <view class="ti_li {{activeTime == index?'active':''}}" wx:for="{{weekList}}" wx:key='week' data-i='{{index}}' bindtap="seleTime">
+        <text>{{item.week}}</text>
+        <text>{{item.day}}</text>
       </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
+    </scroll-view>
+    <view class="time_h2">选择时间段</view>
+    <scroll-view class="sele_time" scroll-x="true" enable-flex="true" scroll-anchoring="true">
+      <view class="time_li {{activeTimeDay == index?'activeTime':''}}" wx:for='{{dataList}}' wx:key='time' data-i='{{index}}' bindtap="selectTime">
+        {{item.manageTime}}
       </view>
     </scroll-view>
   </view>
+  <!-- 项目 -->
+  <view class="project" wx:if='{{proList}}'>
+    <view class="pro_box">
+      <image></image>
+      <view class="pro_info">
+        <view class="pro_h2">{{proList.resourceName}}</view>
+        <view class="pro_num">
+          剩余：<text>{{proList.setNumber}}</text>
+        </view>
+      </view>
+    </view>
+    <van-checkbox value="{{ proList.flag }}" bind:change="onChange"></van-checkbox>
+  </view>
 
-  <view class="ti_btn">预约</view>
+  <view class="ti_btn" bindtap="submit">预约</view>
 </view>

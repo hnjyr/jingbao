@@ -88,3 +88,29 @@ page {
   color: #fff;
   border-color: #2963E0;
 }
+.yf_box {
+  position: absolute;
+  top: 50rpx;
+  left: 32rpx;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+.yf_box .box_li {
+  font-size: 30rpx;
+  color: #2963E0;
+  margin: 0 40rpx 20rpx 0;
+}
+.yf_tag {
+  padding-top: 40rpx;
+  display: flex;
+  align-items: center;
+}
+.yf_tag .tag_li {
+  font-size: 28rpx;
+  color: #3E3E3E;
+  margin: 0 20rpx 20rpx 0;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 8rpx 50rpx;
+}

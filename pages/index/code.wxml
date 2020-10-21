@@ -1,0 +1,7 @@
+<!--一码通-->
+<view class="container">
+  <view class="ref">{{}}秒后刷新</view>
+  <view class="tip">用于就餐支付时，</view>
+  <view class="tip">每个就餐时间只可支付一次</view>
+  <image src="http://122.51.69.116:8082/zhjb/pay/purse/generatePayQrcode"></image>
+</view>

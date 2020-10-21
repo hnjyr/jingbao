@@ -1,6 +1,6 @@
 {
+  "navigationBarTitleText":"订餐记录",
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index"
-  },
-  "navigationStyle":"custom"
+  }
 }

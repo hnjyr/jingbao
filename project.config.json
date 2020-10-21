@@ -29,7 +29,7 @@
       "outputPath": ""
     },
     "useIsolateContext": true,
-    "useCompilerModule": false,
+    "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": []
@@ -71,23 +71,127 @@
       "list": [
         {
           "id": 0,
-          "name": "pages/recordlist/maintain",
-          "pathName": "pages/recordlist/maintain",
+          "name": "pages/playground/index",
+          "pathName": "pages/playground/index",
           "query": "",
           "scene": null
         },
         {
           "id": 1,
-          "name": "pages/list/order",
-          "pathName": "pages/list/order",
+          "name": "pages/repair/repair",
+          "pathName": "pages/repair/repair",
           "query": "",
           "scene": null
         },
         {
           "id": 2,
-          "name": "pages/recordlist/consume",
-          "pathName": "pages/recordlist/consume",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人中心",
+          "pathName": "pages/admin/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "订餐列表",
+          "pathName": "pages/list/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "药店",
+          "pathName": "pages/chemist/chemist",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "药店详情",
+          "pathName": "pages/chemist/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "理发店",
+          "pathName": "pages/haircut/haircut",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "预约时间",
+          "pathName": "pages/haircut/time",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "运动场",
+          "pathName": "pages/playground/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "警营维修",
+          "pathName": "pages/repair/repair",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "洗衣",
+          "pathName": "pages/laundry/laundry",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "订餐记录",
+          "pathName": "pages/recordlist/dining",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 14,
+          "name": "维修、预约记录",
+          "pathName": "pages/recordlist/maintain",
+          "query": "type=2",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人中心",
+          "pathName": "pages/admin/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "理疗",
+          "pathName": "pages/physio/physio",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "支付订单",
+          "pathName": "pages/order/order",
           "scene": null
         }
       ]

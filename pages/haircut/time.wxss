@@ -41,3 +41,40 @@ page {
   text-align: center;
   padding: 14rpx 0;
 }
+.time_box {
+  display: flex;
+}
+.time_box .time_li {
+  background-color: #fff;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  margin: 0 20rpx 20rpx 0;
+  text-align: center;
+  padding: 20rpx 10rpx;
+  font-size: 24rpx;
+  position: relative;
+}
+.time_box .active {
+  border-color: #FF8400;
+}
+.time_box .active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: 20rpx solid #FF8400;
+  border-bottom: 20rpx solid transparent;
+  border-left: 20rpx solid transparent;
+  border-right: 20rpx solid #FF8400;
+}
+.time_box .time_li view:first-child {
+  margin-bottom: 30rpx;
+}
+.time_dui {
+  position: absolute;
+  right: 5rpx;
+  top: 0;
+  font-size: 20rpx;
+  color: #fff;
+  z-index: 1;
+}

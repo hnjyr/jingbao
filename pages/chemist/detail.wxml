@@ -1,0 +1,14 @@
+<!--药品详情-->
+<view class="container">
+  <image class="dt_image" src="{{imgUrl + ypInfo.imageId}}"></image>
+  <view class="info">
+    <view class="dt_h2">{{ypInfo.goodsName}}</view>
+    <view class="dt_price">
+      <text>¥{{ypInfo.price}}</text>
+    </view>
+  </view>
+  <view class="info_xq">
+    <view class="dt_h3">商品详情</view>
+    <view class="dt_info">{{ypInfo.description || '暂无'}}</view>
+  </view>
+</view>

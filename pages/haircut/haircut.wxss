@@ -2,6 +2,7 @@
 page {
   padding: 20rpx;
   background-color: #F1F1F1;
+  height: 100%;
 }
 .ra_li {
   display: flex;
@@ -63,4 +64,21 @@ page {
 .time_box {
   border-radius: 12rpx;
   background-color: #fff;
+  display: flex;
+  padding: 30rpx 20rpx;
+  justify-content: space-around;
+  font-size: 26rpx;
+}
+.tc_btn {
+  padding: 18rpx 0;
+  width: 650rpx;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #2963E0;
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  position: absolute;
+  bottom: 100rpx;
+  left: 40rpx;
 }

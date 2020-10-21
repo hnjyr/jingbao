@@ -1,0 +1,32 @@
+/* pages/list/info.wxss */
+.in_box {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #DCDCDC;
+  display: flex;
+  align-items: center;
+}
+.in_box text {
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #3E3E3E;
+  margin-right: 30rpx;
+}
+.in_box input {
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #999999;
+}
+.btn {
+  width: 528rpx;
+  margin: 70rpx auto;
+  text-align: center;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  padding: 24rpx 0;
+  border-radius: 50rpx;
+  background-color: #2963E0;
+}

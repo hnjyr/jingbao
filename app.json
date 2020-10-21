@@ -1,6 +1,11 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/index/code",
+    "pages/order/order",
+    "pages/list/info",
+    "pages/list/car",
+    "pages/list/detail",
     "pages/login/login",
     "pages/admin/index",
     "pages/playground/index",
@@ -8,12 +13,16 @@
     "pages/recordlist/dining",
     "pages/recordlist/maintain",
     "pages/recordlist/consume",
+    "pages/recordlist/detail",
     "pages/repair/apply",
     "pages/repair/repair",
     "pages/vehicle/vehicle",
     "pages/chemist/chemist",
+    "pages/chemist/detail",
+    "pages/chemist/search",
     "pages/laundry/laundry",
     "pages/haircut/haircut",
+    "pages/physio/physio",
     "pages/haircut/time"
   ],
   "window":{
@@ -22,5 +31,9 @@
     "navigationBarTitleText": "烟台公安智慧警保",
     "navigationBarTextStyle":"white"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-toast": "@vant/weapp/toast/index",
+    "van-notify": "@vant/weapp/notify/index"
+  }
 }

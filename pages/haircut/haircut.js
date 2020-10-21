@@ -1,4 +1,8 @@
 // pages/haircut/haircut.js
+const app=getApp();
+const url = require('../../utils/config.js');
+const http = require('../../utils/http.js');
+const util = require('../../utils/util.js');
 Page({
 
   /**
@@ -6,7 +10,9 @@ Page({
    */
   data: {
     radio: '1',
-    pro_act:true
+    dataList:[],
+    userInfo:'',
+    type:1
   },
 
   radioClick(event) {
@@ -16,11 +22,26 @@ Page({
     });
   },
 
+  checktimer(){
+    wx.navigateTo({
+      url: '/pages/haircut/time',
+    })
+  },
+  toogle(e) {
+    let type = e.currentTarget.dataset.type;
+    this.setData({
+      type:type
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let userInfo = wx.getStorageSync('userInfo');
+    this.setData({
+      userInfo:userInfo
+    })
+    this.getDataList();
   },
 
   /**
@@ -36,7 +57,56 @@ Page({
   onShow: function () {
 
   },
-
+  // 提交
+  submit() {
+    let list = this.data.dataList,
+    obj = {},
+    haircutType = this.data.type,
+    mobile = this.data.userInfo.mobile,
+    reserveUserName = this.data.userInfo.userName;
+    for(let v of list) {
+      if(v.flag == true) {
+        obj = v
+      }
+    }
+    http(url.saveRecord,{
+      beginTime:obj.beginTime,
+      endTime:obj.endTime,
+      haircutType:haircutType ,
+      manageId:obj.manageId,
+      mobile:mobile,
+      reserveType:1,
+      reserveUserName:reserveUserName,
+      shopId:'9',
+    },(res)=>{
+      if(res.code == 0) {
+        app.showSuccess('预约成功',()=>{
+          wx.navigateBack()
+        })
+      }else {
+        app.showError(res.msg)
+      }
+    },'POST','json')
+  },
+  // 获取预约详情列表
+  getDataList() {
+    let arr = ['日', '一', '二', '三', '四', '五', '六', ]
+    http(url.manageTime,{
+      endDate:util.formatEndTime(new Date()),
+      shopId:"9"
+    },(res)=>{
+      console.log(res)
+      if(res.code == 0) {
+        for(let v of res.data[util.formatEndTime(new Date())]) {
+          v.week = '星期'+arr[new Date().getDay()];
+        }
+        res.data[util.formatEndTime(new Date())][0].flag = true;
+        this.setData({
+          dataList:res.data[util.formatEndTime(new Date())]
+        })
+      }
+    },'GET')
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

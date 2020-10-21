@@ -1,23 +1,47 @@
 // pages/recordlist/dining.js
-const app=getApp()
+const app=getApp();
+const url = require('../../utils/config.js');
+const http = require('../../utils/http.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imgUrl:url.imgUrl,
+    userInfo:'',
+    limit:20,
+    page:1,
+    dataList:[],
+    refresh:false
   },
-
+  refreshTap(e) {
+    this.setData({
+      page:1
+    })
+    this.getDataList();
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let userInfo = wx.getStorageSync('userInfo');
     this.setData({
-      height:app.globalData.height
+      userInfo
+    })
+    this.getDataList();
+  },
+  // 跳转
+  navTap(e) {
+    let i = e.currentTarget.dataset.i;
+    wx.setStorage({
+      data: this.data.dataList[i],
+      key: 'orderDetail',
+    })
+    wx.navigateTo({
+      url: '/pages/order/order',
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -31,7 +55,26 @@ Page({
   onShow: function () {
 
   },
-
+  // 获取数据
+  getDataList() {
+    let createUserId = this.data.userInfo.userId,
+    shopType = '1',
+    limit = this.data.limit,
+    page = this.data.page;
+    http(url.orderingList,{
+      createUserId,
+      shopType,
+      limit,
+      page
+    },res=>{
+      if(res.code == 0) {
+        this.setData({
+          dataList:res.page.list,
+          refresh:false
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

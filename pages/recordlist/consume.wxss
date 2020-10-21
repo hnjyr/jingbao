@@ -1,38 +1,57 @@
 /* pages/recordlist/consume.wxss */
 /* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
+page {
+  background-color: #f1f2f3;
+}
+.scroll {
+  height: 100vh;
+}
 .container{
   min-height: 100vh;
   background-color: #F5F5F5;
 }
-.nav-wrap {
-  width: 100%;
-  background: #fff;
-  color: #000;
-  z-index: 9999999;
-}
-/* 标题要居中 */
-.nav-title {
-  font-size: 39rpx;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
-  line-height: 38rpx;
-}
-
-.headbox{
-  position: fixed;
-  width: 100vw;
-  height: 140rpx;
-  background-color: #2963DF;
-}
-
 .none{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 125rpx;
+}
+.mess_li {
+  padding: 20rpx;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+.mess_show::after {
+  width: 12rpx;
+  height: 12rpx;
+  content: "";
   position: absolute;
-  top: 400rpx;
-  left: 316rpx;
+  right: 20rpx;
+  top: 20rpx;
+  border-radius: 50%;
+  background-color: red;
+}
+.mess_li image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+  background-color: #ccc;
+  flex-shrink: 0;
+  margin-top: 6rpx;
+}
+.mess_cont {
+  font-size: 24rpx;
+  color: #999;
+  width: calc(100% - 120rpx);
+}
+.mess_h2 {
+  font-size: 32rpx;
+  color: #333;
+}
+.mess_p {
+  margin: 8rpx 0;
+}
+.mess_time {
+  text-align: right;
 }

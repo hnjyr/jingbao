@@ -1,16 +1,19 @@
 <!--pages/recordlist/consume.wxml-->
-<!-- 消费记录 -->
+<!-- 消息通知 -->
 <view class="container">
-  	<!-- 顶部自定义 -->
-	<view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
-		<view class="nav-title flex">
-			<van-icon name="arrow-left" color="#fff" size="24px" />
-			<text style="padding-left:30rpx;">消费记录</text>
-		</view>
-	</view>
-  <view class="none" style="padding-top: 140rpx;">
-    <image src="/images/admin/basketball.png" style="width:125rpx;height:114rpx;margin-bottom:15rpx;"></image>
-    <text>暂无数据</text>
-  </view>
+    <scroll-view class="scroll" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindrefresherrefresh='refreshTap'>
+      <view class="mess_li {{ item.isRead == 2?'mess_show':''}}" wx:for='{{dataList}}' wx:key='data' data-i='{{index}}' bindtap="navTap">
+        <image ></image>
+        <view class="mess_cont">
+          <view class="mess_h2">{{item.noticeTitle}}</view>
+          <view class="mess_p">{{item.noticeValue}}</view>
+          <view class="mess_time">{{item.createDate}}</view>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- <view class="none">
+      <image src="/images/admin/ava.png" style="width:125rpx;height:114rpx;margin-bottom:15rpx;"></image>
+      <text style="width:100vw;text-align: center;">暂无数据</text>
+    </view> -->
 
 </view>

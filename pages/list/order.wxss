@@ -66,8 +66,8 @@ scroll-view{
 
 .v_sidebar .van-sidebar-item {
   border-bottom: 2rpx solid #EBEBEB;
-  padding:32rpx 36rpx;
-  padding-right: 46rpx;
+  /* padding:32rpx 36rpx;
+  padding-right: 46rpx; */
 }
 
 .position_btm{

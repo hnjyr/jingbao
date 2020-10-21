@@ -1,0 +1,6 @@
+<!--通知详情-->
+<view class="container">
+  <view class="de_h2">{{dataInfo.noticeTitle}}</view>
+  <view class="de_time">{{dataInfo.createDate}}</view>
+  <view class="de_cont">{{dataInfo.noticeValue}}</view>
+</view>

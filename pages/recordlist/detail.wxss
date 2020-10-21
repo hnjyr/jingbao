@@ -1,0 +1,21 @@
+/* pages/recordlist/detail.wxss */
+page {
+  background-color: #f1f2f3;
+  padding: 20rpx;
+}
+.de_h2 {
+  color: #333;
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+  font-weight: 500;
+}
+.de_time {
+  color: #999;
+  margin-bottom: 50rpx;
+  font-size: 28rpx;
+}
+.de_cont {
+  color: #666;
+  /* margin-bottom: 80rpx; */
+  font-size: 28rpx;
+}

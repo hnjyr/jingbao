@@ -20,7 +20,7 @@
 }
 
 .headbox{
-  position: relative;
+  position: absolute;
   height: 140rpx;
   width: 100vw;
   background-color: #2963DF;
@@ -57,6 +57,7 @@
   background-color: #fff;
   border-radius: 9rpx;
   padding-right: 25rpx;
+  margin-bottom:40rpx ;
 }
 
 .c_right{

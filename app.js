@@ -1,5 +1,8 @@
 //app.js
 App({
+  globalData:{
+    height:20
+  },
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -36,15 +39,49 @@ App({
     wx.getSystemInfo({
       success: (res) => {
         console.log(res)
-        // this.data.height = res.statusBarHeight
-        this.globalData.height=res.statusBarHeight
-        // this.setData({
-        //   height:res.statusBarHeight
-        // })
+       wx.setStorage({
+         data: res.statusBarHeight,
+         key: 'titHeight',
+       })
       }
     })
   },
   globalData: {
     userInfo: null
-  }
+  },
+  goback(){
+    wx.navigateBack()
+  },
+  /**
+   * 显示成功提示框
+   */
+  showSuccess(msg, callback) {
+    wx.showToast({
+      title: msg,
+      icon: 'success',
+      mask: true,
+      duration: 1500,
+      success() {
+        callback && (setTimeout(function () {
+          callback();
+        }, 800));
+      }
+    });
+  },
+  /**
+   * 显示失败提示框
+   */
+  showError(msg, callback) {
+    wx.showModal({
+      title: '提示',
+      content: msg,
+      showCancel: false,
+      success(res) {
+        // callback && (setTimeout(function() {
+        //   callback();
+        // }, 1500));
+        callback && callback();
+      }
+    });
+  },
 })

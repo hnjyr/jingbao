@@ -1,8 +1,8 @@
 {
+  "navigationBarTitleText":"订餐列表",
   "usingComponents": {
     "van-sidebar": "@vant/weapp/sidebar/index",
     "van-sidebar-item": "@vant/weapp/sidebar-item/index",
     "van-icon": "@vant/weapp/icon/index"
-  },
-  "navigationStyle":"custom"
+  }
 }

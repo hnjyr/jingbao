@@ -15,40 +15,44 @@
   <view class="ha_info">
     <van-cell-group>
       <van-field
-        value="{{ username }}"
+        value="{{ userInfo.userName }}"
         clearable
         label="姓名"
         placeholder="请输入姓名"
         readonly="{{ readonly }}"
         maxlength="{{4}}"
+        readonly='{{userInfo.userName != ""}}'
       />
 
       <van-field
-        value="{{ phone }}"
+        value="{{ userInfo.mobile }}"
         clearable
         label="手机号"
         placeholder="请输入手机号"
         readonly="{{ readonly }}"
         maxlength='{{11}}'
         border="{{ false }}"
+        readonly='{{userInfo.mobile != ""}}'
       />
     </van-cell-group>
   </view>
 
   <!-- time -->
-  <view class="ha_time">
+  <view class="ha_time" bindtap="checktimer">
     <view class="time_h2">选择预约时间</view>
-    <view class="time_box">
-      <view class="box_li">今天</view>
-      <view class="box_li">明天</view>
+    <view class="time_box" wx:for='{{dataList}}' wx:if='{{item.flag}}' wx:key='i'>
+      <text>{{item.manageDate}} {{item.week}}</text>
+      <text>{{item.manageTime}}</text>
     </view>
   </view>
   <!-- 项目 -->
   <view class="ha_pro">
     <view class="pro_h2">选择项目</view>
     <view class="pro_ul">
-      <text class="{{ pro_act?'active':''}}">理发</text>
-      <text class="{{ !pro_act?'active':''}}">染发</text>
+      <text class="{{ type == 1?'active':''}}" data-type='1' bindtap="toogle">理发</text>
+      <text class="{{ type == 2?'active':''}}" data-type='2' bindtap="toogle">染发</text>
     </view>
   </view>
+
+  <view class="tc_btn" bindtap="submit">确定</view>
 </view>

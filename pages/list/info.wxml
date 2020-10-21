@@ -1,0 +1,12 @@
+<!--pages/list/info.wxml-->
+<view class="container">
+  <view class="in_box">
+    <text>取餐人</text>
+    <input type="text" placeholder="请填写取餐人姓名" maxlength="10" value='{{userInfo.userName}}'/>
+  </view>
+  <view class="in_box">
+    <text>手机号</text>
+    <input type="phone" placeholder="请填写你的手机号" maxlength="11" value='{{userInfo.mobile}}'/>
+  </view>
+  <view class="btn" bindtap="saveOrder">确定</view>
+</view>

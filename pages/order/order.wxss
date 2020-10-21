@@ -1,0 +1,79 @@
+/* pages/order/order.wxss */
+page {
+  padding: 30rpx;
+  background-color: #f1f2f3;
+}
+.order_box {
+  background-color: #fff;
+  border-radius: 20rpx;
+  border: 1rpx solid #ddd;
+  padding: 16rpx;
+  margin-bottom: 20rpx;
+}
+.box_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.box_h1 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+.box_zf {
+  font-size: 28rpx;
+  color: red;
+}
+.box_time {
+  font-size: 24rpx;
+  color: #bbb;
+  margin-bottom: 10rpx;
+}
+.box_info {
+  font-size: 28rpx;
+  color: #bbb;
+}
+.order_num {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+.order_price {
+  font-size: 30rpx;
+  color: #333;
+}
+.price {
+  color: #FF8400;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+.yh {
+  font-size: 24rpx;
+  color: #aaa;
+}
+.zf_box {
+  position: fixed;
+  bottom: 50rpx;
+  left: 30rpx;
+  width: 690rpx;
+}
+.zf_price {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+.zf_price text {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: red;
+}
+.ti_btn {
+  width: 100%;
+  background-color: #2963E0;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  padding: 20rpx 0;
+}

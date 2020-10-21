@@ -1,93 +1,38 @@
 <!--pages/recordlist/dining.wxml-->
 <!-- 订餐记录 -->
 <view class="container">
-	<!-- 顶部自定义 -->
-	<view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
-		<view class="nav-title flex">
-			<van-icon name="arrow-left" color="#fff" size="24px" />
-			<text style="padding-left:30rpx;">订餐记录</text>
-		</view>
-	</view>
+	<scroll-view class="center_box" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindrefresherrefresh='refreshTap'>
 
-	<view class="center_box" style="padding-top: 140rpx;">
-
-		<view class="c_it flex_between">
-			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
+		<view class="c_it flex_between" wx:for="{{dataList}}" wx:key='data' bindtap="navTap" data-i='{{index}}'>
+			<image mode="aspectFill" class="image" src="{{ imgUrl + item.imageId }}"></image>
 			<view class="c_right">
 				<view class="c_right_oneline flex_between">
-					<text>公安局第一餐厅</text>
-					<text class="red">已关闭</text>
+					<text>{{ item.shopName }}</text>
+					<text class="red" wx:if='{{item.payState == 0}}'>待支付</text>
+					<text class="red" wx:if='{{item.payState == 1}}'>已成功</text>
+					<text class="red" wx:if='{{item.payState == 2}}'>已关闭</text>
+					<text class="red" wx:if='{{item.payState == 3}}'>已撤销</text>
+					<text class="red" wx:if='{{item.payState == 4}}'>待退款</text>
+					<text class="red" wx:if='{{item.payState == 5}}'>退款成功</text>
+					<text class="red" wx:if='{{item.payState == 6}}'>交易结束</text>
 				</view>
-				<view class="c_right_twoline flex_between">订单号：13246321321</view>
-				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
+				<view class="c_right_twoline flex_between">订单号：{{ item.ordersNumber }}</view>
+				<view class="c_right_threeline flex_between">下单时间：{{ item.createTime }}</view>
 				<view class="c_right_foreline flex_between">
-					<text>付款方式：</text>
-					<text class="money">￥36</text>
+					<view class="flex_beween">
+						<text>付款方式：</text>
+						<text wx:if="{{item.payMethod == 1}}">支付宝</text>
+						<text wx:if="{{item.payMethod == 2}}">微信</text>
+						<text wx:if="{{item.payMethod == 3}}">网银</text>
+						<text wx:if="{{item.payMethod == 4}}">钱包</text>
+						<text wx:if="{{item.payMethod == 5}}">现金</text>
+						<text wx:if="{{item.payMethod == 6}}">货到付款</text>
+					</view>
+					<text class="money">￥{{ item.payPrice }}</text>
 				</view>
 			</view>
 		</view>
-		<view class="c_it flex_between">
-			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
-			<view class="c_right">
-				<view class="c_right_oneline flex_between">
-					<text>公安局第一餐厅</text>
-					<text class="red">已关闭</text>
-				</view>
-				<view class="c_right_twoline flex_between">订单号：13246321321</view>
-				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
-				<view class="c_right_foreline flex_between">
-					<text>付款方式：</text>
-					<text class="money">￥36</text>
-				</view>
-			</view>
-		</view>
-		<view class="c_it flex_between">
-			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
-			<view class="c_right">
-				<view class="c_right_oneline flex_between">
-					<text>公安局第一餐厅</text>
-					<text class="red">已关闭</text>
-				</view>
-				<view class="c_right_twoline flex_between">订单号：13246321321</view>
-				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
-				<view class="c_right_foreline flex_between">
-					<text>付款方式：</text>
-					<text class="money">￥36</text>
-				</view>
-			</view>
-		</view>
-		<view class="c_it flex_between">
-			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
-			<view class="c_right">
-				<view class="c_right_oneline flex_between">
-					<text>公安局第一餐厅</text>
-					<text class="red">已关闭</text>
-				</view>
-				<view class="c_right_twoline flex_between">订单号：13246321321</view>
-				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
-				<view class="c_right_foreline flex_between">
-					<text>付款方式：</text>
-					<text class="money">￥36</text>
-				</view>
-			</view>
-		</view>
-		<view class="c_it flex_between">
-			<image src="/images/admin/badminton.png" style="width:100rpx;height:100rpx;margin:0 30rpx 0 20rpx;"></image>
-			<view class="c_right">
-				<view class="c_right_oneline flex_between">
-					<text>公安局第一餐厅</text>
-					<text class="red">已关闭</text>
-				</view>
-				<view class="c_right_twoline flex_between">订单号：13246321321</view>
-				<view class="c_right_threeline flex_between">下单时间：2020-09-17 16:37:15</view>
-				<view class="c_right_foreline flex_between">
-					<text>付款方式：</text>
-					<text class="money">￥36</text>
-				</view>
-			</view>
-		</view>
+		
 
-	</view>
-
-
+	</scroll-view>
 </view>

@@ -1,37 +1,46 @@
-module.exports = {
-  post: function (url, data, fun, method='POST'){
+module.exports = function (url, data, fun, method='POST',header){
+    data={
+      ...data
+    }
     const App = getApp();
     wx.showNavigationBarLoading();
     wx.showLoading({
       title: '加载中',
     })
-    data.openId = wx.getStorageSync('openId');
-    let content = method == 'GET' ? 'application/x-www-form-urlencoded' :'application/json'
-    if(data.page) {
-      if(data.page == 1) {
-        data.page = 1
-      }else {
-        data.page = Number(`${(data.page - 1) * data.limit}`)
-      }
-    }
+    // data.openId = wx.getStorageSync('openId');
+    // let content=header?header:method == 'POST'?'application/x-www-form-urlencoded' :'application/json'
+    header = header == 'json'?'application/json':'application/x-www-form-urlencoded'
     wx.request({
       url: url,
       data:data,
       method: method,
       header: {
-        // "Content-Type": "application/json"
-        "Content-Type": content
+        "X-Requested-With":"WXCHART",
+        "Cookie": wx.getStorageSync('cookie'),
+        "Content-Type": header,
       },
       dataType: "json",
       success: function (e) {
         wx.hideNavigationBarLoading();
-        wx.hideLoading()
+        wx.hideLoading();
+        console.log(e)
         if (e.statusCode !== 200 || typeof e.data !== 'object') {
          App.showError('网络请求出错');
           return false;
         }
-        if (e.data.status == 800) {
+        if (e.data.code == 500) {
           App.showError(e.data.msg);
+          return false;
+        }
+        if (e.data.code == 403) {
+          // let pages = getCurrentPages() // 获取加载的页面
+          // let currentPage = pages[pages.length - 1]
+          // wx.setStorageSync('page', currentPage.route)
+          App.showError(e.data.msg,()=>{
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+          });
           return false;
         }
         return "function" == typeof fun && fun(e.data);
@@ -42,5 +51,4 @@ module.exports = {
         return "function" == typeof fun && fun(!1);
       }
     })
-  },
-}
+  }

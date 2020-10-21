@@ -1,39 +1,17 @@
 <!--预约时间-->
 <view class="container">
   <scroll-view class="scroll" scroll-x="true" enable-flex="true" scroll-anchoring="true">
-      <view class="ti_li active">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
-      <view class="ti_li">
-        <text>周二</text>
-        <text>13</text>
-      </view>
+    <view class="ti_li active" wx:for="{{timeArr}}" wx:key='date'>
+      <text>{{item.week}}</text>
+      <text>{{item.time}}</text>
+    </view>
   </scroll-view>
-
-  <view class="ti_btn">确定</view>
+  <view class="time_box" >
+    <view class="time_li {{item.flag?'active':''}}" wx:for="{{dataList}}" wx:key='li' data-i='{{index}}' bindtap="toogle">
+      <view class="time_yy">可预约</view>
+      <view class="time_ti">{{item.manageTime}}</view>
+      <view class="time_dui">√</view>
+    </view>
+  </view>
+  <view class="ti_btn" bindtap="backTap">确定</view>
 </view>

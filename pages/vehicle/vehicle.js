@@ -1,18 +1,24 @@
 // pages/vehicle/vehicle.js
+const app=getApp();
+const url = require('../../utils/config.js');
+const http = require('../../utils/http.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    dataList:[],
+    page:1,
+    limit:20,
+    imgUrl:url.imgUrl
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getDataList();
   },
 
   /**
@@ -28,7 +34,23 @@ Page({
   onShow: function () {
 
   },
-
+  // 获取数据
+  getDataList() {
+    let _this = this,
+    page = this.data.page,
+    limit = this.data.limit;
+    http(url.listMyShop,{
+      shopType:'7',
+      page:page,
+      limit:limit
+    },(res)=>{
+      if(res.code == 0) {
+        this.setData({
+          dataList:res.page.list
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
