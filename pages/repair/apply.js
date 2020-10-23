@@ -104,6 +104,7 @@ Page({
        },
       success(e) {
         let res = JSON.parse(e.data);
+        console.log(res)
         // 上传完成需要更新 fileList
         const { fileList = [] } = _this.data;
         fileList.push({ ...file, url: _this.data.imgUrl + res.data.id, imgId:res.data.id });

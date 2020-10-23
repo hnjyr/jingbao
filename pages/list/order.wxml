@@ -29,9 +29,12 @@
 
 		<scroll-view class="c_right " scroll-y>
 			<view class="box" wx:if='{{curid == 1}}'>
-				<view class="c_right_it" wx:for='{{jcLists.list}}' bindtap="navTab" data-i='{{index}}'>
+				<view class="c_right_it" wx:for='{{jcLists.list}}' wx:key='*this' bindtap="navTab" data-i='{{index}}'>
 					<image src="{{imgUrl+item.shopGoodsEntity.imageId}}" style="width:233rpx;height:187rpx;"></image>
-					<view>{{item.shopGoodsEntity.goodsName}}</view>
+					<view style="display:flex;justify-content: space-between;align-items: center;">
+						<view>{{item.shopGoodsEntity.goodsName}}</view>
+						<text>库存：{{item.remaining}}</text>
+					</view>
 					<view class="c_num flex_between">
 						<text>¥{{item.shopGoodsEntity.price}}</text>
 						<!-- <van-icon name="add" color="#FF8400" size="24" /> -->
@@ -39,9 +42,12 @@
 				</view>
 			</view>
 			<view class="box" wx:else>
-				<view class="c_right_it" wx:for='{{dcList.list}}' bindtap="navTabs" data-i='{{index}}'>
+				<view class="c_right_it" wx:for='{{dcList.list}}' wx:key='*this' bindtap="navTabs" data-i='{{index}}'>
 					<image src="{{imgUrl+item.shopGoodsEntity.imageId}}" style="width:233rpx;height:187rpx;"></image>
-					<view>{{item.shopGoodsEntity.goodsName}}</view>
+					<view style="display:flex;justify-content: space-between;align-items: center;">
+						<view>{{item.shopGoodsEntity.goodsName}}</view>
+						<text>库存：{{item.remaining}}</text>
+					</view>
 					<view class="c_num flex_between">
 						<text>¥{{item.shopGoodsEntity.price}}</text>
 						<van-icon name="add" color="#FF8400" size="24" catchtap="addCar" data-i='{{index}}'/>
@@ -49,13 +55,13 @@
 				</view>
 			</view>
 		</scroll-view>
-
 	</view>
 
 	<view class="position_btm flex_between" wx:if='{{curid==2}}'>
 		<view style="padding-top:0rpx; ">
 			<view class="imgbox">
-				<image src="/images/list/cart.png" style="width:52.44rpx;height:52.44rpx;"></image>
+				<image wx:if='{{carList.length == 0}}' src="/images/list/cart.png" style="width:52.44rpx;height:52.44rpx;"></image>
+				<image wx:else src="/images/list/curcart.png" style="width:100%;height:100%;"></image>
 			</view>
 			<text class="kong" wx:if='{{carList.length == 0}}'>购物车空哦</text>
 			<text class="kong" style="color:#FB4E44;" wx:else>合计￥{{allPrice}}</text>

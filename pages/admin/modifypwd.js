@@ -1,44 +1,62 @@
-// pages/index/code.js
+// pages/admin/modifypwd.js
 const app = getApp()
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
+import Notify from '../../miniprogram/@vant/weapp/notify/notify.js';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    timer:'',
-    second:60,
-    imgSrc:url.imgUrl,
-    src:''
+    password:'',
+    newpwd:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCode();
+
   },
-  getCode() {
-    let _this = this;
-    wx.request({
-      url: url.payQrcode,
-      method:'GET',
-      responseType: 'arraybuffer',
-      header:{
-        "X-Requested-With":"WXCHART",
-        "Cookie": wx.getStorageSync('cookie'),
-      },
-      success(res) {
-        console.log(res.data);
-        let url ='data:image/png;base64,'+wx.arrayBufferToBase64(res.data)
-        _this.setData({
-          src:url
-        })
-      }
+  userInput(e){
+    this.setData({
+      password:e.detail.value
     })
   },
+  pwdInput(e){
+    this.setData({
+      newpwd:e.detail.value
+    })
+  },
+  confirm(){
+    const {password,newpwd}=this.data;
+    if(!password) {
+      Notify({ type: 'danger', message: '请输入原密码' });
+      return false;
+    }
+    if(!newpwd) {
+      Notify({ type: 'danger', message: '请输入新密码' });
+      return false;
+    }
+    http(url.password,{
+      password:password,
+      newPassword:newpwd
+    },res=>{
+      console.log(res)
+      if(res.code == 0) {
+        wx.clearStorageSync('cookie')
+        wx.clearStorageSync('payPassword')
+        wx.clearStorageSync('userInfo')
+        wx.clearStorageSync('dataList')
+        wx.reLaunch({
+          url: '/pages/index/index',
+        })
+      }
+    },'GET','json')
+    
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

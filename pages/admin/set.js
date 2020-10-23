@@ -1,44 +1,32 @@
-// pages/index/code.js
-const app = getApp()
-const url = require('../../utils/config.js');
-const http = require('../../utils/http.js');
+// pages/admin/set.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    timer:'',
-    second:60,
-    imgSrc:url.imgUrl,
-    src:''
+    name:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCode();
-  },
-  getCode() {
-    let _this = this;
-    wx.request({
-      url: url.payQrcode,
-      method:'GET',
-      responseType: 'arraybuffer',
-      header:{
-        "X-Requested-With":"WXCHART",
-        "Cookie": wx.getStorageSync('cookie'),
-      },
-      success(res) {
-        console.log(res.data);
-        let url ='data:image/png;base64,'+wx.arrayBufferToBase64(res.data)
-        _this.setData({
-          src:url
-        })
-      }
+    this.setData({
+      name:wx.getStorageSync('userInfo').userName
     })
   },
+  // 退出登陆
+  exit(){
+    wx.clearStorageSync('cookie')
+    wx.clearStorageSync('payPassword')
+    wx.clearStorageSync('userInfo')
+    wx.clearStorageSync('dataList')
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

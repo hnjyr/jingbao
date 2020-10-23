@@ -1,0 +1,5 @@
+<!--pages/admin/paycode.wxml-->
+<view class="container">
+  <view class="refre">{{code}}秒后刷新</view>
+  <image src="{{src}}" style="width:600rpx;height:600rpx;"></image>
+</view>

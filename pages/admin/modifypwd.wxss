@@ -1,0 +1,79 @@
+/* pages/admin/modifypwd.wxss */
+/* pages/login/login.wxss */
+.container{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #EFEFEF;
+}
+.head{
+  width: 100vw;
+  height: 346rpx;
+  background-color: #ccc;
+}
+.head>image{
+  width: 100%;
+  height: 100%;
+}
+.iptbox{
+  position: absolute;
+  top: 272rpx;
+  left: 50%;
+  transform: translate(-50%,0);
+  box-sizing: border-box;
+  width: 656rpx;
+  height: 560rpx;
+  background: #FFFFFF;
+  border-radius: 20.7rpx;
+  padding: 79rpx 43rpx 0 43rpx;
+}
+.it{
+  box-sizing: border-box;
+  background: #FFFFFF;
+  box-shadow: 0.69rpx 2.07rpx 6.9rpx 0px rgba(154, 154, 154, 0.3);
+  border-radius: 39.33rpx;
+  padding: 25.53rpx 29rpx;
+  margin-bottom: 45rpx;
+}
+.flex{
+  justify-content: flex-start;
+}
+.confirm{
+  margin-top: 87rpx;
+  width: 100%;
+  height: 82.8rpx;
+  background: #2A64E0;
+  border-radius: 39.33rpx;
+  font-size: 30.36rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height:  82.8rpx;
+  text-align: center;
+  margin-bottom: 28.29rpx;
+}
+.forgetpwd{
+  font-size: 27.6rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #424242;
+  line-height: 42.09rpx;
+  text-align: center;
+}
+.headtext{
+  position: absolute;
+  top: 164rpx;
+  left: 0;
+  text-align: center;
+  width: 100vw;
+  font-size: 41.4rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 41.4rpx;
+  text-shadow: .69px 2.07rpx 16rpx rgba(10, 42, 177, 0.75);
+  z-index: 999;
+}
+input{
+  flex: 1;
+}

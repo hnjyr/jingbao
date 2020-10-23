@@ -1,7 +1,10 @@
 //app.js
+const app = getApp()
+const url = require('/utils/config.js');
+const http = require('/utils/http.js');
 App({
-  globalData:{
-    height:20
+  globalData: {
+    height: 20
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -11,11 +14,27 @@ App({
 
     // 登录
     wx.login({
-      success: res => {
-        console.log(res)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      success: (res) => {
+        wx.request({
+          url: url.loginForWx,
+          data: {
+            code: res.code
+          },
+          header: {
+            "Cookie": wx.getStorageSync('cookie'),
+          },
+          success: (res) => {
+            if (res.data.code == 0) {
+              var Cookie = res.header['Set-Cookie'].split(';')[0];
+              wx.setStorageSync('cookie', Cookie);
+              wx.setStorageSync('userInfo', res.data.user);
+              wx.setStorageSync('dataList', res.data.data);
+            }
+          }
+        })
       }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -39,17 +58,17 @@ App({
     wx.getSystemInfo({
       success: (res) => {
         console.log(res)
-       wx.setStorage({
-         data: res.statusBarHeight,
-         key: 'titHeight',
-       })
+        wx.setStorage({
+          data: res.statusBarHeight,
+          key: 'titHeight',
+        })
       }
     })
   },
   globalData: {
     userInfo: null
   },
-  goback(){
+  goback() {
     wx.navigateBack()
   },
   /**

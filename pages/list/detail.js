@@ -61,9 +61,7 @@ Page({
       data: list,
       key: 'carList',
     })
-    wx.showToast({
-      title:'添加成功！'
-    })
+    app.showSuccess('添加成功！')
   },
   /**
    * 生命周期函数--监听页面隐藏

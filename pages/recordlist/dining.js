@@ -27,7 +27,11 @@ Page({
   onLoad: function (options) {
     let userInfo = wx.getStorageSync('userInfo');
     this.setData({
-      userInfo
+      userInfo,
+      status:options.status
+    })
+    wx.setNavigationBarTitle({
+      title: options.status==1?'订餐记录':'消费记录',
     })
     this.getDataList();
   },

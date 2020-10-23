@@ -78,8 +78,8 @@
         },
         {
           "id": 1,
-          "name": "pages/repair/repair",
-          "pathName": "pages/repair/repair",
+          "name": "修改用户信息",
+          "pathName": "pages/admin/modifypwd",
           "query": "",
           "scene": null
         },
@@ -192,6 +192,7 @@
           "id": -1,
           "name": "支付订单",
           "pathName": "pages/order/order",
+          "query": "",
           "scene": null
         }
       ]

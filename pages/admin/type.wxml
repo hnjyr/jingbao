@@ -1,0 +1,71 @@
+<!--pages/admin/type.wxml-->
+<view class="container">
+	<!-- 提现 -->
+	<view class="one" wx:if='{{status==1}}'>
+		<view class="line1">
+			<text>{{curid==2?'微信账号':'支付宝账号'}}</text>
+			<input style="margin-left:40rpx;" placeholder="请输入{{curid==1?'微信账号':'支付宝账号'}}"></input>
+		</view>
+		<view class="line2">
+			<text>提现金额</text>
+			<view class="two">
+				<text style="font-size:34rpx;">￥</text>
+				<input style="margin-left:20rpx;" placeholder="0.00"></input>
+			</view>
+			<text style="color:#999;font-size:26rpx;">当前可提现0.00元</text>
+		</view>
+		<view class="line3">
+			<!-- 微信 -->
+			<view class="it" bindtap="check" data-id='2'>
+				<view class="left">
+					<image src="/images/banner.png" style="width:30rpx;height:30rpx;margin-right:30rpx;;border-radius: 15rpx;"></image>
+					<text>微信支付</text>
+				</view>
+				<image wx:if='{{curid==2}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>
+				<view wx:else class="yuan"></view>
+			</view>
+			<!-- 支付宝 -->
+			<view class="it none" bindtap="check" data-id='1'>
+				<view class="left">
+					<image src="/images/banner.png" style="width:30rpx;height:30rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
+					<text>支付宝支付</text>
+				</view>
+				<image wx:if='{{curid==1}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>
+				<view wx:else class="yuan"></view>
+			</view>
+		</view>
+		<view class="btn">立即提现</view>
+	</view>
+
+	<view class="two2" wx:else>
+		<text class="jine">金额</text>
+		<view style="padding:10rpx 30rpx;background:#fff;">
+			<view class="two" style="border-bottom: 2rpx solid #4273E4;">
+				<text style="font-size:34rpx;">￥</text>
+				<input style="margin-left:20rpx;" placeholder="0.00" value='{{jine}}' bindinput="jineInput"></input>
+			</view>
+		</view>
+		<view class="jine">选择支付方式</view>
+		<view class="line3">
+			<!-- 微信 -->
+			<view class="it" bindtap="check" data-id='2'>
+				<view class="left">
+					<image src="/images/banner.png" style="width:30rpx;height:30rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
+					<text>微信支付</text>
+				</view>
+				<image wx:if='{{curid==2}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>
+				<view wx:else class="yuan"></view>
+			</view>
+			<!-- 支付宝 -->
+			<view class="it none" bindtap="check" data-id='1'>
+				<view class="left">
+					<image src="/images/banner.png" style="width:30rpx;height:30rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
+					<text>支付宝支付</text>
+				</view>
+				<image wx:if='{{curid==1}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>
+				<view wx:else class="yuan"></view>
+			</view>
+		</view>
+		<view class="btn" bindtap="recordsave">立即充值</view>
+	</view>
+</view>

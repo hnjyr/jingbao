@@ -51,7 +51,7 @@ Page({
       {
         name:'订餐记录',
         src:'../../images/admin/Ordermeal.png',
-        url:'/pages/recordlist/dining',
+        url:'/pages/recordlist/dining?status=1',
       },
       {
         name:'维修记录',
@@ -64,9 +64,9 @@ Page({
         url:'/pages/recordlist/maintain?type=2',
       },
       {
-        name:'消息通知',
+        name:'消费记录',
         src:'../../images/admin/buydrug.png',
-        url:'/pages/recordlist/consume',
+        url:'/pages/recordlist/dining?status=2',
       }
     ],
     declare:[

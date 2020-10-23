@@ -1,0 +1,23 @@
+<!--pages/admin/set.wxml-->
+<view class="container">
+  <view class="it">
+    <text>登陆账号</text>
+    <text>{{name}}</text>
+  </view>
+  <navigator class="it" url='/pages/admin/modifypwd' hover-class="none">
+    <text>修改密码</text>
+    <van-icon name="arrow" color='#9F9FA0' size='14' />
+  </navigator>
+  <!-- <view class="it" bindtap="clear">
+    <text>清楚缓存</text>
+    <van-icon name="arrow" color='#9F9FA0' size='14' />
+  </view> -->
+  <!-- <view class="it">
+    <text>登陆账号</text>
+    <text>test1</text>
+  </view> -->
+
+
+
+  <view class="btn" bindtap="exit">退出登陆</view>
+</view>

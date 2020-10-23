@@ -1,0 +1,65 @@
+/* pages/admin/type.wxss */
+page{
+  background-color: #F2F1F6;
+}
+.line1{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30rpx;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+}
+.line1>text{
+  font-size: 26rpx;
+  color: #000;
+}
+.line2{
+  padding: 40rpx 30rpx 15rpx;
+  background-color: #fff;
+}
+.two{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 2rpx solid #939393;
+  padding: 10rpx 0;
+  margin-bottom: 5rpx;
+}
+.yuan{
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  border: 3rpx solid #747474;
+}
+.line3{
+  margin-top: 10rpx;
+}
+.it{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  border-bottom: 2rpx solid #E1E1E1;
+  background-color: #fff;
+}
+.btn{
+  color:#fff;
+  background-color: #3C73F1;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius:45rpx;
+  font-size: 30rpx;
+  text-align: center;
+  /* margin-top: 150rpx; */
+  border: 1rpx solid #fff;
+  box-shadow: 2rpx 5rpx 10rpx #C4C6C3;
+  margin:150rpx 30rpx 0;
+}
+.none{
+  border-bottom: 0;
+}
+.jine{
+  display: block;
+  padding: 15rpx 30rpx;
+}

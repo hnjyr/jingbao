@@ -23,7 +23,14 @@
     "pages/laundry/laundry",
     "pages/haircut/haircut",
     "pages/physio/physio",
-    "pages/haircut/time"
+    "pages/haircut/time",
+    "pages/admin/modifyuser",
+    "pages/admin/set",
+    "pages/admin/wallet",
+    "pages/admin/paycode",
+    "pages/admin/bill",
+    "pages/admin/type",
+    "pages/admin/modifypwd"
   ],
   "window":{
     "backgroundTextStyle":"light",

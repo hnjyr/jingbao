@@ -4,6 +4,7 @@ g = {
   host:url,
   imgUrl:url + 'sys/attachment/open/download?attID=',
   login: url + 'sys/login',//登录
+  loginForWx:url+'sys/open/loginForWx',//微信登陆
   repairrecordinfo:url+'logistics/apply/listMyApply',//维修记录
   appointment:url+'logistics/reserverecord/list',//预约记录
   orderTag:url + 'logistics/shopgoodseveryday/tomorrowOrderLable',//订餐标签
@@ -25,6 +26,15 @@ g = {
   appnotice:url + 'app/appnotice/list',//公告  10分钟轮询一次 || 通知消息
   payQrcode:url + 'pay/purse/generatePayQrcode',//公告  10分钟轮询一次 || 通知消息
   updateByNoticeId:url + 'app/appnoticeuserlink/updateByNoticeId',//未读消息请求
-  
+  recordlist:url+'pay/record/list',//账单记录
+  updateInfo:url+'sys/user/updateInfo',//修改用户信息
+  getuserinfo:url+'sys/user/info',//获取用户信息
+  getPurse:url+'pay/purse/getPurse',//查询账户余额
+  recordsave:url+'pay/record/save',//充值
+  download:url+'sys/attachment/download?attID=',//显示图片
+  updatePayPassword:url+'pay/purse/updatePayPassword',//添加获取修改支付密
+  password:url+"sys/user/password",//忘记密码
+  verifyPayPassword:url+'pay/purse/verifyPayPassword',//校验支付密码
+  payForUser:url+'logistics/shoporders/payForUser',//钱包支付
 } 
 module.exports = g;

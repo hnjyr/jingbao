@@ -7,8 +7,6 @@ module.exports = function (url, data, fun, method='POST',header){
     wx.showLoading({
       title: '加载中',
     })
-    // data.openId = wx.getStorageSync('openId');
-    // let content=header?header:method == 'POST'?'application/x-www-form-urlencoded' :'application/json'
     header = header == 'json'?'application/json':'application/x-www-form-urlencoded'
     wx.request({
       url: url,

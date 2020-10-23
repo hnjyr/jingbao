@@ -1,0 +1,15 @@
+/* pages/admin/paycode.wxss */
+page{
+  background-color: #F1F0F5;
+}
+.refre{
+  margin-top: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #959595;
+  margin-bottom: 300rpx;
+  letter-spacing:4rpx;
+}
+.container{
+  text-align: center;
+}

@@ -9,70 +9,97 @@ Page({
    * 页面的初始数据
    */
   data: {
-    username:'test1',
-    pwd:'111111',
-    loginType:'wx'
+    username: 'test1',
+    pwd: '111111',
+    loginType: 'wx'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const that=this
+    const that = this
   },
   // 输入框赋值
   userInput(e) {
     this.setData({
-      username:e.detail.value
+      username: e.detail.value
     })
   },
   pwdInput(e) {
     this.setData({
-      pwd:e.detail.value
+      pwd: e.detail.value
     })
   },
-  confirm(){
-    const {username,pwd,loginType}=this.data;
-    if(!username) {
-      Notify({ type: 'danger', message: '请输入用户名' });
+  confirm() {
+    const {
+      username,
+      pwd,
+      loginType
+    } = this.data;
+    if (!username) {
+      Notify({
+        type: 'danger',
+        message: '请输入用户名'
+      });
       return false;
     }
-    if(!pwd) {
-      Notify({ type: 'danger', message: '请输入密码' });
+    if (!pwd) {
+      Notify({
+        type: 'danger',
+        message: '请输入密码'
+      });
       return false;
     }
-    let header='application/x-www-form-urlencoded'
+    let header = 'application/x-www-form-urlencoded'
     wx.request({
       url: url.login,
-      method:'post',
-      data:{
-        userName:username,
-        password:pwd,
+      method: 'post',
+      data: {
+        userName: username,
+        password: pwd,
         loginType
       },
-      header:{
+      header: {
         "Content-Type": header
       },
-      success:(res)=>{
+      success: (res) => {
         console.log(res)
-        if(res.data.code == 0) {
-          var Cookie=res.header['Set-Cookie'].split(';')[0];
+        if (res.data.code == 0) {
+          var Cookie = res.header['Set-Cookie'].split(';')[0];
           wx.setStorageSync('cookie', Cookie);
           wx.setStorageSync('userInfo', res.data.user);
           wx.setStorageSync('dataList', res.data.data);
-          // if(wx.getStorageSync('page')) {
-          //   wx.redirectTo({
-          //     url:'/'+wx.getStorageSync('page')
-          //   })
-          // }else {
-          //   wx.navigateBack();
-          // }
-          wx.reLaunch({
-            url:'/pages/index/index'
+          wx.login({
+            success: (res) => {
+              console.log(res.code)
+              wx.request({
+                url: url.loginForWx,
+                data: {
+                  code: res.code
+                },
+                header: {
+                  "Cookie": wx.getStorageSync('cookie'),
+                },
+                success: (res) => {
+                  console.log(res)
+                  wx.reLaunch({
+                    url: '/pages/index/index'
+                  })
+                }
+              })
+            }
           })
-        }else {
-          Notify({ type: 'danger', message: res.data.msg });
+
+        } else {
+          Notify({
+            type: 'danger',
+            message: res.data.msg
+          });
         }
+      },
+      complete: () => {
+
       }
     })
   },

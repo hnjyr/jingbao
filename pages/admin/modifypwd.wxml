@@ -1,0 +1,24 @@
+
+<view class="container">
+  <view class="head">
+    <image src="/images/login.png"></image>
+    <!-- <view class="headtext">欢迎使用智慧警保系统</view> -->
+  </view>
+  <view class="iptbox">
+    <view class="it flex_between">
+      <image src="/images/pass.png" style="width:33rpx;height:38rpx;margin-right:15rpx;"></image>
+      <input placeholder="请输入原密码" maxlength="6" password bindinput="userInput" value="{{password}}" maxlength="6" type="number"></input>
+    </view>
+    <view class="it flex_between">
+      <view class="flex">
+        <image src="/images/pass.png"  style="width:33rpx;height:38rpx;margin-right:15rpx;"></image>
+        <input placeholder="请输入新密码" maxlength="6" password bindinput="pwdInput" value="{{newpwd}}" maxlength="6" type="number"></input>
+      </view>
+      <!-- <image src="/images/login/hidepwd.png" style="width:40rpx;height:34rpx;"></image> -->
+    </view>
+    <view class="confirm" bindtap="confirm">确认</view>
+    <!-- <view class="forgetpwd">忘记密码 ？</view> -->
+  </view>
+</view>
+<van-notify id="van-notify" />
+

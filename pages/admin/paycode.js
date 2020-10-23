@@ -1,4 +1,4 @@
-// pages/index/code.js
+// pages/admin/paycode.js
 const app = getApp()
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
@@ -8,10 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    timer:'',
-    second:60,
-    imgSrc:url.imgUrl,
-    src:''
+    timer: '',
+    code: 30,
+    imgSrc: url.imgUrl,
+    src: ''
   },
 
   /**
@@ -19,26 +19,38 @@ Page({
    */
   onLoad: function (options) {
     this.getCode();
+    const that=this
+    setInterval(() => {
+      if (that.data.code >=2) {
+        that.setData({
+          code: that.data.code - 1
+        })
+      } else if(that.data.code==1) {
+        that.getCode();
+      }
+    }, 1000);
   },
   getCode() {
     let _this = this;
     wx.request({
       url: url.payQrcode,
-      method:'GET',
+      method: 'GET',
       responseType: 'arraybuffer',
-      header:{
-        "X-Requested-With":"WXCHART",
+      header: {
+        "X-Requested-With": "WXCHART",
         "Cookie": wx.getStorageSync('cookie'),
       },
       success(res) {
-        console.log(res.data);
-        let url ='data:image/png;base64,'+wx.arrayBufferToBase64(res.data)
+        // console.log(res.data);
+        let url = 'data:image/png;base64,' + wx.arrayBufferToBase64(res.data)
         _this.setData({
-          src:url
+          src: url,
+          code: 30
         })
       }
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

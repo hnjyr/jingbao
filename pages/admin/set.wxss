@@ -1,0 +1,27 @@
+/* pages/admin/set.wxss */
+.container{
+  margin: 0 40rpx;
+}
+.it{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+  color: #555555;
+  font-weight: 500;
+  padding: 30rpx 20rpx;
+  border-bottom: 1rpx solid #DADADC;
+}
+
+.btn{
+  color:#fff;
+  background-color: #3C73F1;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius:45rpx;
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 150rpx;
+  border: 1rpx solid #fff;
+  box-shadow: 2rpx 5rpx 10rpx #C4C6C3;
+}

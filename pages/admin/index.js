@@ -1,13 +1,15 @@
 // pages/admin/index.js
 const app=getApp();
 import Toast from '../../miniprogram/@vant/weapp/toast/toast.js'; 
+const url = require('../../utils/config.js');
+const http = require('../../utils/http.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    height:0,
+    height:20,
     list:[
       {
         text:'订餐记录',
@@ -27,7 +29,8 @@ Page({
         url:'/pages/recordlist/consume'
       }
     ],
-    userInfo:''
+    userInfo:'',
+    src:''
   },
 
   /**
@@ -42,6 +45,28 @@ Page({
     wx.navigateTo({
       url: e.currentTarget.dataset.url,
     })
+  },
+  
+  showimg(){
+    const that=this
+    wx.request({
+      url: url.download+that.data.userInfo.avatar,
+      method:'get',
+      responseType: 'arraybuffer', 
+      header:{
+        "Cookie":wx.getStorageSync('cookie'),
+        "Content-Type":"application/form-data"
+      },
+      success:(res)=>{
+        let url ='data:image/png;base64,'+wx.arrayBufferToBase64(res.data)
+        that.setData({
+          src:url
+        })
+      }
+    })
+  },
+  toast(){
+    app.showError('功能正在开发，敬请期待!')
   },
 
   /**
@@ -60,6 +85,7 @@ Page({
       this.setData({
         userInfo:userInfo
       })
+      this.showimg(userInfo.avatar)
     }else {
       Toast('请先登录~');
     }
