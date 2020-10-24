@@ -16,7 +16,7 @@
 		</view>
 		<view class="it">
 			<text space="ensp">邮箱  </text>
-			<input class="{{!flag?'black':''}}" disabled="{{flag}}"  placeholder="{{email}}" value="{{email}}" bindtap="emailInput" type="email"></input>
+			<input class="{{!flag?'black':''}}" disabled="{{flag}}"  placeholder="{{emailt}}" value="{{emailt}}" bindinput="emailInput" type="email"></input>
 		</view>
 	</view>
   <view wx:if='{{flag}}' class="btn" bindtap="btn">编辑</view>

@@ -9,12 +9,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dataInfo:{},
-    twoshow:false,
+    dataInfo: {},
+    twoshow: false,
     show: false,
     veCode: new Array(),
-    veCodetwo:[],
-    inputFocus:false
+    veCodetwo: [],
+    inputFocus: false
   },
 
   /**
@@ -22,7 +22,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      dataInfo:wx.getStorageSync('orderDetail'),
+      dataInfo: wx.getStorageSync('orderDetail'),
     })
     wx.removeStorage({
       key: 'orderDetail',
@@ -30,52 +30,60 @@ Page({
     this.getbalance()
   },
   // 点击支付
-  payBtn(){
-    const {exemptPassword,dataInfo,payPassword}=this.data
+  payBtn() {
+    const {
+      exemptPassword,
+      dataInfo,
+      payPassword
+    } = this.data
     // console.log(exemptPassword)
     // console.log(dataInfo)
     // console.log(payPassword)
     // 判断是否免密支付
-    if(exemptPassword.isExemptPassword==0||exemptPassword.exemptPasswordAmount<dataInfo.totalPrice){
+    if (exemptPassword.isExemptPassword == 0 || exemptPassword.exemptPasswordAmount < dataInfo.totalPrice) {
       // 没有开启免密支付或额度超过
-      if(payPassword==1){//已设置过支付密码
+      if (payPassword == 1) { //已设置过支付密码
         this.setData({
-          show:true
+          show: true
         })
-      }else{//显示设置支付密码在输入密码
+      } else { //显示设置支付密码在输入密码
         this.setData({
-          show:true
+          show: true
         })
       }
-    }else{//开启免密支付不显示输入密码
+    } else { //开启免密支付不显示输入密码
       this.payForUser()
     }
   },
   //确认收货
   shBtn() {
-    http(url.finish,{
-      id:this.data.dataInfo.ordersId
-    },res=>{
-      if(res.code == 0) {
-        app.showSuccess('收货成功！',()=>{
+    http(url.finish, {
+      id: this.data.dataInfo.ordersId
+    }, res => {
+      if (res.code == 0) {
+        app.showSuccess('收货成功！', () => {
           wx.navigateBack()
         })
-      }else {
+      } else {
         app.showError(res.msg)
       }
-    },'POST','json')
+    }, 'POST', 'json')
   },
   inputValue(e) {
     console.log(e)
     let value = e.detail.value;
     let arr = [...value];
-    this.setData({ veCode: arr })
+    this.setData({
+      veCode: arr
+    })
     console.log(this.data.payPassword)
-    if(arr.length==6&&this.data.payPassword==0){
-      this.setData({ twoshow: true })
-    }else if(arr.length==6&&this.data.payPassword==1){
+    if (arr.length == 6 && this.data.payPassword == 0) {
+      this.setData({
+        twoshow: true
+      })
+    } else if (arr.length == 6 && this.data.payPassword == 1) {
       // console.log('密码输入完成校验支付密码')
-      var str1=this.data.veCode.join('')
+      var str1 = this.data.veCode.join('')
       this.verifymi(str1)
     }
   },
@@ -83,99 +91,109 @@ Page({
     console.log(e)
     let value = e.detail.value;
     let arr = [...value];
-    this.setData({ veCodetwo: arr })
-    if(arr.length==6){
+    this.setData({
+      veCodetwo: arr
+    })
+    if (arr.length == 6) {
       // 调用设置支付密码
-      var str1=this.data.veCode.join('')
-      var str2=this.data.veCodetwo.join('')
-      this.setPayMi(str1,str2)
+      var str1 = this.data.veCode.join('')
+      var str2 = this.data.veCodetwo.join('')
+      this.setPayMi(str1, str2)
     }
   },
-  setPayMi(a1,a2,type){
-    const that=this
+  setPayMi(a1, a2, type) {
+    const that = this
     wx.request({
       url: url.updatePayPassword,
-      data:{
-        newPayPassword:a2,
-        oldPayPassword:a1
+      data: {
+        newPayPassword: a2,
+        oldPayPassword: a1
       },
-      header:{
+      header: {
         "Cookie": wx.getStorageSync('cookie'),
       },
-      method:'POST',
-      success:(res)=>{
+      method: 'POST',
+      success: (res) => {
         console.log(res)
-        if(res.data.code=500){
+        if (res.data.code = 500) {
           app.showError(res.data.msg);
-        }else{
+        } else {
           app.showSuccess(res.data.msg);
           that.getbalance()
         }
       },
-      complete:()=>{
+      complete: () => {
         that.setData({
-          show:false,
-          veCodetwo:[],
-          veCode:[],
-          inputFocus:false,
-          twoshow:false
+          show: false,
+          veCodetwo: [],
+          veCode: [],
+          inputFocus: false,
+          twoshow: false
         })
       }
     })
   },
 
-getbalance() {
-  const that = this
-  http(url.getPurse,{
-  },res=>{
-    if(res.code == 0) {
-      console.log(res)
-      wx.setStorageSync('payPassword', res.data.payPassword!=null?res.data.payPassword:0)
-      var exemptPassword={
-        'isExemptPassword':res.data.isExemptPassword,
-        'exemptPasswordAmount':res.data.exemptPasswordAmount
+  getbalance() {
+    const that = this
+    http(url.getPurse, {}, res => {
+      if (res.code == 0) {
+        console.log(res)
+        wx.setStorageSync('payPassword', res.data.payPassword != null ? res.data.payPassword : 0)
+        var exemptPassword = {
+          'isExemptPassword': res.data.isExemptPassword,
+          'exemptPasswordAmount': res.data.exemptPasswordAmount
+        }
+        that.setData({
+          balance: res.data.balance,
+          payPassword: res.data.payPassword != null ? res.data.payPassword : 0,
+          exemptPassword: exemptPassword
+        })
+        wx.setStorageSync('exemptPassword', exemptPassword)
       }
-      that.setData({
-        balance:res.data.balance,
-        payPassword:res.data.payPassword!=null?res.data.payPassword:0,
-        exemptPassword:exemptPassword
-      })
-      wx.setStorageSync('exemptPassword', exemptPassword)
-    }
-  },'GET')
-},
+    }, 'GET')
+  },
 
+  onClose() {
+    this.setData({
+      show: false,
+      veCode: new Array(),
+      veCodetwo: [],
+      twoshow: false,
+      inputFocus: false
+    });
+  },
 
   // 校验支付密码
-  verifymi(str){
-    const that=this
-    http(url.verifyPayPassword,{
-      payPassword:str
-    },res=>{
-      if(res.code == 0) {
+  verifymi(str) {
+    const that = this
+    http(url.verifyPayPassword, {
+      payPassword: str
+    }, res => {
+      if (res.code == 0) {
         app.showSuccess(res.msg)
         that.payForUser()
         that.setData({
-          show:false
+          show: false
         })
       }
     })
   },
 
   // 支付
-  payForUser(){
-    const that=this
-    http(url.payForUser,{
-      ordersId:that.data.dataInfo.ordersId,
-      payPassword:that.data.veCode.join('')
-    },res=>{
-      if(res.code == 0) {
+  payForUser() {
+    const that = this
+    http(url.payForUser, {
+      ordersId: that.data.dataInfo.ordersId,
+      payPassword: that.data.veCode.join('')
+    }, res => {
+      if (res.code == 0) {
         app.showSuccess(res.msg)
         that.setData({
-          show:false
+          show: false
         })
       }
-    },'POST','json')
+    }, 'POST', 'json')
   },
 
   /**

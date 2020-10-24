@@ -18,7 +18,13 @@ Page({
   },
 
   onClose() {
-    this.setData({ show: false });
+    this.setData({ 
+      show: false,
+      veCode: new Array(),
+      veCodetwo:[],
+      twoshow:false,
+      inputFocus:false
+    });
   },
 
   /**
@@ -27,6 +33,7 @@ Page({
   onLoad: function (options) {
     this.getbalance()
   },
+  
   paypwd() {
     this.setData({ show: true,inputFocus:true });
   },

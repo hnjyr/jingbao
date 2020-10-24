@@ -35,8 +35,9 @@ module.exports = function (url, data, fun, method='POST',header){
           // let currentPage = pages[pages.length - 1]
           // wx.setStorageSync('page', currentPage.route)
           if(wx.getStorageSync('userInfo').wxOpenId) {
-            app.loginMini();
+            App.loginMini();
           }else {
+            // console.log(777777)
             App.showError(e.data.msg,()=>{
               wx.navigateTo({
                 url: '/pages/login/login',

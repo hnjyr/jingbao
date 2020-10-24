@@ -11,7 +11,7 @@ Page({
     name: '',
     username: '',
     phone: '',
-    email: '',
+    emailt:'',
     flag: true
   },
 
@@ -20,13 +20,15 @@ Page({
    */
   onLoad: function (options) {
     let res = wx.getStorageSync('userInfo')
+    console.log(res)
     this.setData({
       name: res.userName,
       username: res.nickName,
       phone: res.mobile,
-      email: res.email,
+      emailt: res.email,
       ava: res.avatar
     })
+    // console.log(this.data.email)
     this.getinfo()
     this.showimg(this.data.ava)
   },
@@ -57,8 +59,9 @@ Page({
     })
   },
   emailInput(e) {
+    console.log(e)
     this.setData({
-      email: e.detail.value
+      emailt: e.detail.value
     })
   },
   btn() {
@@ -76,10 +79,8 @@ Page({
       name,
       username,
       phone,
-      email,
+      emailt,
       ava,
-      imgid,
-      src
     } = this.data;
     if (username.trim() == '') {
       app.showError('姓名不能为空');
@@ -89,9 +90,15 @@ Page({
       app.showError('手机号不能为空或格式不对');
       return false;
     }
+    if (this.data.emailt!=''&&this.data.emailt!=null){
+      if(!this.isEmail(emailt)) {
+        app.showError('邮箱格式不正确');
+        return false;
+      }
+    }
     http(url.updateInfo, {
       "avatar": ava,
-      "email": email,
+      "email": emailt,
       "mobile": phone,
       "nickName": username,
       "userName": name
@@ -100,7 +107,7 @@ Page({
         app.showSuccess('修改成功！')
         let userinfo = wx.getStorageSync('userInfo')
         userinfo.avatar = ava
-        userinfo.email = email
+        userinfo.email = emailt
         userinfo.nickName = username
         userinfo.mobile = phone
         wx.setStorageSync('userInfo', userinfo)
