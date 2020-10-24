@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "账单记录",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-divider": "@vant/weapp/divider/index"
+  }
 }

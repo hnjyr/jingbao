@@ -1,6 +1,6 @@
 // pages/recordlist/maintain.js
 // 获取应用实例
-const app=getApp()
+const app = getApp()
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
 Page({
@@ -9,14 +9,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    createUserId:'182',
-    limit:'20',
-    page:1,
-    type:'1',
-    userInfo:'',
-    wxDataList:[],
-    yyDataList:[],
-    refresh:false
+    createUserId: '182',
+    limit: '20',
+    page: 1,
+    type: '1',
+    userInfo: '',
+    wxDataList: [],
+    yyDataList: [],
+    refresh: false,
+    text: '上拉加载更多'
   },
 
   /**
@@ -25,55 +26,105 @@ Page({
   onLoad: function (options) {
     let title = '维修记录';
     this.setData({
-      userInfo:wx.getStorageSync('userInfo'),
-      type:options.type
+      userInfo: wx.getStorageSync('userInfo'),
+      type: options.type
     })
-    options.type == 1?this.getWxList():this.getYyList();
-    title = options.type == 2?'预约记录':'维修记录';
-    if(options.type == 2) {
+    options.type == 1 ? this.getWxList() : this.getYyList();
+    title = options.type == 2 ? '预约记录' : '维修记录';
+    if (options.type == 2) {
       wx.setNavigationBarTitle({
-        title:title
+        title: title
       })
     }
   },
   refreshTap(e) {
     this.data.refresh = true
     this.setData({
-      page:1
+      page: 1,
+      text: '上拉加载更多'
     })
-    this.data.type == 1?this.getWxList():this.getYyList();
+    if (this.data.type == 1) {
+      this.setData({
+        wxDataList: []
+      })
+    } else {
+      this.setData({
+        yyDataList: []
+      })
+    }
+    this.data.type == 1 ? this.getWxList() : this.getYyList();
   },
   // 维修
-  getWxList(){
-    const {userInfo,limit,page}=this.data
-    http(url.repairrecordinfo,{
-      createUserId:userInfo.userId,
+  getWxList() {
+    this.setData({
+      text: '加载中...'
+    })
+    const {
+      userInfo,
       limit,
       page
-    },(res)=>{
-      if(res.code == 0) {
+    } = this.data
+    http(url.repairrecordinfo, {
+      createUserId: userInfo.userId,
+      limit,
+      page
+    }, (res) => {
+      if (res.code == 0) {
+        const totalPage = res.page.totalPage
+        if (page < totalPage) { //第一页是最后一页
+          this.setData({
+            text: '上拉加载更多'
+          })
+        }
         this.setData({
-          wxDataList:res.page.list,
-          refresh:false
+          wxDataList: this.data.wxDataList.concat(res.page.list),
+          refresh: false,
+          totalPage: totalPage,
         })
       }
     })
   },
   // 预约
-  getYyList(){
-    const {userInfo,limit,page}=this.data
-    http(url.appointment,{
-      createUserId:userInfo.userId,
+  getYyList() {
+    this.setData({
+      text: '加载中...'
+    })
+    const {
+      userInfo,
       limit,
       page
-    },(res)=>{
-      if(res.code == 0) {
+    } = this.data
+    http(url.appointment, {
+      createUserId: userInfo.userId,
+      limit,
+      page
+    }, (res) => {
+      if (res.code == 0) {
+        const totalPage = res.page.totalPage
+        if (page < totalPage) { //第一页是最后一页
+          this.setData({
+            text: '上拉加载更多'
+          })
+        }
         this.setData({
-          yyDataList:res.page.list,
-          refresh:false
+          yyDataList: this.data.yyDataList.concat(res.page.list),
+          refresh: false,
+          totalPage: totalPage,
         })
       }
     })
+  },
+  bottom() {
+    if (this.data.page < this.data.totalPage) {
+      this.setData({
+        page: this.data.page + 1
+      })
+      this.getDataList()
+    } else {
+      this.setData({
+        text: '没有更多!'
+      })
+    }
   },
 
   /**

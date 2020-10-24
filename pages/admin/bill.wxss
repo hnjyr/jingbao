@@ -2,9 +2,6 @@
 page{
   background-color: #F1F0F5;
 }
-.container{
-  margin: 0 30rpx;
-}
 .it{
   display: flex;
   justify-content: space-between;
@@ -14,4 +11,8 @@ page{
   border-bottom: 1rpx solid #E7E6EB;
   padding: 30rpx 0;
   font-weight: 500;
+  margin: 0 30rpx;
+}
+.center_box{
+  height: 100vh;
 }

@@ -10,7 +10,8 @@ Page({
   data: {
     list:[],
     page:1,
-    limit:20
+    limit:20,
+    text:'上拉加载更多'
   },
 
   /**
@@ -20,6 +21,9 @@ Page({
     this.getbilllist()
   },
   getbilllist(){
+    this.setData({
+      text:'加载中...'
+    })
     let _this = this;
     http(url.recordlist,{
       createUserId:wx.getStorageSync('userInfo').userId,
@@ -28,11 +32,16 @@ Page({
       page:_this.data.page
     },res=>{
       if(res.code == 0) {
-        console.log(res)
+        const totalPage=res.page.totalPage
+        if(_this.data.page<totalPage){//第一页是最后一页
+          this.setData({
+            text:'上拉加载更多'
+          })
+        }
         _this.setData({
           list:_this.data.list.concat(res.page.list),
           refresh:false,
-          totalPage:res.page.totalPage
+          totalPage:totalPage
         })
       }
     },'Post','json')
@@ -42,11 +51,25 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    if(page<totalPage){
+    
+  },
+  refreshTap(){
+    this.setData({
+      page:1,
+      list:[],
+    })
+    this.getbilllist();
+  },
+  bottom(){
+    if(this.data.page<this.data.totalPage){
       this.setData({
         page:this.data.page+1
       })
       this.getbilllist()
+    }else{
+      this.setData({
+        text:'没有更多!'
+      })
     }
   },
 
@@ -54,7 +77,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+   
   },
 
   /**

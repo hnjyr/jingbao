@@ -1,7 +1,7 @@
 <!--pages/recordlist/consume.wxml-->
 <!-- 消息通知 -->
 <view class="container">
-    <scroll-view class="scroll" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindrefresherrefresh='refreshTap'>
+    <scroll-view class="scroll" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindscrolltolower='bottom' bindrefresherrefresh='refreshTap'>
       <view class="mess_li {{ item.isRead == 2?'mess_show':''}}" wx:for='{{dataList}}' wx:key='data' data-i='{{index}}' bindtap="navTap">
         <image ></image>
         <view class="mess_cont">
@@ -10,6 +10,7 @@
           <view class="mess_time">{{item.createDate}}</view>
         </view>
       </view>
+      <van-divider contentPosition="center" customStyle="font-size: 30rpx;margin:10rpx;">{{text}}</van-divider>
     </scroll-view>
     <!-- <view class="none">
       <image src="/images/admin/ava.png" style="width:125rpx;height:114rpx;margin-bottom:15rpx;"></image>

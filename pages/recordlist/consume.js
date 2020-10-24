@@ -23,7 +23,8 @@ Page({
   refreshTap(e) {
     this.data.refresh = true
     this.setData({
-      page:1
+      page:1,
+      dataList:[]
     })
     this.getDataList();
   },
@@ -56,18 +57,40 @@ Page({
   },
   // 获取通知列表
   getDataList() {
+    this.setData({
+      text:'加载中...'
+    })
     http(url.appnotice,{
       limit:'20',
       page:this.data.page,
       personal:wx.getStorageSync('userInfo').userId
     },res=>{
       if(res.code == 0) {
+        const totalPage=res.page.totalPage
+        if(this.data.page<totalPage){//第一页是最后一页
+          this.setData({
+            text:'上拉加载更多'
+          })
+        }
         this.setData({
-          dataList:res.page.list,
-          refresh:false
+          dataList:this.data.dataList.concat(res.page.list),
+          refresh:false,
+          totalPage:totalPage,
         })
       }
     })
+  },
+  bottom(){
+    if(this.data.page<this.data.totalPage){
+      this.setData({
+        page:this.data.page+1
+      })
+      this.getDataList()
+    }else{
+      this.setData({
+        text:'没有更多!'
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面隐藏
