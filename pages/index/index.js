@@ -65,8 +65,13 @@ Page({
       },
       {
         name:'消费记录',
-        src:'../../images/admin/buydrug.png',
+        src:'../../images/home/home_xf.png',
         url:'/pages/recordlist/dining?status=2',
+      },
+      {
+        name:'消息通知',
+        src:'../../images/admin/buydrug.png',
+        url:'/pages/recordlist/consume',
       }
     ],
     declare:[

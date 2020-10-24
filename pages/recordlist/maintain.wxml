@@ -7,11 +7,15 @@
       <view class=" c_it" wx:for="{{ wxDataList }}" wx:key='wx'>
         <view class="c_oneline">
           <text>{{item.applyContent}}</text>
-          <text class="yellow">￥0</text>
+          <!-- <text class="yellow">￥0</text> -->
         </view>
         <view class="c_twoline">申请人：{{item.petitioner}}（{{item.petitionerPhone}}）</view>
-        <view class="c_twoline">申请时间：{{item.applyDate}}</view>
-        <view class="c_twoline">订单号: {{item.attachmentGroupId}}</view>
+        <view class="c_twoline">预约日期：{{item.applyDate}}</view>
+        <!-- <view class="c_twoline">订单号: {{item.attachmentGroupId}}</view> -->
+        <view class="c_twoline" wx:if='{{item.applyState == 1}}'>维修状态: 审核中</view>
+        <view class="c_twoline" wx:if='{{item.applyState == 2}}'>维修状态: 审核通过</view>
+        <view class="c_twoline" wx:if='{{item.applyState == 3}}'>维修状态: 审核驳回</view>
+        <view class="c_twoline">维修日期: {{ item.repairRecordEntity.finishDate }}</view>
         <view class="c_threeline">
           <text>维修内容：</text>
           <text class="hui">({{item.repairRecordEntity.createTime || '暂无'}})</text>

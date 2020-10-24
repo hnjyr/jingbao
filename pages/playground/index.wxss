@@ -93,9 +93,11 @@
   border-right: 3rpx solid #E5E5E5;
 }
 .time{ 
-  font-size: 25rpx;
+  font-size: 26rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
   padding: 0 19rpx;
+  display: block;
+  line-height: 40rpx;
 }

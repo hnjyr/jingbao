@@ -42,7 +42,7 @@
 		<view wx:for="{{dataList3}}" wx:key='d3'>
 			<image src="{{imgUrl + item.imageId}}" style="width:100vw;height:345rpx;margin-bottom:19rpx;"></image>
 			<view class="business">
-				<text class="bus">营业时间</text>
+				<!-- <text class="bus">营业时间</text> -->
 				<text class="time">{{item.resourceContext}}</text>
 			</view>
 		</view>

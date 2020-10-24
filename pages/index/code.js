@@ -9,7 +9,7 @@ Page({
    */
   data: {
     timer:'',
-    second:60,
+    second:30,
     imgSrc:url.imgUrl,
     src:''
   },
@@ -18,6 +18,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    setInterval(()=>{
+      this.setData({
+        second:this.data.second - 1
+      })
+      if(this.data.second == 0) {
+        this.getCode();
+        this.setData({
+          second:30
+        })
+      }
+    },1000)
     this.getCode();
   },
   getCode() {
@@ -34,7 +45,7 @@ Page({
         console.log(res.data);
         let url ='data:image/png;base64,'+wx.arrayBufferToBase64(res.data)
         _this.setData({
-          src:url
+          src:url,
         })
       }
     })

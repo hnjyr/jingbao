@@ -43,7 +43,7 @@
   <!-- 项目 -->
   <view class="project" wx:if='{{proList}}'>
     <view class="pro_box">
-      <image></image>
+      <image src="/images/default.png"></image>
       <view class="pro_info">
         <view class="pro_h2">{{proList.resourceName}}</view>
         <view class="pro_num">
