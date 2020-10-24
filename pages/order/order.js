@@ -51,6 +51,20 @@ Page({
       this.payForUser()
     }
   },
+  //确认收货
+  shBtn() {
+    http(url.finish,{
+      id:this.data.dataInfo.ordersId
+    },res=>{
+      if(res.code == 0) {
+        app.showSuccess('收货成功！',()=>{
+          wx.navigateBack()
+        })
+      }else {
+        app.showError(res.msg)
+      }
+    },'POST','json')
+  },
   inputValue(e) {
     console.log(e)
     let value = e.detail.value;

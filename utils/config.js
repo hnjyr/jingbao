@@ -36,5 +36,6 @@ g = {
   password:url+"sys/user/password",//忘记密码
   verifyPayPassword:url+'pay/purse/verifyPayPassword',//校验支付密码
   payForUser:url+'logistics/shoporders/payForUser',//钱包支付
+  finish:url+'logistics/shoporders/finish',//确认收货
 } 
 module.exports = g;

@@ -3,15 +3,18 @@
   <!-- 内容 -->
   <view class="che_box">
     <view class="che_left">
-      <van-sidebar active-key="{{ activeKey }}" bind:change="onChange" custom-class='custom_cla'>
-        <van-sidebar-item title="{{item.labelName}}" wx:for="{{dataList}}" wx:key='data'/>
-      </van-sidebar>
+      <scroll-view  scroll-y="true" style="height:100%;">
+        <van-sidebar active-key="{{ activeKey }}" bind:change="onChange" custom-class='custom_cla'>
+          <van-sidebar-item title="{{item.labelName}}" wx:for="{{dataList}}" wx:key='data'/>
+        </van-sidebar>
+      </scroll-view>
     </view>
-    <scroll-view class="che_right" enable-flex='true' scroll-anchoring='true' scroll-y="true">
-      <view class="che_li" bindtap="navTo" data-i='{{index}}' wx:for="{{list}}" wx:key='li'>
+    <scroll-view class="che_right" enable-flex='true' scroll-anchoring='true' scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindrefresherrefresh='refreshTap' bindscrolltolower='tolower'>
+      <view class="che_li" wx:if='{{list.length !=0}}' bindtap="navTo" data-i='{{index}}' wx:for="{{list}}" wx:key='li'>
         <image mode="aspectFill" src="{{imgUrl + item.imageId}}"></image>
         <view class="che_name">{{item.goodsName}}</view>
       </view>
+      <view class="null" wx:if='{{list.length ==0}}'>暂无数据</view>
     </scroll-view>
   </view>
 </view>

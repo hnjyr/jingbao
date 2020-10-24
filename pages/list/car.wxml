@@ -14,6 +14,7 @@
 
       <view class="cart_content">
         <view class="content_title fs_12 fc_333">{{item.shopGoodsEntity.goodsName}}</view>
+        <view class="content_kc fs_12 fc_333">剩余：{{item.remaining}}份</view>
         <view class="content_price">
           <view class="fc_price fs_18 fw_bold">¥{{item.shopGoodsEntity.price}}</view>
           <view class="goods_number_container">

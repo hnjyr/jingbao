@@ -13,7 +13,9 @@ Page({
     limit:20,
     dataList:[],
     list:[],
-    activeKey:0
+    activeKey:0,
+    refresh:false,
+    tolower:false
   },
 
   /**
@@ -22,9 +24,29 @@ Page({
   onLoad: function (options) {
     this.getDataList();
   },
+  // 滑动加载
+  tolower(e) {
+    if(!this.data.tolower) {
+      return false;
+    }
+    this.setData({
+      page:this.data.page+1,
+      tolower:true,
+    })
+    this.getDataList();
+  },
+  // 下拉刷新
+  refreshTap(e) {
+    this.data.refresh = true
+    this.setData({
+      page:1
+    })
+    this.getDataList();
+  },
   onChange(e) {
     this.setData({
-      list:this.data.dataList[e.detail].goodsList
+      list:this.data.dataList[e.detail].goodsList,
+      tolower:false
     })
   },
   navTo(e){

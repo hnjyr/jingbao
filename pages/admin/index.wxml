@@ -12,7 +12,7 @@
 			<view class="u_oneline_left flex">
 				<!-- <image src="/images/admin/ava.png" style="width:117.3rpx;height:117.3rpx;margin-right:18.63rpx;"></image> -->
 				<view class="image">
-					<open-data type='userAvatarUrl' default-avatar='/images/admin/ava.png' wx:if='{{src==""}}'></open-data>
+					<open-data type='userAvatarUrl' default-avatar='{{imgUrl+userInfo.avatar}}' wx:if='{{src==""}}'></open-data>
 					<image src="{{src}}" style="width:100%;height:100%;" wx:else></image>
 				</view>
 				<navigator wx:if='{{!userInfo}}' class="log" hover-class="none" url="/pages/login/login">登录 / 注册</navigator>

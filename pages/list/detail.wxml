@@ -4,6 +4,7 @@
   <view class="info">
     <view class="dt_h2">{{mealInfo.shopGoodsEntity.goodsName}}</view>
     <view class="dt_ys">月售{{mealInfo.shopGoodsEntity.orderNumber}}</view>
+    <view class="dt_ys">剩余{{mealInfo.remaining}}份</view>
     <view class="dt_price">
       <text>¥{{mealInfo.shopGoodsEntity.price}}</text>
       <view wx:if='{{type == 2}}' bindtap="addCar">+加入购物车</view>

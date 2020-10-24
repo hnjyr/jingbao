@@ -28,7 +28,8 @@
       合计：
       <text>￥{{dataInfo.totalPrice}}</text>
     </view>
-    <view class="ti_btn" bindtap="payBtn">支付</view>
+    <view class="ti_btn" bindtap="payBtn"  wx:if="{{dataInfo.payState == 0}}">支付</view>
+    <view class="ti_btn" bindtap="shBtn" wx:if="{{dataInfo.ordersState == 2}}">确认收货</view>
   </view>
 </view>
 

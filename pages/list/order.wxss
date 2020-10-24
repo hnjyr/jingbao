@@ -45,11 +45,12 @@
 }
 
 .c_left {
-  min-height: 82.7vh;
-  max-height: 82.7vh;
+  height: 82.7vh;
   border-right: 1rpx solid #EBEBEB;
 }
-
+.c_left_box {
+  height: 92vh;
+}
 .v_sidebar {
   max-height: 100%;
   padding: 0 0 100rpx 0;

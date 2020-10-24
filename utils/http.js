@@ -34,11 +34,15 @@ module.exports = function (url, data, fun, method='POST',header){
           // let pages = getCurrentPages() // 获取加载的页面
           // let currentPage = pages[pages.length - 1]
           // wx.setStorageSync('page', currentPage.route)
-          App.showError(e.data.msg,()=>{
-            wx.navigateTo({
-              url: '/pages/login/login',
-            })
-          });
+          if(wx.getStorageSync('userInfo').wxOpenId) {
+            app.loginMini();
+          }else {
+            App.showError(e.data.msg,()=>{
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            });
+          }
           return false;
         }
         return "function" == typeof fun && fun(e.data);

@@ -1,6 +1,6 @@
 <!--班车-->
 <view class="container">
-  <scroll-view class="vh_ul" scroll-y="true">
+  <scroll-view class="vh_ul" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindrefresherrefresh='refreshTap' bindscrolltolower='tolower'>
     <view class="vh_li" wx:for="{{dataList}}">
       <view class="vh_h2">班车信息</view>
       <view class="vh_box">
@@ -19,6 +19,6 @@
         </view>
       </view>
     </view>
-    
+    <view class="null" wx:if='{{!tolower}}'>暂无更多数据</view>
   </scroll-view>
 </view>

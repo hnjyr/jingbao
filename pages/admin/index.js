@@ -30,7 +30,8 @@ Page({
       }
     ],
     userInfo:'',
-    src:''
+    src:'',
+    imgUrl:url.imgUrl
   },
 
   /**
@@ -47,24 +48,24 @@ Page({
     })
   },
   
-  showimg(){
-    const that=this
-    wx.request({
-      url: url.download+that.data.userInfo.avatar,
-      method:'get',
-      responseType: 'arraybuffer', 
-      header:{
-        "Cookie":wx.getStorageSync('cookie'),
-        "Content-Type":"application/form-data"
-      },
-      success:(res)=>{
-        let url ='data:image/png;base64,'+wx.arrayBufferToBase64(res.data)
-        that.setData({
-          src:url
-        })
-      }
-    })
-  },
+  // showimg(){
+  //   const that=this
+  //   wx.request({
+  //     url: url.download+that.data.userInfo.avatar,
+  //     method:'get',
+  //     responseType: 'arraybuffer', 
+  //     header:{
+  //       "Cookie":wx.getStorageSync('cookie'),
+  //       "Content-Type":"application/form-data"
+  //     },
+  //     success:(res)=>{
+  //       let url ='data:image/png;base64,'+wx.arrayBufferToBase64(res.data)
+  //       that.setData({
+  //         src:url
+  //       })
+  //     }
+  //   })
+  // },
   toast(){
     app.showError('功能正在开发，敬请期待!')
   },
@@ -83,9 +84,10 @@ Page({
     let userInfo = wx.getStorageSync('userInfo')?wx.getStorageSync('userInfo'):'';
     if(userInfo) {
       this.setData({
-        userInfo:userInfo
+        userInfo:userInfo,
+        src:this.data.imgUrl + userInfo.avatar
       })
-      this.showimg(userInfo.avatar)
+      // this.showimg(userInfo.avatar)
     }else {
       Toast('请先登录~');
     }

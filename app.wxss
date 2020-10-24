@@ -14,4 +14,12 @@ page, view, text, navigator, image, button, scroll-view {
   justify-content: space-between;
   align-items: center;
 }
-
+.null {
+  /* position: absolute;
+  left: 38%;
+  bottom: 0; */
+  text-align: center;
+  font-size: 24rpx;
+  color: #ccc;
+  padding-top: 20rpx;
+}

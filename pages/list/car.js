@@ -1,5 +1,6 @@
 // pages/list/car.js
 const url = require('../../utils/config.js');
+const app = getApp();
 Page({
 
   /**
@@ -194,6 +195,10 @@ Page({
       }
     }
     if (types == "add") { //加
+      if(cartData[index].remaining == cartData[index]) {
+        app.showError('剩余库存不足！');
+        return false;
+      }
       cartData[index].amount++; //加就不判断了, 加到二十二世纪去都行
       this.setData({
         cartData: cartData

@@ -48,7 +48,9 @@ label{
   font-weight: 400;
   color: #070707;
 }
-
+.content_kc {
+  font-size: 24rpx;
+}
 .content_price{
   display: flex;
   justify-content: space-between;

@@ -11,7 +11,9 @@ Page({
     dataList:[],
     page:1,
     limit:20,
-    imgUrl:url.imgUrl
+    imgUrl:url.imgUrl,
+    refresh:false,
+    tolower:false
   },
 
   /**
@@ -20,7 +22,26 @@ Page({
   onLoad: function (options) {
     this.getDataList();
   },
-
+  // 下拉刷新
+  refreshTap(e) {
+    this.data.refresh = true
+    this.setData({
+      page:1,
+      dataList:[]
+    })
+    this.getDataList();
+  },
+  // 滑动加载
+  tolower(e) {
+    if(!this.data.tolower) {
+      return false;
+    }
+    this.setData({
+      page:this.data.page+1,
+      tolower:true,
+    })
+    this.getDataList();
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -38,15 +59,19 @@ Page({
   getDataList() {
     let _this = this,
     page = this.data.page,
-    limit = this.data.limit;
+    limit = this.data.limit,
+    list = this.data.dataList;
     http(url.listMyShop,{
       shopType:'7',
       page:page,
       limit:limit
     },(res)=>{
       if(res.code == 0) {
+        list.push(...res.page.list);
         this.setData({
-          dataList:res.page.list
+          dataList:res.page.list,
+          refresh:false,
+          tolower:res.page.totalCount > list.length ? true : false
         })
       }
     })

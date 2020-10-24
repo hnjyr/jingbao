@@ -16,7 +16,8 @@ Page({
     labelId:'',
     imgUrl:url.imgUrl,
     searchText:'',
-    refresh:false
+    refresh:false,
+    tolower:false
   },
   onChange1(e) {
     this.setData({
@@ -27,16 +28,21 @@ Page({
     this.setData({
       labelId:this.data.tagList[event.detail].labelId,
       page:1,
-      activeKey:event.detail
+      activeKey:event.detail,
+      tolower:false
     })
     this.getDataList();
   },
   // 滑动加载
-  tolower() {
+  tolower(e) {
+    if(!this.data.tolower) {
+      return false;
+    }
     this.setData({
-
+      page:this.data.page+1,
+      tolower:true,
     })
-    // this.getDataList();
+    this.getDataList();
   },
   /**
    * 生命周期函数--监听页面加载
@@ -98,7 +104,8 @@ Page({
     let _this = this,
     labelId =  _this.data.labelId,
     limit =  _this.data.limit,
-    page =  _this.data.page;
+    page =  _this.data.page,
+    list = _this.data.dataList;
     http(url.shopgoods,{
       publishState:'1',
       labelId:labelId,
@@ -108,10 +115,21 @@ Page({
     },(res)=>{
       console.log(res)
       if(res.code == 0) {
-        this.setData({
-          dataList:res.page.list,
-          refresh:false
-        })
+        if(!this.data.tolower) {
+          this.setData({
+            dataList:res.page.list,
+            refresh:false,
+            tolower:res.page.totalCount > limit?true:false
+          })
+        }else {
+          list.push(...res.page.list);
+          this.setData({
+            dataList:list,
+            refresh:false,
+            tolower:res.page.totalCount > list.length?true:false
+          })
+        }
+        
       }
     })
   },

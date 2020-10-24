@@ -32,6 +32,7 @@
           <view class="li_tip">库存<text>{{item.inventory || 0}}</text>份</view>
         </view>
       </view>
+      <view class="null" wx:if='{{!tolower && dataList.length !=0}}'>暂无更多数据</view>
     </scroll-view>
   </view>
 </view>

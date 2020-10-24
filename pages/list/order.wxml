@@ -15,7 +15,7 @@
 	</view>
 
 	<view class="center_box flex">
-		<scroll-view class="c_left" wx:if='{{curid==1}}' scroll-y>
+		<scroll-view class="c_left c_left_box" wx:if='{{curid==1}}' scroll-y>
 			<van-sidebar custom-class='v_sidebar' active-key="{{ activeKey1 }}" bind:change="onChange1">
 				<van-sidebar-item title="{{item.labelName}}" wx:for='{{jcList}}' wx:key='index' />
 			</van-sidebar>		
@@ -27,13 +27,13 @@
 		</scroll-view>
 
 
-		<scroll-view class="c_right " scroll-y>
+		<scroll-view class="c_right {{curid==1?'c_left_box':''}}" scroll-y refresher-enabled='true' refresher-triggered='{{refresh}}' bindrefresherrefresh='refreshTap' bindscrolltolower='tolower'>
 			<view class="box" wx:if='{{curid == 1}}'>
 				<view class="c_right_it" wx:for='{{jcLists.list}}' wx:key='*this' bindtap="navTab" data-i='{{index}}'>
 					<image src="{{imgUrl+item.shopGoodsEntity.imageId}}" style="width:233rpx;height:187rpx;"></image>
 					<view style="display:flex;justify-content: space-between;align-items: center;">
 						<view>{{item.shopGoodsEntity.goodsName}}</view>
-						<text>库存：{{item.remaining}}</text>
+						<text>库存：{{item.remaining || 0}}</text>
 					</view>
 					<view class="c_num flex_between">
 						<text>¥{{item.shopGoodsEntity.price}}</text>
@@ -54,6 +54,8 @@
 					</view>
 				</view>
 			</view>
+			<view class="null" wx:if='{{!tolower}}'>暂无更多数据</view>
+			
 		</scroll-view>
 	</view>
 

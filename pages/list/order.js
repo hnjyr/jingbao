@@ -27,10 +27,12 @@ Page({
     ],
     jcLists:[],
     page:1,
-    limit:10,
+    limit:20,
     imgUrl:url.imgUrl,
     carList:[],
-    allPrice:''
+    allPrice:'',
+    refresh:false,
+    tolower:false
   },
 
   /**
@@ -40,18 +42,40 @@ Page({
     this.getShopList(1,1,1);
     this.getTagList();
   },
+  // 下拉刷新
+  refreshTap(e) {
+    this.data.refresh = true
+    this.setData({
+      page:1,
+      tolower:false
+    })
+    let labelId = this.data.curid == 1?this.data.jcList[this.data.activeKey1].labelId:this.data.tagList[this.data.activeKey].labelId
+    this.getShopList(this.data.curid,1,labelId);
+  },
+  // 滑动加载
+  tolower(e) {
+    if(!this.data.tolower) {
+      return false;
+    }
+    this.setData({
+      page:this.data.page+1,
+      tolower:true,
+    })
+    let labelId = this.data.curid == 1?this.data.jcList[this.data.activeKey1].labelId:this.data.tagList[this.data.activeKey].labelId
+    this.getShopList(this.data.curid,this.data.page,labelId);
+  },
   check(e){
     this.setData({
-      curid:e.currentTarget.dataset.id
-    })
-    this.setData({
+      curid:e.currentTarget.dataset.id,
+      tolower:false,
       tittext:e.currentTarget.dataset.id==1?'订餐列表':'就餐'
     })
   },
   onChange(event) {
     this.setData({
       activeKey:event.detail,
-      page:1
+      page:1,
+      tolower:false,
     })
     let aIndex = this.data.activeKey,
     classify = this.data.curid,
@@ -62,7 +86,8 @@ Page({
   onChange1(event) {
     this.setData({
       activeKey1:event.detail,
-      page:1
+      page:1,
+      tolower:false
     })
     let aIndex1 = this.data.activeKey1,
     classify = this.data.curid,
@@ -130,7 +155,8 @@ Page({
       console.log(res);
       if(res.code == 0) {
         _this.setData({
-          tagList:res.data
+          tagList:res.data,
+          tolower:false
         })
         _this.data.tagList[0].labelId?_this.getShopList(2,1,_this.data.tagList[0].labelId):''
       }
@@ -148,11 +174,23 @@ Page({
       page:page,
       [type]:labelId
     },(res)=>{
-      console.log(res);
+      console.log(this.data.tolower);
       if(res.code == 0) {
-        _this.setData({
-          [kayStr]:res.page
-        })
+        if(!this.data.tolower) {
+          _this.setData({
+            [kayStr]:res.page,
+            refresh:false,
+            tolower:res.page.totalCount > limit?true:false
+          })
+        }else {
+          let obj = this.data[kayStr];
+          obj.list.push(...res.page.list);
+          _this.setData({
+            [kayStr]:obj,
+            refresh:false,
+            tolower:res.page.totalCount > this.data[kayStr].list.length?true:false
+          })
+        }
       }
     })
   },
