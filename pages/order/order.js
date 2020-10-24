@@ -14,7 +14,11 @@ Page({
     show: false,
     veCode: new Array(),
     veCodetwo: [],
-    inputFocus: false
+    inputFocus: false,
+    opayPwds: '',
+    npayPwds: '',
+    keybord: ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'C', '0', 'X'],
+    payPassword: ''
   },
 
   /**
@@ -29,6 +33,52 @@ Page({
     })
     this.getbalance()
   },
+  // 键盘输入
+  clickKeybord(e) {
+    let text = e.currentTarget.dataset.text,
+      cont = '',
+      twoshow = this.data.twoshow;
+    if (!twoshow) {
+      cont = this.data.opayPwds
+    } else {
+      cont = this.data.npayPwds
+    }
+
+    if (text == "C") {
+      cont = '';
+    } else if (text == "X") {
+      cont = cont.substr(0, cont.length - 1);
+    } else {
+      if (cont.length == 6) {
+        return false;
+      }
+      cont += text;
+    }
+
+    if (!twoshow) {
+      this.setData({
+        opayPwds: cont
+      })
+    } else {
+      this.setData({
+        npayPwds: cont
+      })
+    }
+
+    if (cont.length == 6) {
+      if (this.data.payPassword == 0) {
+        this.setData({
+          twoshow: true
+        })
+      } else {
+        this.setData({
+          show: false,
+          twoshow: false
+        })
+        this.verifymi();
+      }
+    }
+  },
   // 点击支付
   payBtn() {
     const {
@@ -36,19 +86,20 @@ Page({
       dataInfo,
       payPassword
     } = this.data
-    // console.log(exemptPassword)
-    // console.log(dataInfo)
-    // console.log(payPassword)
     // 判断是否免密支付
     if (exemptPassword.isExemptPassword == 0 || exemptPassword.exemptPasswordAmount < dataInfo.totalPrice) {
       // 没有开启免密支付或额度超过
       if (payPassword == 1) { //已设置过支付密码
         this.setData({
-          show: true
+          show: true,
+          npayPwds:'',
+          opayPwds:'',
         })
       } else { //显示设置支付密码在输入密码
         this.setData({
-          show: true
+          show: true,
+          npayPwds:'',
+          opayPwds:'',
         })
       }
     } else { //开启免密支付不显示输入密码
@@ -69,40 +120,10 @@ Page({
       }
     }, 'POST', 'json')
   },
-  inputValue(e) {
-    console.log(e)
-    let value = e.detail.value;
-    let arr = [...value];
-    this.setData({
-      veCode: arr
-    })
-    console.log(this.data.payPassword)
-    if (arr.length == 6 && this.data.payPassword == 0) {
-      this.setData({
-        twoshow: true
-      })
-    } else if (arr.length == 6 && this.data.payPassword == 1) {
-      // console.log('密码输入完成校验支付密码')
-      var str1 = this.data.veCode.join('')
-      this.verifymi(str1)
-    }
-  },
-  inputValuetwo(e) {
-    console.log(e)
-    let value = e.detail.value;
-    let arr = [...value];
-    this.setData({
-      veCodetwo: arr
-    })
-    if (arr.length == 6) {
-      // 调用设置支付密码
-      var str1 = this.data.veCode.join('')
-      var str2 = this.data.veCodetwo.join('')
-      this.setPayMi(str1, str2)
-    }
-  },
-  setPayMi(a1, a2, type) {
-    const that = this
+  setPayMi() {
+    const that = this,
+      a1 = this.data.opayPwds,
+      a2 = this.data.npayPwds;
     wx.request({
       url: url.updatePayPassword,
       data: {
@@ -114,22 +135,18 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res)
+        that.setData({
+          show: false,
+          npayPwds: '',
+          opayPwds: '',
+          twoshow: false
+        })
         if (res.data.code = 500) {
           app.showError(res.data.msg);
         } else {
           app.showSuccess(res.data.msg);
           that.getbalance()
         }
-      },
-      complete: () => {
-        that.setData({
-          show: false,
-          veCodetwo: [],
-          veCode: [],
-          inputFocus: false,
-          twoshow: false
-        })
       }
     })
   },
@@ -165,10 +182,11 @@ Page({
   },
 
   // 校验支付密码
-  verifymi(str) {
-    const that = this
+  verifymi() {
+    const that = this,
+      opayPwds = this.data.opayPwds;
     http(url.verifyPayPassword, {
-      payPassword: str
+      payPassword: opayPwds
     }, res => {
       if (res.code == 0) {
         app.showSuccess(res.msg)
@@ -185,7 +203,7 @@ Page({
     const that = this
     http(url.payForUser, {
       ordersId: that.data.dataInfo.ordersId,
-      payPassword: that.data.veCode.join('')
+      payPassword: that.data.opayPwds
     }, res => {
       if (res.code == 0) {
         app.showSuccess(res.msg)

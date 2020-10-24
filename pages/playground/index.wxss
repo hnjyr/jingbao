@@ -50,6 +50,7 @@
 }
 .center_box{
   padding: 30.36rpx 22.08rpx 0 22.08rpx;
+  height: 90vh;
 }
 
 .c_it{

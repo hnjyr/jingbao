@@ -1,7 +1,7 @@
 <!--pages/recordlist/maintain.wxml-->
 <!-- 维修和预约记录 -->
 <view class="container">
-  <scroll-view class="center_box" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindscrolltolower='bottom' bindrefresherrefresh='refreshTap'>
+  <scroll-view wx:if='{{wxDataList.length > 0 || yyDataList.length > 0 }}' class="center_box" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindscrolltolower='bottom' bindrefresherrefresh='refreshTap'>
     <!-- 维修 -->
     <view class="center_box" wx:if="{{ type == 1 }}">
       <view class=" c_it" wx:for="{{ wxDataList }}" wx:key='wx'>
@@ -50,5 +50,5 @@
 
     <van-divider contentPosition="center" customStyle="font-size: 30rpx;margin:10rpx;">{{text}}</van-divider>
   </scroll-view>
-
+  <van-empty description="暂无数据" wx:else/>
 </view>

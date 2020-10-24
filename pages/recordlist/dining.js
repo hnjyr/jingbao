@@ -65,7 +65,7 @@ Page({
   // 获取数据
   getDataList() {
     this.setData({
-      text:'加载中...'
+      text:''
     })
     let createUserId = this.data.userInfo.userId,
     shopType = '1',

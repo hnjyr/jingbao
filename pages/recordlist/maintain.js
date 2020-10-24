@@ -57,7 +57,7 @@ Page({
   // 维修
   getWxList() {
     this.setData({
-      text: '加载中...'
+      text: ''
     })
     const {
       userInfo,
@@ -87,7 +87,7 @@ Page({
   // 预约
   getYyList() {
     this.setData({
-      text: '加载中...'
+      text: ''
     })
     const {
       userInfo,

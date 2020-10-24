@@ -11,7 +11,7 @@
 	<view class="bottom">
 		<navigator class="it" hover-class="none" url="/pages/admin/paycode">
 			<view class="left">
-				<image src="/images/banner.png" style="width:40rpx;height:40rpx;margin-right:30rpx;"></image>
+				<image src="/images/admin/zfm.png" style="width:40rpx;height:40rpx;margin-right:30rpx;"></image>
 				<text>支付码</text>
 			</view>
 			<van-icon name="arrow" size='15' color='#000' />
@@ -19,7 +19,7 @@
 
 		<navigator class="it" hover-class="none" url="/pages/admin/bill">
 			<view class="left">
-				<image src="/images/banner.png" style="width:40rpx;height:40rpx;margin-right:30rpx;"></image>
+				<image src="/images/admin/zd.png" style="width:40rpx;height:40rpx;margin-right:30rpx;"></image>
 				<text>账单记录</text>
 			</view>
 			<van-icon name="arrow" size='15' color='#000' />
@@ -27,8 +27,8 @@
 
 		<view class="it" bindtap="paypwd">
 			<view class="left">
-				<image src="/images/banner.png" style="width:40rpx;height:40rpx;margin-right:30rpx;"></image>
-				<text>{{payPassword==0?'设置':'修改'}}支付密码</text>
+				<image src="/images/admin/pws.png" style="width:40rpx;height:40rpx;margin-right:30rpx;"></image>
+				<text>{{isExemptPassword==0?'设置':'修改'}}支付密码</text>
 			</view>
 			<van-icon name="arrow" size='15' color='#000' />
 		</view>
@@ -36,57 +36,31 @@
 	</view>
 
 	<!-- 第一次 -->
-	<van-popup position="bottom" show="{{ show }}" custom-style="height: 60%;padding:20rpx 30rpx;" bind:close="onClose">
+	<van-popup position="bottom" show="{{ show }}" custom-style="height: 58%;padding:20rpx 30rpx;" bind:close="onClose">
 		<view class="wx-page-content" wx:if='{{!twoshow}}'>
-			<view class="page-title">{{payPassword==0?'创建':'修改'}}支付密码</view>
-			<view class="page-tises" wx:if='{{payPassword==1}}'><span>验证你的支付密码,确认本人操作</span></view>
-				<view class="page-tises" wx:else><span>请输入您的支付密码</span></view>
+			<view class="page-title">{{isExemptPassword==0?'创建':'修改'}}支付密码</view>
+			<view class="page-tises" wx:if='{{isExemptPassword==1}}'><span>验证你的支付密码,确认本人操作</span></view>
+			<view class="page-tises" wx:else><span>请设置您的支付密码</span></view>
 			<view class="verificationCode">
-				<input type="number" maxlength="6" bindinput="inputValue" focus="{{inputFocus}}" />
-				<view class="{{veCode[0] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCode[0]}}'></span>
+				<view class="{{opayPwds.length-1 >= index ? 'activeView' : ''}}" wx:for="{{6}}" wx:key='inp'>
+					<!-- <span class='yuan' wx:if='{{veCode[0]}}'></span> -->
 				</view>
-				<view class="{{veCode[1] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCode[1]}}'></span>
-				</view>
-				<view class="{{veCode[2] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCode[2]}}'></span>
-				</view>
-				<view class="{{veCode[3] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCode[3]}}'></span>
-				</view>
-				<view class="{{veCode[4] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCode[4]}}'></span>
-				</view>
-				<view class="{{veCode[5] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCode[5]}}'></span>
-				</view>
+			</view>
+			<view class="key_bord">
+				<view class="key_j {{item == 'C' || item == 'X' ? 'hui' :''}}" wx:for="{{keybord}}" wx:key='key' bindtap="clickKeybord" data-text='{{item}}'>{{item}}</view>
 			</view>
 		</view>
 		<view class="wx-page-content" wx:if='{{twoshow}}'>
-			<view class="page-title">{{payPassword==0?'创建':'修改'}}支付密码</view>
-			<view class="page-tises" wx:if='{{payPassword==1}}'><span>请设置您的新密码</span></view>
-			<view class="page-tises" wx:else><span>请确认您的支付密码</span></view>
+			<view class="page-title">{{isExemptPassword==0?'创建':'修改'}}支付密码</view>
+			<view class="page-tises" wx:if='{{isExemptPassword==0}}'><span>请再次填写以确认支付密码</span></view>
+			<view class="page-tises" wx:else><span>请设置您新的支付密码</span></view>
 			<view class="verificationCode">
-				<input type="number" maxlength="6" bindinput="inputValuetwo" focus />
-				<view class="{{veCodetwo[0] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCodetwo[0]}}'></span>
+				<view class="{{npayPwds.length-1 >= index ? 'activeView' : ''}}" wx:for="{{6}}" wx:key='inp1'>
+					<!-- <span class='yuan' wx:if='{{veCode[0]}}'></span> -->
 				</view>
-				<view class="{{veCodetwo[1] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCodetwo[1]}}'></span>
-				</view>
-				<view class="{{veCodetwo[2] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCodetwo[2]}}'></span>
-				</view>
-				<view class="{{veCodetwo[3] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCodetwo[3]}}'></span>
-				</view>
-				<view class="{{veCodetwo[4] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCodetwo[4]}}'></span>
-				</view>
-				<view class="{{veCodetwo[5] ? 'activeView' : 0}}">
-					<span class='yuan' wx:if='{{veCodetwo[5]}}'></span>
-				</view>
+			</view>
+			<view class="key_bord">
+				<view class="key_j {{item == 'C' || item == 'X' ? 'hui' :''}}" wx:for="{{keybord}}" wx:key='key1' bindtap="clickKeybord" data-text='{{item}}'>{{item}}</view>
 			</view>
 		</view>
 	</van-popup>

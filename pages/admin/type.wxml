@@ -4,7 +4,7 @@
 	<view class="one" wx:if='{{status==1}}'>
 		<view class="line1">
 			<text>{{curid==2?'微信账号':'支付宝账号'}}</text>
-			<input style="margin-left:40rpx;" placeholder="请输入{{curid==1?'微信账号':'支付宝账号'}}"></input>
+			<input style="margin-left:40rpx;" placeholder="请输入{{curid==2?'微信账号':'支付宝账号'}}"></input>
 		</view>
 		<view class="line2">
 			<text>提现金额</text>
@@ -18,7 +18,7 @@
 			<!-- 微信 -->
 			<view class="it" bindtap="check" data-id='2'>
 				<view class="left">
-					<image src="/images/banner.png" style="width:30rpx;height:30rpx;margin-right:30rpx;;border-radius: 15rpx;"></image>
+					<image src="/images/admin/wx.png" style="width:40rpx;height:40rpx;margin-right:30rpx;;border-radius: 15rpx;"></image>
 					<text>微信支付</text>
 				</view>
 				<image wx:if='{{curid==2}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>
@@ -27,7 +27,7 @@
 			<!-- 支付宝 -->
 			<view class="it none" bindtap="check" data-id='1'>
 				<view class="left">
-					<image src="/images/banner.png" style="width:30rpx;height:30rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
+					<image src="/images/admin/zfb.png" style="width:40rpx;height:40rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
 					<text>支付宝支付</text>
 				</view>
 				<image wx:if='{{curid==1}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>
@@ -50,7 +50,7 @@
 			<!-- 微信 -->
 			<view class="it" bindtap="check" data-id='2'>
 				<view class="left">
-					<image src="/images/banner.png" style="width:30rpx;height:30rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
+					<image src="/images/admin/wx.png" style="width:40rpx;height:40rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
 					<text>微信支付</text>
 				</view>
 				<image wx:if='{{curid==2}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>
@@ -59,7 +59,7 @@
 			<!-- 支付宝 -->
 			<view class="it none" bindtap="check" data-id='1'>
 				<view class="left">
-					<image src="/images/banner.png" style="width:30rpx;height:30rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
+					<image src="/images/admin/zfb.png" style="width:40rpx;height:40rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
 					<text>支付宝支付</text>
 				</view>
 				<image wx:if='{{curid==1}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>

@@ -58,7 +58,7 @@ Page({
   // 获取通知列表
   getDataList() {
     this.setData({
-      text:'加载中...'
+      text:''
     })
     http(url.appnotice,{
       limit:'20',

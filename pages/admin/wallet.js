@@ -11,22 +11,68 @@ Page({
     balance: 0,
     show: false,
     veCode: new Array(),
-    veCodetwo:[],
+    veCodetwo: [],
     time: 60,
-    twoshow:false,
-    inputFocus:false
+    twoshow: false,
+    inputFocus: false,
+    opayPwds: '',
+    npayPwds: '',
+    keybord: ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'C', '0', 'X'],
   },
 
   onClose() {
-    this.setData({ 
+    this.setData({
       show: false,
-      veCode: new Array(),
-      veCodetwo:[],
-      twoshow:false,
-      inputFocus:false
+      opayPwds: '',
+      npayPwds: '',
     });
   },
+  // 键盘输入
+  clickKeybord(e) {
+    let text = e.currentTarget.dataset.text,
+      cont = '',
+      twoshow = this.data.twoshow;
+    if (!twoshow) {
+      cont = this.data.opayPwds
+    } else {
+      cont = this.data.npayPwds
+    }
 
+    if (text == "C") {
+      cont = '';
+    } else if (text == "X") {
+      cont = cont.substr(0, cont.length - 1);
+    } else {
+      if (cont.length == 6) {
+        return false;
+      }
+      cont += text;
+    }
+
+    if (!twoshow) {
+      this.setData({
+        opayPwds: cont
+      })
+    } else {
+      this.setData({
+        npayPwds: cont
+      })
+    }
+
+    if (cont.length == 6) {
+      if (!twoshow) {
+        this.setData({
+          twoshow: true
+        })
+      } else {
+        this.setData({
+          show: false,
+          twoshow: false
+        })
+        this.setPayMi();
+      }
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -35,82 +81,45 @@ Page({
   },
   
   paypwd() {
-    this.setData({ show: true,inputFocus:true });
-  },
-
-  inputValue(e) {
-    console.log(e)
-    let value = e.detail.value;
-    let arr = [...value];
-    this.setData({ veCode: arr })
-    if(arr.length==6){
-      this.setData({ twoshow: true })
-    }
-  },
-  inputValuetwo(e) {
-    console.log(e)
-    let value = e.detail.value;
-    let arr = [...value];
-    this.setData({ veCodetwo: arr })
-    if(arr.length==6){
-      // 调用设置支付密码
-      var str1=this.data.veCode.join('')
-      var str2=this.data.veCodetwo.join('')
-      this.setPayMi(str1,str2)
-    }
+    this.setData({
+      show: true,
+      opayPwds: '',
+      npayPwds: '',
+    });
   },
 
   // a1 新密码  a2旧密码  type 1添加 2修改
-  setPayMi(a1,a2,type){
-    const that=this
-    wx.request({
-      url: url.updatePayPassword,
-      data:{
-        newPayPassword:a2,
-        oldPayPassword:a1
-      },
-      header:{
-        "Cookie": wx.getStorageSync('cookie'),
-      },
-      method:'POST',
-      success:(res)=>{
-        console.log(res)
-        if(res.data.code=500){
-          app.showError(res.data.msg);
-        }else{
-          app.showSuccess(res.data.msg);
-        }
-      },
-      complete:()=>{
-        that.setData({
-          show:false,
-          veCodetwo:[],
-          veCode:[],
-          inputFocus:false,
-          twoshow:false
-        })
+  setPayMi() {
+    const that = this,
+      a1 = this.data.opayPwds,
+      a2 = this.data.npayPwds;
+    http(url.updatePayPassword, {
+      newPayPassword: a2,
+      oldPayPassword: a1
+    }, res => {
+      if (res.code = 500) {
+        app.showSuccess(res.msg);
+
       }
-    })
+    }, 'POST', 'json')
   },
 
   getbalance() {
     const that = this
-    http(url.getPurse,{
-    },res=>{
-      if(res.code == 0) {
-        console.log(res)
+    http(url.getPurse, {}, res => {
+      if (res.code == 0) {
         that.setData({
-          balance:res.data.balance,
-          payPassword:res.data.payPassword
+          balance: res.data.balance,
+          isExemptPassword: res.data.payPassword
         })
-        wx.setStorageSync('payPassword', res.data.payPassword!=null?res.data.payPassword:0)
-        var exemptPassword={
-          'isExemptPassword':res.data.isExemptPassword,
-          'exemptPasswordAmount':res.data.exemptPasswordAmount
-        }
-        wx.setStorageSync('exemptPassword', exemptPassword)
+        // wx.setStorageSync('payPassword', res.data.payPassword!=null?res.data.payPassword:0)
+        // var exemptPassword={
+        //   'isExemptPassword':res.data.isExemptPassword,
+        //   'exemptPasswordAmount':res.data.exemptPasswordAmount
+        // }
+        // wx.setStorageSync('exemptPassword', exemptPassword)
       }
-    },'GET')
+    }, 'GET')
   },
 
   /**

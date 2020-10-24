@@ -1,14 +1,5 @@
 <!--pages/playground/index.wxml-->
 <view class="container">
-	<!-- 顶部自定义 -->
-	<!-- <view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
-		<view class="nav-title flex" style="line-height:{{height*2+44}}rpx;">
-			<van-icon bindtap="back" name="arrow-left" color="#fff" size="24px" />
-			<text style="padding-left:30rpx;">运动场</text>
-		</view>
-	</view> -->
-
-
 	<view class="nav_btns flex">
 		<view class="n_it {{curid==1?'current':''}}" bindtap="check" data-id='1'>室内运动场</view>
 		<view class="n_it {{curid==2?'current':''}}" bindtap="check" data-id='2'>室外运动场</view>
@@ -16,29 +7,31 @@
 	</view>
 
 	<!-- 室内运动 -->
-	<view class="center_box" wx:if='{{curid==1}}'>
-		<view class="c_it flex" wx:for='{{dataList1}}' wx:key='d1'>
+	<scroll-view class="center_box" scroll-y="true" wx:if='{{curid==1}}'>
+		<view class="c_it flex" wx:if='{{dataList1.length > 0}}' wx:for='{{dataList1}}' wx:key='d1'>
 			<image src="{{ imgUrl + item.imageId}}" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
 			<view class="c_right">
 				<text>{{item.resourceName}}</text>
 				<view class="">{{item.resourceContext}}</view>
 			</view>
 		</view>
-	</view>
+		<van-empty description="暂无数据" wx:if='{{dataList1.length == 0}}'/>
+	</scroll-view>
 
 	<!-- 室外运动场 -->
-	<view class="center_box" wx:elif='{{curid==2}}'>
-		<view class="c_it flex" wx:for='{{dataList2}}' wx:key='d2'>
+	<scroll-view class="center_box" scroll-y="true" wx:if='{{curid==2}}'>
+		<view class="c_it flex" wx:if='{{dataList2.length > 0}}' wx:for='{{dataList2}}' wx:key='d2'>
 			<image src="{{ imgUrl + item.imageId}}" style="width:96rpx;height:96rpx;margin-right:41rpx;margin-left:41rpx;"></image>
 			<view class="c_right">
 				<text>{{item.resourceName}}</text>
 				<view class="">{{item.resourceContext}}</view>
 			</view>
 		</view>
-	</view>
+		<van-empty description="暂无数据" wx:if='{{dataList2.length == 0}}'/>
+	</scroll-view>
 
 	<!-- 澡堂 -->
-	<view class="baths" wx:else>
+	<view class="baths" wx:if='{{curid==3}}'>
 		<view wx:for="{{dataList3}}" wx:key='d3'>
 			<image src="{{imgUrl + item.imageId}}" style="width:100vw;height:345rpx;margin-bottom:19rpx;"></image>
 			<view class="business">

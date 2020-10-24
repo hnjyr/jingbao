@@ -41,6 +41,7 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-toast": "@vant/weapp/toast/index",
-    "van-notify": "@vant/weapp/notify/index"
+    "van-notify": "@vant/weapp/notify/index",
+    "van-empty": "@vant/weapp/empty/index"
   }
 }

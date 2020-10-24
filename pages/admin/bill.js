@@ -22,7 +22,7 @@ Page({
   },
   getbilllist(){
     this.setData({
-      text:'加载中...'
+      text:''
     })
     let _this = this;
     http(url.recordlist,{
