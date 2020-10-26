@@ -1,5 +1,5 @@
-const url = 'http://122.51.69.116:8082/zhjb/', 
-// const url = 'http://114.242.23.225:8086/zhjb/', 
+// const url = 'http://122.51.69.116:8082/zhjb/', 
+const url = 'http://114.242.23.225:8086/zhjb/', 
 g = {
   host:url,
   imgUrl:url + 'sys/attachment/open/download?attID=',

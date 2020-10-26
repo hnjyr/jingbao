@@ -89,7 +89,9 @@ Page({
     lunboList:[]
   },
   onLoad: function () {
-    this.getLunboList();
+    setTimeout(()=>{
+      this.getLunboList();
+    },500)
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

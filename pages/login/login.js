@@ -9,9 +9,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    username: 'test1',
-    pwd: '111111',
-    loginType: 'wx'
+    username: '',
+    pwd: '',
+    loginType: 'wx',
+    showPws:true,
   },
 
   /**
@@ -19,6 +20,12 @@ Page({
    */
   onLoad: function (options) {
     const that = this
+  },
+  // 切换隐藏显示
+  toogle() {
+    this.setData({
+      showPws:!this.data.showPws
+    })
   },
   // 输入框赋值
   userInput(e) {
@@ -83,6 +90,10 @@ Page({
                 },
                 success: (res) => {
                   console.log(res)
+                  // var Cookie = res.header['Set-Cookie'].split(';')[0];
+                  // wx.setStorageSync('cookie', Cookie);
+                  wx.setStorageSync('userInfo', res.data.user);
+                  wx.setStorageSync('dataList', res.data.data);
                   wx.reLaunch({
                     url: '/pages/index/index'
                   })

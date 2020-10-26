@@ -7,14 +7,14 @@
   <view class="iptbox">
     <view class="it flex_between">
       <image src="/images/user.png" style="width:33rpx;height:38rpx;margin-right:15rpx;"></image>
-      <input placeholder="请输入用户名" bindinput="userInput" value="{{username}}" type="text"></input>
+      <input placeholder="请输入用户名" bindinput="userInput" value="{{username}}" maxlength="10" type="text"></input>
     </view>
     <view class="it flex_between">
       <view class="flex">
         <image src="/images/pass.png" style="width:33rpx;height:38rpx;margin-right:15rpx;"></image>
-        <input placeholder="请输入密码" bindinput="pwdInput" value="{{pwd}}" type="number"></input>
+        <input placeholder="请输入密码" maxlength="30" bindinput="pwdInput" value="{{pwd}}" type="text" password='{{showPws}}'></input>
       </view>
-      <image src="/images/login/hidepwd.png" style="width:40rpx;height:34rpx;"></image>
+      <image src="/images/login/hidepwd.png" style="width:40rpx;height:34rpx;" bindtap="toogle"></image>
     </view>
     <view class="confirm" bindtap="confirm">确认</view>
     <!-- <view class="forgetpwd">忘记密码 ？</view> -->

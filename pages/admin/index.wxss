@@ -12,7 +12,7 @@
 }
 /* 标题要居中 */
 .nav-title {
-  font-size: 39rpx;
+  font-size: 32rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FFFFFF;

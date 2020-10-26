@@ -28,7 +28,6 @@ App({
   },
   // 登录
   loginMini() {
-    // console.log(99999)
     wx.login({
       success: (res) => {
         wx.request({
