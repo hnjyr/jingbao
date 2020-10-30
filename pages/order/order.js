@@ -206,7 +206,11 @@ Page({
       payPassword: that.data.opayPwds
     }, res => {
       if (res.code == 0) {
-        app.showSuccess(res.msg)
+        app.showSuccess(res.msg,()=>{
+          wx.navigateTo({
+            url: '/pages/order/success',
+          })
+        });
         that.setData({
           show: false
         })

@@ -6,7 +6,7 @@
     <view class="center_box" wx:if="{{ type == 1 }}">
       <view class=" c_it" wx:for="{{ wxDataList }}" wx:key='wx'>
         <view class="c_oneline">
-          <text>{{item.applyContent}}</text>
+          <text>{{item.shopGoodsName}}</text>
           <!-- <text class="yellow">￥0</text> -->
         </view>
         <view class="c_twoline">申请人：{{item.petitioner}}（{{item.petitionerPhone}}）</view>
@@ -16,12 +16,13 @@
         <view class="c_twoline" wx:if='{{item.applyState == 2}}'>维修状态: 审核通过</view>
         <view class="c_twoline" wx:if='{{item.applyState == 3}}'>维修状态: 审核驳回</view>
         <view class="c_twoline">维修日期: {{ item.repairRecordEntity.finishDate }}</view>
+        <view class="c_twoline">维修类型: {{ item.repairType==1?'维修':'换件' }}</view>
         <view class="c_threeline">
           <text>维修内容：</text>
-          <text class="hui">({{item.repairRecordEntity.createTime || '暂无'}})</text>
+          <text class="hui"></text>
         </view>
         <view class="textarea">
-          {{item.repairRecordEntity.content || '暂无'}}
+          {{item.applyContent || '暂无'}}
         </view>
       </view>
     </view>

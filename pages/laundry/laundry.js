@@ -9,22 +9,35 @@ Page({
    * 页面的初始数据
    */
   data: {
+    radio: '1',
     active:1,
     weekList:[],
     activeTime:0,
     yifuList:[],
     seleList1:[],
     seleList2:[],
+    userInfo:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let userInfo = wx.getStorageSync('userInfo');
+    this.setData({
+      userInfo: userInfo
+    })
     this.getWeekDay();
     this.getClothesTag("3");
   },
-
+  radioClick(event) {
+    const {
+      name
+    } = event.currentTarget.dataset;
+    this.setData({
+      radio: name,
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -65,20 +78,25 @@ Page({
     // 去掉最后一个逗号
     clothesCasualLabel=clothesCasualLabel.substring(0,clothesCasualLabel.length-1);
     clothesPoliceLabel=clothesPoliceLabel.substring(0,clothesPoliceLabel.length-1);
-    http(url.saveWashRecord,{
-      clothesCasualLabel,
-      clothesPoliceLabel,
-      reserveTime,
-      shopId:10
-    },res=>{
-      if(res.code == 0) {
-        app.showSuccess('预约成功',()=>{
-          wx.navigateBack()
-        })
-      }else {
-        app.showError(res.msg)
-      }
-    },'POST','json')
+    app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8', 'VmPsKts5U5lAYmhtQZfgv5dWZh_mbm_CPjpoFfvOEuM'],()=>{
+      http(url.saveWashRecord,{
+        clothesCasualLabel,
+        clothesPoliceLabel,
+        reserveTime,
+        shopId:10,
+        isAgent:this.data.radio == 2?1:'',
+        thePrincipalId:this.data.radio == 2?this.data.userInfo.leaderId:'',
+      },res=>{
+        if(res.code == 0) {
+          app.showSuccess('预约成功',()=>{
+            wx.navigateBack()
+          })
+        }else {
+          app.showError(res.msg)
+        }
+      },'POST','json')
+    })
+    
   },
   // 删除选择
   delYf1(e) {

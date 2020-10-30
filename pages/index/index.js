@@ -86,12 +86,23 @@ Page({
         url:'',
       }
     ],
-    lunboList:[]
+    lunboList:[],
+    userInfo:''
   },
   onLoad: function () {
-    setTimeout(()=>{
+    this.setData({
+      userInfo:wx.getStorageSync('userInfo')
+    })
+  },
+  onReady: function () {
+    console.log();
+    if(wx.getStorageSync('cookie')) {
       this.getLunboList();
-    },500)
+    }else {
+      setTimeout(()=>{
+        this.getLunboList();
+      },2000)
+    }
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -105,9 +116,21 @@ Page({
       app.showError('功能正在开发，敬请期待！');
       return false;
     }
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url,
-    })
+    if(e.currentTarget.dataset.url == '/pages/index/code') {
+      app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8'],()=>{
+        wx.navigateTo({
+          url: e.currentTarget.dataset.url,
+        })
+      })
+    }else if(e.currentTarget.dataset.url == '/pages/haircut/haircut' && (this.data.userInfo.position ==1||2)){
+      wx.navigateTo({
+        url: '/pages/haircut/list',
+      })
+    }else {
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url,
+      })
+    }
   },
   getLunboList() {
     // 每十分钟查询一次

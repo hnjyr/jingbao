@@ -1,9 +1,9 @@
 <!--预约时间-->
 <view class="container">
   <scroll-view class="scroll" scroll-x="true" enable-flex="true" scroll-anchoring="true">
-    <view class="ti_li active" wx:for="{{timeArr}}" wx:key='date'>
+    <view class="ti_li {{weekActive == index?'active':''}}" wx:for="{{weekList}}" wx:key='date' bindtap="toogleDay" data-i='{{index}}'>
       <text>{{item.week}}</text>
-      <text>{{item.time}}</text>
+      <text>{{item.day}}</text>
     </view>
   </scroll-view>
   <view class="time_box" >

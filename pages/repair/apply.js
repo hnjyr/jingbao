@@ -10,7 +10,7 @@ Page({
    */
   data: {
     imgUrl:url.imgUrl,
-     fileList: [],
+    fileList: [],
     show: false,
     userInfo:'',
     goodsName:'',
@@ -36,24 +36,39 @@ Page({
   onClickShow() {
     // 提交
     let { applyContent, applyDate, userInfo, fileList, goodsId, attachmentGroupId } = this.data;
-    http(url.sqSave,{
-      applyContent,
-      applyDate,
-      applyState:'1',
-      approvalId:'1',
-      attachmentGroupId:attachmentGroupId - 0,
-      createTime:new Date().getTime(),
-      deptId:userInfo.deptId,
-      petitioner:userInfo.userName,
-      petitionerPhone:userInfo.mobile,
-      shopGoodsId:goodsId
-    },res=>{
-      if(res.code == 0) {
-        this.setData({ show: true });
-      }else {
-        app.showError(res.msg)
-      }
-    },'POST','json')
+    if(applyDate == '') {
+      app.showError('请选择维修预约时间');
+      return false;
+    }
+    if(applyContent == '') {
+      app.showError('请填写维修内容');
+      return false;
+    }
+    if(fileList.length == 0) {
+      app.showError('请上传维修图片');
+      return false;
+    }
+    app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8', 'c9zdy_jyFcQbbNCVEKcqMAcHEPBfliETU_reu7yo5Vg','jmZ8_5pdORt1YJ9v2nk2msDFmY4fWw74U3jfJ0eDvk4'], () => {
+      http(url.sqSave,{
+        applyContent,
+        applyDate,
+        applyState:'1',
+        approvalId:'1',
+        attachmentGroupId:attachmentGroupId - 0,
+        createTime:new Date().getTime(),
+        deptId:userInfo.deptId,
+        petitioner:userInfo.userName,
+        petitionerPhone:userInfo.mobile,
+        shopGoodsId:goodsId
+      },res=>{
+        if(res.code == 0) {
+          this.setData({ show: true });
+        }else {
+          app.showError(res.msg)
+        }
+      },'POST','json')
+    })
+    
   },
 
   onClickHide() {

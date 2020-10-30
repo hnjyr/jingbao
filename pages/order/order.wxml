@@ -23,8 +23,8 @@
 	</view>
 
 	<!-- 按钮 -->
-	<view class="zf_box" wx:if="{{dataInfo.payState == 0}}">
-		<view class="zf_price">
+	<view class="zf_box">
+		<view class="zf_price" wx:if="{{dataInfo.payState == 0}}">
 			合计：
 			<text>￥{{dataInfo.totalPrice}}</text>
 		</view>

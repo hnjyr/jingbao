@@ -21,7 +21,6 @@ module.exports = function (url, data, fun, method='POST',header){
       success: function (e) {
         wx.hideNavigationBarLoading();
         wx.hideLoading();
-        console.log(e)
         if (e.statusCode !== 200 || typeof e.data !== 'object') {
          App.showError('网络请求出错');
           return false;
@@ -37,7 +36,6 @@ module.exports = function (url, data, fun, method='POST',header){
           if(wx.getStorageSync('userInfo').wxOpenId) {
             App.loginMini();
           }else {
-            // console.log(777777)
             App.showError(e.data.msg,()=>{
               wx.navigateTo({
                 url: '/pages/login/login',

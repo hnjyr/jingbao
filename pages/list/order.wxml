@@ -33,10 +33,10 @@
 					<image src="{{imgUrl+item.shopGoodsEntity.imageId}}" style="width:233rpx;height:187rpx;"></image>
 					<view style="display:flex;justify-content: space-between;align-items: center;">
 						<view>{{item.shopGoodsEntity.goodsName}}</view>
-						<text>库存：{{item.remaining || 0}}</text>
+						<!-- <text>库存：{{item.remaining || 0}}</text> -->
 					</view>
 					<view class="c_num flex_between">
-						<text>¥{{item.shopGoodsEntity.price}}</text>
+						<!-- <text>¥{{item.shopGoodsEntity.price}}</text> -->
 						<!-- <van-icon name="add" color="#FF8400" size="24" /> -->
 					</view>
 				</view>
@@ -63,7 +63,7 @@
 		<view style="padding-top:0rpx; ">
 			<view class="imgbox">
 				<image wx:if='{{carList.length == 0}}' src="/images/list/cart.png" style="width:52.44rpx;height:52.44rpx;"></image>
-				<image wx:else src="/images/list/curcart.png" style="width:100%;height:100%;"></image>
+				<image wx:else  bindtap="jsTap" src="/images/list/curcart.png" style="width:100%;height:100%;"></image>
 			</view>
 			<text class="kong" wx:if='{{carList.length == 0}}'>购物车空哦</text>
 			<text class="kong" style="color:#FB4E44;" wx:else>合计￥{{allPrice}}</text>

@@ -61,6 +61,7 @@
         border="{{ false }}"
         autosize
         bind:change='contInput'
+        wx:if="{{!show}}"
       />
     </van-cell-group>
   </view>

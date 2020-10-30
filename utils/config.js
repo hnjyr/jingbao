@@ -5,6 +5,7 @@ g = {
   imgUrl:url + 'sys/attachment/open/download?attID=',
   login: url + 'sys/login',//登录
   loginForWx:url+'sys/open/loginForWx',//微信登陆
+  logoutWx:url+'logoutWx',//微信登陆
   repairrecordinfo:url+'logistics/apply/listMyApply',//维修记录
   appointment:url+'logistics/reserverecord/list',//预约记录
   orderTag:url + 'logistics/shopgoodseveryday/tomorrowOrderLable',//订餐标签
@@ -37,5 +38,7 @@ g = {
   verifyPayPassword:url+'pay/purse/verifyPayPassword',//校验支付密码
   payForUser:url+'logistics/shoporders/payForUser',//钱包支付
   finish:url+'logistics/shoporders/finish',//确认收货
+  messageinfo:url+'app/appnotice/info/',//信息详情
+  shSave:url+'logistics/reserverecord/save',//确认收货
 } 
 module.exports = g;

@@ -1,6 +1,6 @@
 <!--理发-->
 <view class="container">
-  <!-- <van-radio-group value="{{ radio }}">
+  <van-radio-group value="{{ radio }}" wx:if="{{userInfo.leaderId}}">
     <view class="ra_li {{radio == 1?'active':''}}" data-name="1" bindtap="radioClick">
       <text>给自己预约</text>
       <van-radio slot="right-icon" name="1" />
@@ -9,7 +9,7 @@
       <text>给领导预约</text>
       <van-radio slot="right-icon" name="2" />
     </view>
-  </van-radio-group> -->
+  </van-radio-group>
 
   <!-- 信息 -->
   <view class="ha_info">
@@ -54,5 +54,5 @@
     </view>
   </view>
 
-  <view class="tc_btn" bindtap="submit">确定</view>
+  <view class="tc_btn" bindtap="submit">立即预约</view>
 </view>

@@ -41,27 +41,28 @@ Page({
           shopId:v.shopId
         })
       }
-
-      http(url.saveForUser,{
-        createUserName: createUserName,
-        isPayBehalf:0, //是否代付 1是0否，（目前默认传0）
-        mobile:mobile, //用户手机号
-        ordersLinkEntityList:arr, //订单商品集合
-        payPrice:price, //支付价格
-        shopId:shopId, //商家id
-        totalPrice:price //总价格
-      },(res)=>{
-        console.log(res)
-        if(res.code == 0) {
-          wx.setStorage({
-            data: res.data,
-            key: 'orderDetail',
-          })
-          wx.navigateTo({
-            url: '/pages/order/order',
-          })
-        }
-      },'POST','json')
+      app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8'],()=>{
+        http(url.saveForUser,{
+          createUserName: createUserName,
+          isPayBehalf:0, //是否代付 1是0否，（目前默认传0）
+          mobile:mobile, //用户手机号
+          ordersLinkEntityList:arr, //订单商品集合
+          payPrice:price, //支付价格
+          shopId:shopId, //商家id
+          totalPrice:price //总价格
+        },(res)=>{
+          if(res.code == 0) {
+            wx.setStorage({
+              data: res.data,
+              key: 'orderDetail',
+            })
+            wx.navigateTo({
+              url: '/pages/order/order',
+            })
+          }
+        },'POST','json')
+      })
+      
     }
   },
   /**

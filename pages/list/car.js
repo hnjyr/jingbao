@@ -195,7 +195,7 @@ Page({
       }
     }
     if (types == "add") { //加
-      if(cartData[index].remaining == cartData[index]) {
+      if(cartData[index].remaining == cartData[index].amount) {
         app.showError('剩余库存不足！');
         return false;
       }

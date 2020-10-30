@@ -101,8 +101,8 @@
 		<image src="/images/home/my1.png"></image>
 		<view>我的</view>
 	</view>
-	<navigator url="/pages/index/code" class="code">
+	<view data-url="/pages/index/code" class="code" bindtap="navTo">
 		<image src="/images/home/scan_code.png"></image>
-	</navigator>
+	</view>
 </view>
 <van-toast id="van-toast" />

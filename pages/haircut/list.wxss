@@ -1,0 +1,40 @@
+/* pages/haircut/list.wxss */
+page {
+  background-color: #f1f1f1;
+  padding: 20rpx;
+  height: 100%;
+}
+.lf_ul {
+  height: 100%;
+}
+.lf_li {
+  width: 100%;
+  border-radius: 12rpx;
+  background-color: #fff;
+  padding: 16rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.lf_info {
+  display: flex;
+  align-items: center;
+}
+.lf_info image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.lf_info text {
+  font-size: 32rpx;
+  color: #333;
+}
+.lf_btn {
+  background-color: #FF8400;
+  font-size: 26rpx;
+  color: #fff;
+  padding: 4rpx 20rpx;
+  border-radius: 4rpx;
+}

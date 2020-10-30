@@ -1,4 +1,5 @@
 // pages/list/detail.js
+const app = getApp();
 const url = require('../../utils/config.js');
 Page({
 
@@ -39,7 +40,7 @@ Page({
     })
   },
   addCar() {
-    let list = this.data.carList,
+    let list = JSON.parse(JSON.stringify(this.data.carList)),
     obj = this.data.mealInfo;
     obj.amount = 1;
     if(list.length == 0) {
@@ -51,7 +52,11 @@ Page({
       if(flag == -1) {
         list.push(obj)
       }else {
-        list[flag].amount = list[flag].amount?list[flag].amount+1:2;
+        if(list[flag].amount >= obj.remaining) {
+          app.showError('剩余库存不足！')
+          return false;
+        }
+        list[flag].amount = list[flag].amount+1;
       }
     }
     this.setData({

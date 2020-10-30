@@ -10,23 +10,54 @@ Page({
    */
   data: {
     dataList:[],
-    timeArr:[],
-    active:0
+    weekList:[],
+    active:0,
+    weekActive:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let arr = ['日', '一', '二', '三', '四', '五', '六'],
-    time = util.formatEndTime(new Date()),
-    week = '周'+arr[new Date().getDay()];
-    time = time.substring(time.length-2);
+    // let arr = ['日', '一', '二', '三', '四', '五', '六'],
+    // time = util.formatEndTime(new Date()),
+    // week = '周'+arr[new Date().getDay()];
+    // time = time.substring(time.length-2);
+    // this.setData({
+    //   timeArr:[{
+    //     time,
+    //     week
+    //   }]
+    // })
+    let type = options.type;
+    let num = type == 2?3:2;
+    this.getWeekDay(num);
+    this.getDataList();
+  },
+  // 获取一周
+  getWeekDay(num) {
+    let weekList = [],
+      list = ['日','一','二','三','四','五','六'],
+      currentDay = new Date(),
+      timesStamp = currentDay.getTime();
+    for(let i = 0;i<num;i++) {
+      let date = new Date(timesStamp + 24 * 60 * 60 * 1000 * i).getTime();
+      let day = new Date(timesStamp + 24 * 60 * 60 * 1000 * i).getDate();
+      let week = new Date(timesStamp + 24 * 60 * 60 * 1000 * i).getDay();
+      weekList.push({
+        day:day,
+        week:`周${list[week]}`,
+        date:date
+      })
+    }
     this.setData({
-      timeArr:[{
-        time,
-        week
-      }]
+      weekList:weekList
+    })
+  },
+  toogleDay(e) {
+    let i = e.currentTarget.dataset.i;
+    this.setData({
+      weekActive:i
     })
     this.getDataList();
   },
@@ -44,33 +75,41 @@ Page({
   },
 
   backTap() {
+    let list = this.data.dataList;
     let pages=getCurrentPages();//页面指针数组
     let prepage=pages[pages.length-2];//上一页面指针
-    for(let v of prepage.data.dataList) {
+    for(let v of list) {
       v.flag = false
     }
-    prepage.data.dataList[this.data.active].flag = true;
+    list[this.data.active].flag = true;
+    console.log()
     prepage.setData({
-      dataList:prepage.data.dataList
+      dataList:list,
+
     })
     wx.navigateBack()
   },
   // 获取预约详情列表
   getDataList() {
-    let arr = ['日', '一', '二', '三', '四', '五', '六', ]
+    let arr = ['日', '一', '二', '三', '四', '五', '六', ];
+    let dateTime = util.formatEndTime(new Date(this.data.weekList[this.data.weekActive].date));
     http(url.manageTime,{
-      endDate:util.formatEndTime(new Date()),
+      endDate:dateTime,
       shopId:"9"
     },(res)=>{
-      console.log(res)
       if(res.code == 0) {
-        for(let v of res.data[util.formatEndTime(new Date())]) {
-          v.week = '星期'+arr[new Date().getDay()];
-          v.flag = false;
+        if(res.data[dateTime]) {
+          for(let v of res.data[dateTime]) {
+            v.week = '星期'+arr[new Date().getDay()];
+            v.flag = false;
+          }
+          res.data[dateTime][0].flag = true;
+        }else {
+          res.data[dateTime] = [];
         }
-        res.data[util.formatEndTime(new Date())][0].flag = true;
+        
         this.setData({
-          dataList:res.data[util.formatEndTime(new Date())]
+          dataList:res.data[dateTime] || []
         })
       }
     },'GET')

@@ -1,0 +1,38 @@
+<!--pages/haircut/detail.wxml-->
+<view class="container">
+  <view class="ld_top">
+    <image src="{{imgUrl + info.imageId}}"></image>
+    <view class="ld_info">
+      <view class="ld_name">{{info.resourceName}}</view>
+      <view class="ld_tip">{{info.resourceContext}}</view>
+    </view>
+  </view>
+
+  <!-- 选择日期 -->
+  <view class="select_time">
+    <view class="time_h2">选择日期</view>
+    <scroll-view class="scroll" scroll-x="true" enable-flex="true" scroll-anchoring="true">
+      <view class="ti_li {{activeTime == index?'active':''}}" wx:for="{{weekList}}" wx:key='week' data-i='{{index}}' bindtap="seleTime">
+        <text>{{item.week}}</text>
+        <text>{{item.day}}</text>
+      </view>
+    </scroll-view>
+    <view class="time_h2">选择时间段</view>
+    <scroll-view class="sele_time" scroll-x="true" enable-flex="true" scroll-anchoring="true">
+      <view class="time_li {{activeTimeDay == index?'activeTime':''}}" wx:for='{{dataList}}' wx:key='time' data-i='{{index}}' bindtap="selectTime">
+        {{item.manageTime}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 项目 -->
+  <view class="ha_pro">
+    <view class="pro_h2">选择项目</view>
+    <view class="pro_ul">
+      <text class="{{ type == 1?'active':''}}" data-type='1' bindtap="toogle">理发</text>
+      <text class="{{ type == 2?'active':''}}" data-type='2' bindtap="toogle">染发</text>
+    </view>
+  </view>
+
+  <view class="tc_btn" bindtap="submit">立即预约</view>
+</view>

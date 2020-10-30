@@ -114,8 +114,7 @@ Page({
   },
   // 添加购物车
   addCar(e) {
-    console.log(e)
-    let list = this.data.carList,
+    let list = JSON.parse(JSON.stringify(this.data.carList)),
     i = e.currentTarget.dataset.i,
     obj = this.data.dcList.list[i],
     allPrice = 0;
@@ -130,7 +129,12 @@ Page({
       if(flag == -1) {
         list.push(obj)
       }else {
-        list[flag].amount = list[flag].amount?list[flag].amount+1:2;
+        if(list[flag].amount == obj.remaining) {
+          app.showError('剩余库存不足！')
+          return false;
+        }
+        console.log(list[flag].amount)
+        list[flag].amount = list[flag].amount+1;
       }
     }
     for(let v of list) {

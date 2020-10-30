@@ -43,9 +43,17 @@ Page({
     })
   },
   navTo(e){
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url,
-    })
+    if(e.currentTarget.dataset.url == '/pages/index/code') {
+      app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8'],()=>{
+        wx.navigateTo({
+          url: e.currentTarget.dataset.url,
+        })
+      })
+    }else {
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url,
+      })
+    }
   },
   
   // showimg(){

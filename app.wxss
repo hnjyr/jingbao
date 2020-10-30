@@ -23,3 +23,6 @@ page, view, text, navigator, image, button, scroll-view {
   color: #ccc;
   padding-top: 20rpx;
 }
+view {
+  word-break:break-all;
+}

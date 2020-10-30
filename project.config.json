@@ -199,6 +199,41 @@
           "id": -1,
           "name": "钱包",
           "pathName": "pages/admin/wallet",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "支付成功",
+          "pathName": "pages/order/success",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "二维码",
+          "pathName": "pages/index/code",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "通知详情",
+          "pathName": "pages/recordlist/detail",
+          "query": "id=2347",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "理发师列表",
+          "pathName": "pages/haircut/list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "预约时间",
+          "pathName": "pages/haircut/detail",
           "scene": null
         }
       ]

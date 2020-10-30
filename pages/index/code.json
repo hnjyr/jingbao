@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "警营一码通",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup/index"
+  }
 }

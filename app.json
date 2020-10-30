@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/index/code",
+    "pages/order/success",
     "pages/order/order",
     "pages/list/info",
     "pages/list/car",
@@ -21,6 +22,8 @@
     "pages/chemist/detail",
     "pages/chemist/search",
     "pages/laundry/laundry",
+    "pages/haircut/detail",
+    "pages/haircut/list",
     "pages/haircut/haircut",
     "pages/physio/physio",
     "pages/haircut/time",

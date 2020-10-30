@@ -1,4 +1,4 @@
-// pages/physio/physio.js
+// pages/haircut/detail.js
 const app=getApp();
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
@@ -9,68 +9,77 @@ Page({
    * 页面的初始数据
    */
   data: {
+    info:{},
+    imgUrl:url.imgUrl,
     weekList:[],
-    activeTime:0,
-    userInfo:'',
     dataList:[],
-    proList:'',
-    activeTimeDay:0
+    activeTime:0,
+    activeTimeDay:0,
+    type: 1,
+    userInfo:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let info = wx.getStorageSync('lfInfo');
     let userInfo = wx.getStorageSync('userInfo');
     this.setData({
+      info:info,
       userInfo:userInfo
     })
     this.getWeekDay();
     this.getDayList(util.formatEndTime(new Date()));
   },
-
+  toogle(e) {
+    let type = e.currentTarget.dataset.type;
+    this.setData({
+      type: type
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
   // 提交
   submit() {
-    if(!this.data.proList.flag) {
-      app.showError('请选择预约场地！')
-      return false;
+    let list = this.data.dataList,
+      obj = {},
+      haircutType = this.data.type,
+      mobile = this.data.userInfo.mobile,
+      resourceId= this.data.userInfo.userId,
+      reserveUserName = this.data.userInfo.userName;
+    for (let v of list) {
+      if (v.flag == true) {
+        obj = v
+      }
     }
-    let beginTime = this.data.dataList[this.data.activeTime].beginTime,
-    endTime = this.data.dataList[this.data.activeTime].endTime,
-    manageId = this.data.dataList[this.data.activeTime].manageId,
-    mobile = this.data.userInfo.mobile,
-    reserveUserName = this.data.userInfo.userName;
     app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8', 'VmPsKts5U5lAYmhtQZfgv5dWZh_mbm_CPjpoFfvOEuM'], () => {
-      http(url.saveRecord,{
-        beginTime,
-        endTime,
-        manageId,
-        mobile,
-        reserveUserName,
-        reserveType:'6',
-        shopId:'15'
-      },res=>{
-        if(res.code == 0) {
-          app.showSuccess('预约成功！',()=>{
-            wx.navigateBack()
+      http(url.shSave, {
+        beginTime: obj.beginTime,
+        endTime: obj.endTime,
+        haircutType: haircutType,
+        manageId: obj.manageId,
+        mobile: mobile,
+        reserveType: 1,
+        reserveUserName: reserveUserName,
+        resourceId: resourceId,
+        shopId: '9',
+      }, (res) => {
+        if (res.code == 0) {
+          app.showSuccess('预约成功', () => {
+            wx.navigateBack({
+              delta: 2,
+            })
           })
+        } else {
+          app.showError(res.msg)
         }
-      },'POST','json')
+      }, 'POST', 'json')
     })
-    
   },
   // 选择
   onChange(e) {
@@ -94,7 +103,8 @@ Page({
   getDayList(endDate) {
     http(url.manageTime,{
       endDate:endDate,
-      shopId:'15'
+      shopId:'9',
+      resourceId:this.data.info.resourceId
     },res=>{
       console.log(res)
       if(res.data[endDate] && res.code == 0) {
@@ -139,6 +149,13 @@ Page({
       weekList:weekList
     })
   },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */

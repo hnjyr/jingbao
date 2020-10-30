@@ -1,0 +1,6 @@
+<!--pages/order/success.wxml-->
+<view class="container">
+  <image src="/images/paySuccess.png"></image>
+  <view class="su_p">支付成功</view>
+  <view class="ti_btn" bindtap="payBtn">完成</view>
+</view> 

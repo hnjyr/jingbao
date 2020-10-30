@@ -10,12 +10,11 @@ App({
 
     // 登录
     if(!wx.getStorageSync('cookie')) {
-      this.loginMini()
+      this.loginMini();
     }
 
     wx.getSystemInfo({
       success: (res) => {
-        console.log(res)
         wx.setStorage({
           data: res.statusBarHeight,
           key: 'titHeight',
@@ -39,14 +38,15 @@ App({
             "Cookie": wx.getStorageSync('cookie'),
           },
           success: (res) => {
+            console.log(res)
             if (res.data.code == 0) {
               var Cookie = res.header['Set-Cookie'].split(';')[0];
               wx.setStorageSync('cookie', Cookie);
               wx.setStorageSync('userInfo', res.data.user);
               wx.setStorageSync('dataList', res.data.data);
-              wx.reLaunch({
-                url: '/pages/index/index'
-              })
+              // wx.reLaunch({
+              //   url: '/pages/index/index'
+              // })
             }
           }
         })
@@ -81,11 +81,31 @@ App({
       content: msg,
       showCancel: false,
       success(res) {
-        // callback && (setTimeout(function() {
-        //   callback();
-        // }, 1500));
-        callback && callback();
+        callback && (setTimeout(function() {
+          callback();
+        }, 1000));
+        // callback && callback();
       }
     });
+  },
+  /**
+   * 订阅消息通知
+   */
+  getDyInfo:function(tmplIds,callback) {
+    wx.getSetting({
+      withSubscriptions: true,
+      success(res) {
+        console.log(res)
+        wx.requestSubscribeMessage({
+          tmplIds: tmplIds,
+          success(res) {
+            console.log(res)
+          },
+          complete(res) {
+            callback && callback();
+          }
+        })
+      }
+    })
   },
 })

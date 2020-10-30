@@ -1,4 +1,7 @@
 // pages/admin/set.js
+const app = getApp();
+const url = require('../../utils/config.js');
+const http = require('../../utils/http.js');
 Page({
 
   /**
@@ -18,13 +21,20 @@ Page({
   },
   // 退出登陆
   exit(){
-    wx.clearStorageSync('cookie')
-    wx.clearStorageSync('payPassword')
-    wx.clearStorageSync('userInfo')
-    wx.clearStorageSync('dataList')
-    wx.reLaunch({
-      url: '/pages/index/index',
-    })
+    http(url.logoutWx,{
+
+    },()=>{
+      wx.removeStorageSync('cookie')
+      wx.removeStorageSync('payPassword')
+      wx.removeStorageSync('userInfo')
+      wx.removeStorageSync('dataList')
+      app.showError('退出成功',()=>{
+        wx.reLaunch({
+          url: '/pages/index/index',
+        })
+      })
+    },'GET')
+    
   },
 
   /**

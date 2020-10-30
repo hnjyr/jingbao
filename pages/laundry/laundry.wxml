@@ -1,5 +1,15 @@
 <!--洗衣店-->
 <view class="container">
+  <van-radio-group value="{{ radio }}" wx:if="{{userInfo.leaderId}}">
+    <view class="ra_li {{radio == 1?'active':''}}" data-name="1" bindtap="radioClick">
+      <text>给自己预约</text>
+      <van-radio slot="right-icon" name="1" />
+    </view>
+    <view class="ra_li {{radio == 2?'active':''}}" data-name="2" bindtap="radioClick">
+      <text>给领导预约</text>
+      <van-radio slot="right-icon" name="2" />
+    </view>
+  </van-radio-group>
   <!-- 选择日期 -->
   <view class="select_time">
     <view class="time_h2">选择日期</view>

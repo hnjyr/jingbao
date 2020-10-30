@@ -1,0 +1,13 @@
+<!--理发师详情-->
+<view class="container">
+  <scroll-view class="lf_ul" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}'
+    bindrefresherrefresh='refreshTap' bindscrolltolower='tolower'>
+    <view class="lf_li" wx:for="{{dataList}}">
+      <view class="lf_info">
+        <image src="{{imgUrl + item.imageId}}"></image>
+        <text>{{item.resourceName}}</text>
+      </view>
+      <view class="lf_btn" bindtap="navTo" data-i='{{index}}'>查看</view>
+    </view>
+  </scroll-view>
+</view>

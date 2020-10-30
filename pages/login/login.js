@@ -77,30 +77,35 @@ Page({
           wx.setStorageSync('cookie', Cookie);
           wx.setStorageSync('userInfo', res.data.user);
           wx.setStorageSync('dataList', res.data.data);
-          wx.login({
-            success: (res) => {
-              console.log(res.code)
-              wx.request({
-                url: url.loginForWx,
-                data: {
-                  code: res.code
-                },
-                header: {
-                  "Cookie": wx.getStorageSync('cookie'),
-                },
-                success: (res) => {
-                  console.log(res)
-                  // var Cookie = res.header['Set-Cookie'].split(';')[0];
-                  // wx.setStorageSync('cookie', Cookie);
-                  wx.setStorageSync('userInfo', res.data.user);
-                  wx.setStorageSync('dataList', res.data.data);
-                  wx.reLaunch({
-                    url: '/pages/index/index'
-                  })
-                }
-              })
-            }
-          })
+          // if(res.data.user.wxOpenId != '') {
+          //   return false;
+          // }
+          // wx.login({
+          //   success: (res) => {
+          //     console.log(res.code)
+          //     wx.request({
+          //       url: url.loginForWx,
+          //       data: {
+          //         code: res.code
+          //       },
+          //       header: {
+          //         "Cookie": wx.getStorageSync('cookie'),
+          //       },
+          //       success: (res) => {
+          //         console.log(res)
+          //         // var Cookie = res.header['Set-Cookie'].split(';')[0];
+          //         // wx.setStorageSync('cookie', Cookie);
+          //         if(res.data.code == 0) {
+          //           wx.setStorageSync('userInfo', res.data.user);
+          //           wx.setStorageSync('dataList', res.data.data);
+          //         }
+          //         wx.reLaunch({
+          //           url: '/pages/index/index'
+          //         })
+          //       }
+          //     })
+          //   }
+          // })
 
         } else {
           Notify({

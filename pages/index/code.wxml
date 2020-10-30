@@ -3,6 +3,43 @@
   <view class="ref">{{second}}秒后刷新</view>
   <!-- <image src="http://122.51.69.116:8082/zhjb/pay/purse/generatepayqrcode"></image> -->
   <image src="{{src}}"></image>
-  <view class="tip">提示：</view>
-  <view class="tip">用于就餐支付时，每个就餐时间只可支付一次</view>
+  
+  <view class="tip">使用说明：</view>
+  <view class="tip">1.用于就餐支付时，每个就餐时间只可支付一次</view>
+  <view class="tip">2.乘坐班车时，扫码支付没有次数限制</view>
+  <view class="tip">3.理发店因流程原因，需进出各扫码一次</view>
+  <view class="tip">4.理疗店需扫码进行预约身份校验</view>
+  <view class="tip">5.洗衣店送衣和领衣时，凭二维码进行登记身份校验</view>
+  <view class="tip">6.室外运动场和澡堂进入时，扫码进行人员登记</view>
+
+
+  <!-- 设置支付密码弹框 -->
+  <van-popup position="bottom" show="{{ show }}" custom-style="height: 58%;padding:20rpx 30rpx;" bind:close="onClose">
+    <view class="wx-page-content" wx:if='{{!twoshow}}'>
+      <view class="page-title">{{payPassword==1?'':'创建'}}支付密码</view>
+      <view class="page-tises"><span>请输入您的支付密码</span></view>
+      <view class="verificationCode">
+        <view class="{{opayPwds.length-1 >= index ? 'activeView' : ''}}" wx:for="{{6}}" wx:key='inp'>
+          <!-- <span class='yuan' wx:if='{{veCode[0]}}'></span> -->
+        </view>
+      </view>
+      <view class="key_bord">
+        <view class="key_j {{item == 'C' || item == 'X' ? 'hui' :''}}" wx:for="{{keybord}}" wx:key='key'
+          bindtap="clickKeybord" data-text='{{item}}'>{{item}}</view>
+      </view>
+    </view>
+    <view class="wx-page-content" wx:if='{{twoshow}}'>
+      <view class="page-title">创建支付密码</view>
+      <view class="page-tises"><span>请确认您的支付密码</span></view>
+      <view class="verificationCode">
+        <view class="{{npayPwds.length-1 >= index ? 'activeView' : ''}}" wx:for="{{6}}" wx:key='inp1'>
+          <!-- <span class='yuan' wx:if='{{veCode[0]}}'></span> -->
+        </view>
+      </view>
+      <view class="key_bord">
+        <view class="key_j {{item == 'C' || item == 'X' ? 'hui' :''}}" wx:for="{{keybord}}" wx:key='key1'
+          bindtap="clickKeybord" data-text='{{item}}'>{{item}}</view>
+      </view>
+    </view>
+  </van-popup>
 </view>
