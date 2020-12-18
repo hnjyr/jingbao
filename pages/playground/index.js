@@ -46,7 +46,6 @@ Page({
       page:page,
       limit:limit
     },(res)=>{
-      console.log(res)
       if(res.code == 0) {
         let str = 'dataList' + classifyId;
         this.setData({

@@ -2,6 +2,7 @@ const app = getApp()
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
 import Notify from '../../miniprogram/@vant/weapp/notify/notify.js';
+let submitFlag = true;
 // pages/login/login.js
 Page({
 
@@ -39,6 +40,9 @@ Page({
     })
   },
   confirm() {
+    if(!submitFlag) {
+      return false;
+    }
     const {
       username,
       pwd,
@@ -71,42 +75,55 @@ Page({
         "Content-Type": header
       },
       success: (res) => {
-        console.log(res)
         if (res.data.code == 0) {
+          submitFlag = true;
           var Cookie = res.header['Set-Cookie'].split(';')[0];
           wx.setStorageSync('cookie', Cookie);
           wx.setStorageSync('userInfo', res.data.user);
           wx.setStorageSync('dataList', res.data.data);
-          // if(res.data.user.wxOpenId != '') {
-          //   return false;
-          // }
-          // wx.login({
-          //   success: (res) => {
-          //     console.log(res.code)
-          //     wx.request({
-          //       url: url.loginForWx,
-          //       data: {
-          //         code: res.code
-          //       },
-          //       header: {
-          //         "Cookie": wx.getStorageSync('cookie'),
-          //       },
-          //       success: (res) => {
-          //         console.log(res)
-          //         // var Cookie = res.header['Set-Cookie'].split(';')[0];
-          //         // wx.setStorageSync('cookie', Cookie);
-          //         if(res.data.code == 0) {
-          //           wx.setStorageSync('userInfo', res.data.user);
-          //           wx.setStorageSync('dataList', res.data.data);
-          //         }
-          //         wx.reLaunch({
-          //           url: '/pages/index/index'
-          //         })
-          //       }
+          // if(res.data.user.wxOpenId != '' || res.data.user.wxOpenId == '已退出') {
+          //   if(res.data.user.deptId){
+          //     wx.reLaunch({
+          //       url: '/pages/index/index'
+          //     })
+          //   }else{
+          //     wx.navigateTo({
+          //       url: '/pages/admin/modifyuser',
           //     })
           //   }
-          // })
-
+          //   return false;
+          // }
+          // 没绑定微信
+          wx.login({
+            success: (res) => {
+              wx.request({
+                url: url.loginForWx,
+                data: {
+                  code: res.code
+                },
+                header: {
+                  "Cookie": wx.getStorageSync('cookie'),
+                },
+                success: (res) => {
+                  if(res.data.code == 0) {
+                    if(res.data.user.deptId){
+                      wx.setStorageSync('userInfo', res.data.user);
+                      wx.setStorageSync('dataList', res.data.data);
+                      wx.reLaunch({
+                        url: '/pages/index/index'
+                      })
+                    }else{
+                      wx.navigateTo({
+                        url: '/pages/admin/modifyuser',
+                      })
+                    }
+                  }else {
+                    app.showError(res.data.msg)
+                  }
+                }
+              })
+            }
+          })
         } else {
           Notify({
             type: 'danger',

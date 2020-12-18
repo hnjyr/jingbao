@@ -43,7 +43,6 @@ Page({
       password:password,
       newPassword:newpwd
     },res=>{
-      console.log(res)
       if(res.code == 0) {
         wx.clearStorageSync('cookie')
         wx.clearStorageSync('payPassword')

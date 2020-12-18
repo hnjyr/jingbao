@@ -3,6 +3,7 @@
 const app = getApp()
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
+let timer,timerFlag = true;
 Page({
   data: {
     navList:[
@@ -87,7 +88,7 @@ Page({
       }
     ],
     lunboList:[],
-    userInfo:''
+    userInfo:'',
   },
   onLoad: function () {
     this.setData({
@@ -95,7 +96,6 @@ Page({
     })
   },
   onReady: function () {
-    console.log();
     if(wx.getStorageSync('cookie')) {
       this.getLunboList();
     }else {
@@ -112,25 +112,68 @@ Page({
     })
   },
   navTo(e){
+    console.log(timerFlag)
+    if(!timerFlag) {
+      return false;
+    }
+    console.log(timerFlag)
+    timerFlag = false;
+    clearTimeout(timer)
+    timer = setTimeout(()=>{
+      timerFlag = true;
+      console.log(1)
+      // return false;
+    },1000)
+    if(!wx.getStorageSync('dataList')) {
+      app.showError('请先登录',()=>{
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
+      });
+      return false;
+    }
+    let roleId = wx.getStorageSync('dataList')[0].roleId;
     if(!e.currentTarget.dataset.url) {
       app.showError('功能正在开发，敬请期待！');
       return false;
     }
     if(e.currentTarget.dataset.url == '/pages/index/code') {
-      app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8'],()=>{
+      app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs'],()=>{
         wx.navigateTo({
           url: e.currentTarget.dataset.url,
         })
       })
-    }else if(e.currentTarget.dataset.url == '/pages/haircut/haircut' && (this.data.userInfo.position ==1||2)){
+    }else if(e.currentTarget.dataset.url == '/pages/haircut/haircut' && (this.data.userInfo.position ==1||this.data.userInfo.position ==2)){
       wx.navigateTo({
         url: '/pages/haircut/list',
       })
+    }else if(e.currentTarget.dataset.url == '/pages/repair/repair'){
+      if(roleId == 117) {
+        // 维修管理员
+        wx.navigateTo({
+          url: '/pages/repair/list?type=1',
+        })
+      }else if(roleId == 115) {
+        // 物业审核
+        wx.navigateTo({
+          url: '/pages/repair/list?type=2',
+        })
+      }else if(roleId == 116) {
+        // 附加账户-维修工人
+        wx.navigateTo({
+          url: '/pages/repair/list?type=3',
+        })
+      }else {
+        wx.navigateTo({
+          url: '/pages/repair/repair',
+        })
+      }
     }else {
       wx.navigateTo({
         url: e.currentTarget.dataset.url,
       })
     }
+    
   },
   getLunboList() {
     // 每十分钟查询一次

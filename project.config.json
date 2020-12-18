@@ -32,11 +32,13 @@
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
-    "packNpmRelationList": []
+    "packNpmRelationList": [],
+    "enableEngineNative": false,
+    "minifyWXSS": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.13.1",
-  "appid": "wx9828ddefd66296a6",
+  "appid": "wxeb062408603cba22",
   "projectname": "%E6%99%BA%E6%85%A7%E8%AD%A6%E4%BF%9D%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F",
   "debugOptions": {
     "hidedInDevtools": []
@@ -46,28 +48,16 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
     "plugin": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "gamePlugin": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "current": -1,
       "list": [
         {
           "id": 0,
@@ -234,6 +224,34 @@
           "id": -1,
           "name": "预约时间",
           "pathName": "pages/haircut/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 24,
+          "name": "申请列表",
+          "pathName": "pages/repair/list",
+          "query": "type=2",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "审批详情",
+          "pathName": "pages/repair/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "下发",
+          "pathName": "pages/repair/grList",
+          "query": "type=2",
+          "scene": null
+        },
+        {
+          "name": "充值",
+          "pathName": "pages/admin/type",
+          "query": "",
           "scene": null
         }
       ]

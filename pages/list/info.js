@@ -16,7 +16,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     let userInfo = wx.getStorageSync('userInfo');
     this.setData({
       price:options.price,
@@ -41,7 +40,7 @@ Page({
           shopId:v.shopId
         })
       }
-      app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8'],()=>{
+      app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs'],()=>{
         http(url.saveForUser,{
           createUserName: createUserName,
           isPayBehalf:0, //是否代付 1是0否，（目前默认传0）
@@ -56,6 +55,7 @@ Page({
               data: res.data,
               key: 'orderDetail',
             })
+            wx.removeStorageSync('carList');
             wx.navigateTo({
               url: '/pages/order/order',
             })

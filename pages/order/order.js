@@ -18,7 +18,8 @@ Page({
     opayPwds: '',
     npayPwds: '',
     keybord: ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'C', '0', 'X'],
-    payPassword: ''
+    payPassword: '',
+    imgUrl:url.imgUrl
   },
 
   /**
@@ -32,6 +33,10 @@ Page({
       key: 'orderDetail',
     })
     this.getbalance()
+    this.getshoporders()
+    // if(this.data.dataInfo.ordersState == 2){
+      
+    // }
   },
   // 键盘输入
   clickKeybord(e) {
@@ -67,9 +72,13 @@ Page({
 
     if (cont.length == 6) {
       if (this.data.payPassword == 0) {
+        if(this.data.twoshow){
+          this.setPayMi()
+          return
+        }
         this.setData({
           twoshow: true
-        })
+        }) 
       } else {
         this.setData({
           show: false,
@@ -139,13 +148,16 @@ Page({
           show: false,
           npayPwds: '',
           opayPwds: '',
-          twoshow: false
+          twoshow: false,
         })
-        if (res.data.code = 500) {
+        if (res.data.code == 500) {
           app.showError(res.data.msg);
         } else {
           app.showSuccess(res.data.msg);
           that.getbalance()
+          that.setData({
+            payPassword:1
+          })
         }
       }
     })
@@ -155,7 +167,6 @@ Page({
     const that = this
     http(url.getPurse, {}, res => {
       if (res.code == 0) {
-        console.log(res)
         wx.setStorageSync('payPassword', res.data.payPassword != null ? res.data.payPassword : 0)
         var exemptPassword = {
           'isExemptPassword': res.data.isExemptPassword,
@@ -216,6 +227,36 @@ Page({
         })
       }
     }, 'POST', 'json')
+  },
+
+  // 获取订详情 支付后
+  getshoporders(){//shoporders
+    const that = this
+    wx.request({
+      url: url.shoporders+that.data.dataInfo.ordersId,
+      method:'GET',
+      header:{
+        "Cookie": wx.getStorageSync('cookie'),
+      },
+      success:(res)=>{
+        if(res.data.code==0){
+          that.setData({
+            shoplist:res.data.data.ordersLinkEntityList
+          })
+        }else{
+          app.showError('获取商品失败')
+        }
+      },
+      fail:(err)=>{
+        app.showError('获取商品失败')
+      }
+    })
+    // http(url.shoporders, {
+    //   ordersId: that.data.dataInfo.ordersId,
+    // }, res => {
+    //   if (res.code == 0) {
+    //   }
+    // }, 'GET', 'json')
   },
 
   /**

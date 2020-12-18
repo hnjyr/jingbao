@@ -46,7 +46,6 @@ Page({
     socket.onSocketMessageCallback = function(res) {
       let data = JSON.parse(res),
         code = data.status;
-        console.log(data)
         switch (code) {
           case 1:
             app.showError(data.message,()=>{
@@ -114,7 +113,6 @@ Page({
         userId:wx.getStorageSync('userInfo').userId
       }),
       success(res) {
-        console.log(res)
       }
     })
     // http(url.verifyPayPassword, {

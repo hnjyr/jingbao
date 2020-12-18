@@ -3,11 +3,11 @@
   <image class="dt_image" src="{{imgUrl + mealInfo.shopGoodsEntity.imageId}}"></image>
   <view class="info">
     <view class="dt_h2">{{mealInfo.shopGoodsEntity.goodsName}}</view>
-    <view class="dt_ys">月售{{mealInfo.shopGoodsEntity.orderNumber}}</view>
-    <view class="dt_ys">剩余{{mealInfo.remaining}}份</view>
-    <view class="dt_price">
+    <!-- <view class="dt_ys" wx:if='{{type == 2}}'>月售{{mealInfo.shopGoodsEntity.orderNumber}}</view> -->
+    <view class="dt_ys" wx:if='{{type == 2}}'>剩余{{mealInfo.remaining}}份</view>
+    <view class="dt_price" wx:if='{{type == 2}}'>
       <text>¥{{mealInfo.shopGoodsEntity.price}}</text>
-      <view wx:if='{{type == 2}}' bindtap="addCar">+加入购物车</view>
+      <view bindtap="addCar">+加入购物车</view>
     </view>
   </view>
   <view class="info_xq">

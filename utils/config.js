@@ -1,5 +1,6 @@
 // const url = 'http://122.51.69.116:8082/zhjb/', 
-const url = 'http://114.242.23.225:8086/zhjb/', 
+// const url = 'http://114.242.23.225:8086/zhjb/', 
+const url = 'https://gaapp.yantai.gov.cn/zhjb/', 
 g = {
   host:url,
   imgUrl:url + 'sys/attachment/open/download?attID=',
@@ -40,5 +41,17 @@ g = {
   finish:url+'logistics/shoporders/finish',//确认收货
   messageinfo:url+'app/appnotice/info/',//信息详情
   shSave:url+'logistics/reserverecord/save',//确认收货
+  deptlist:url+'sys/dept/list',//部门接口请求
+  listByCache:url+'sys/dict/listByCache?type=',//字典接口请
+  shoporders:url+'logistics/shoporders/info/',
+  manageListNo:url+'logistics/apply/list',// 维修管理员 申请列表-未处理
+  manageListYes:url+'logistics/applyopinion/list',// 维修管理员 申请列表-已处理
+  listMyRepair:url+'logistic/repairrecord/listMyRepair',// 物业审核 申请列表-已处理
+  sysList:url+'sys/user/list',// 下发列表
+  applyopinionSave:url+'logistics/applyopinion/save',// 审批
+  repairrecordSave:url+'logistic/repairrecord/save',// 下发
+  repairrecordUpdate:url+'logistic/repairrecord/update',// 维修员提交
+  attachmentList:url+'sys/attachment/list',// 图片组获取图片
+  deleteImg:url+'sys/attachment/delete',// 删除图片
 } 
 module.exports = g;

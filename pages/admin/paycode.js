@@ -41,7 +41,6 @@ Page({
         "Cookie": wx.getStorageSync('cookie'),
       },
       success(res) {
-        // console.log(res.data);
         let url = 'data:image/png;base64,' + wx.arrayBufferToBase64(res.data)
         _this.setData({
           src: url,

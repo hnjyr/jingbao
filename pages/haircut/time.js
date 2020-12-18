@@ -82,7 +82,6 @@ Page({
       v.flag = false
     }
     list[this.data.active].flag = true;
-    console.log()
     prepage.setData({
       dataList:list,
 

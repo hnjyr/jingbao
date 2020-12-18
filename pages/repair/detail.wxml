@@ -1,0 +1,59 @@
+<!--审批详情-->
+<view class="container">
+  <view class="sp_box">
+    <view class="sp_li">
+      <view class="sp_div">
+        <text class="sp_span">姓名：</text>
+        <text class="sp_p">{{dataObj.petitioner}}</text>
+      </view>
+      <view class="sp_div">
+        <text class="sp_span">手机号：</text>
+        <text class="sp_p">{{dataObj.petitionerPhone}}</text>
+      </view>
+    </view>
+    <view class="sp_li">
+      <view class="sp_div">
+        <text class="sp_span">部门：</text>
+        <text class="sp_p">{{dataObj.deptName}}</text>
+      </view>
+      <view class="sp_div">
+        <text class="sp_span">预约时间：</text>
+        <text class="sp_p">{{dataObj.applyDate}}</text>
+      </view>
+    </view>
+    <view class="sp_li">
+      <view class="sp_div">
+        <text class="sp_span">维修问题：</text>
+        <text class="sp_p" selectable='true'>{{dataObj.applyContent}}</text>
+      </view>
+    </view>
+    <view class="sp_li">
+      <view class="sp_div" style="display:flex;">
+        <text class="sp_span">维修类型：</text>
+        <view class="sp_p" wx:if='{{active == 0 && type == 1}}'>
+          <van-radio-group class='radio' value="{{ radio }}" bind:change="onChange">
+            <van-radio class="rad" name="1">维修</van-radio>
+            <van-radio class="rad" name="2">换件</van-radio>
+          </van-radio-group>
+        </view>
+        <text class="sp_p" wx:else>{{dataObj.repairType == 1?'维修':'换件'}}</text>
+      </view>
+    </view>
+    <view class="sp_li">
+      <view class="sp_div">
+        <text class="sp_span">照片：</text>
+        <view class="imgBox">
+          <image mode="aspectFill" src="{{ imgUrl + item.id}}" wx:for="{{ imgList }}" wx:key='img' data-i='{{index}}' bindtap="lookImg"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="dt_btn" wx:if='{{active == 0&&type==1}}'>
+    <view class="btn" bindtap="noClick">拒绝批准</view>
+    <view class="btn" bindtap="sureClick">确认审批</view>
+  </view>
+  <view class="dt_btn" wx:if='{{active == 0&&type==2}}'>
+    <view class="btn" bindtap="xfClick" style="padding:10rpx 60rpx;">下发</view>
+  </view>
+</view>

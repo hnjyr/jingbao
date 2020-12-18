@@ -43,17 +43,21 @@ page {
 }
 .time_box {
   display: flex;
+  flex-wrap: wrap;
 }
 .time_box .time_li {
   background-color: #fff;
   border: 1rpx solid #ddd;
   border-radius: 8rpx;
-  margin: 0 20rpx 20rpx 0;
+  margin: 0 14rpx 14rpx 0;
   text-align: center;
-  padding: 20rpx 10rpx;
+  padding: 20rpx 6rpx;
   font-size: 24rpx;
   position: relative;
   flex-shrink: 0;
+}
+.time_box .time_li:nth-child(4) {
+  margin-right: 0;
 }
 .time_box .active {
   border-color: #FF8400;

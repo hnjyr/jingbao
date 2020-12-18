@@ -18,7 +18,6 @@ Page({
     applyDate:'',
     applyContent:'',
     attachmentGroupId:new Date().getTime(),
-    
 
     showTime:false,
     currentDate: new Date().getTime(),
@@ -31,8 +30,20 @@ Page({
       }
       return value;
     },
+    type:'',
+    imgList:[]
   },
-
+  lookImg(e) {
+    let i = e.currentTarget.dataset.i;
+    let arr = [];
+    for(let v of this.data.imgList) {
+      arr.push(this.data.imgUrl + v.id)
+    }
+    wx.previewImage({
+      current: arr[i], // 当前显示图片的http链接
+      urls: arr // 需要预览的图片http链接列表
+    })
+  },
   onClickShow() {
     // 提交
     let { applyContent, applyDate, userInfo, fileList, goodsId, attachmentGroupId } = this.data;
@@ -48,7 +59,7 @@ Page({
       app.showError('请上传维修图片');
       return false;
     }
-    app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8', 'c9zdy_jyFcQbbNCVEKcqMAcHEPBfliETU_reu7yo5Vg','jmZ8_5pdORt1YJ9v2nk2msDFmY4fWw74U3jfJ0eDvk4'], () => {
+    app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs', 'j2JPba9YRtG9h1_JqfbqwKANOjaDp6EPRuLbTIR8sbw','hEgwPm64nLGyxZttSBN8oqMjnMO27n-Lq0G_5onTBSs'], () => {
       http(url.sqSave,{
         applyContent,
         applyDate,
@@ -67,6 +78,62 @@ Page({
           app.showError(res.msg)
         }
       },'POST','json')
+    })
+    
+  },
+  // 删除图片
+  deleteImgs(event) {
+    let i = event.detail.index,
+    fileList = this.data.fileList,
+    _this = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除吗？',
+      success (res) {
+        if (res.confirm) {
+          http(url.deleteImg,
+            JSON.stringify([_this.data.fileList[i].imgId])
+          ,data=>{
+            if(data.code == 0) {
+              app.showSuccess('删除成功！',()=>{
+                fileList.splice(i,1);
+                _this.setData({
+                  fileList:fileList
+                })
+              })
+            }
+          },"DELETE","json")
+        } else if (res.cancel) {
+        }
+      }
+    })
+    
+  },
+  // 维修员
+  onClickShows() {
+    // 提交
+    let { applyDate, fileList, attachmentGroupId } = this.data;
+    if(applyDate == '') {
+      app.showError('请选择维修完成时间');
+      return false;
+    }
+    if(fileList.length == 0) {
+      app.showError('请上传维修图片');
+      return false;
+    }
+    app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs', 'j2JPba9YRtG9h1_JqfbqwKANOjaDp6EPRuLbTIR8sbw','hEgwPm64nLGyxZttSBN8oqMjnMO27n-Lq0G_5onTBSs'], () => {
+      http(url.repairrecordUpdate,{
+        finishDate:applyDate,
+        groupId:attachmentGroupId - 0,
+        recordId:this.data.dataInfo.repairRecordEntity.recordId,
+        repairState:'2',
+      },res=>{
+        if(res.code == 0) {
+          this.setData({ show: true });
+        }else {
+          app.showError(res.msg)
+        }
+      },'PUT','json')
     })
     
   },
@@ -95,11 +162,21 @@ Page({
   },
   // 返回
   backTap() {
-    wx.navigateBack()
+    wx.navigateBack();
   },
   noop() {
     this.setData({ show: false });
-    wx.navigateBack()
+    var pages=getCurrentPages();//页面指针数组
+    var prepage=pages[pages.length-2];//上一页面指针
+    prepage.setData({
+      page:1,
+      dataList:[]
+    });//操作上一页面
+    prepage.getDataList()
+    wx.navigateBack({
+      delta: 2,
+    });
+    // wx.navigateBack()
   },
   afterRead(event) {
     const { file } = event.detail,
@@ -119,10 +196,9 @@ Page({
        },
       success(e) {
         let res = JSON.parse(e.data);
-        console.log(res)
         // 上传完成需要更新 fileList
         const { fileList = [] } = _this.data;
-        fileList.push({ ...file, url: _this.data.imgUrl + res.data.id, imgId:res.data.id });
+        fileList.push({ ...file, url: _this.data.imgUrl + res.data.id, imgId:res.data.id, deletable: true });
         _this.setData({ fileList });
       },
     });
@@ -136,7 +212,18 @@ Page({
       userInfo:userInfo,
       goodsName:options.goodsName,
       goodsId:options.goodsId,
+      type:options.type?options.type:'',
+      dataInfo:options.type == 1?wx.getStorageSync('wxDetail'):''
     })
+    if(options.type == 1) {
+      http(url.attachmentList,{
+        groupId:this.data.dataInfo.attachmentGroupId
+      },res=>{
+        this.setData({
+          imgList:res.page.list
+        })
+      })
+    }
   },
 
   /**

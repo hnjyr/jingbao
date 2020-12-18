@@ -27,6 +27,7 @@ App({
   },
   // 登录
   loginMini() {
+    let _this = this;
     wx.login({
       success: (res) => {
         wx.request({
@@ -38,7 +39,6 @@ App({
             "Cookie": wx.getStorageSync('cookie'),
           },
           success: (res) => {
-            console.log(res)
             if (res.data.code == 0) {
               var Cookie = res.header['Set-Cookie'].split(';')[0];
               wx.setStorageSync('cookie', Cookie);
@@ -47,6 +47,12 @@ App({
               // wx.reLaunch({
               //   url: '/pages/index/index'
               // })
+            }else {
+              _this.showError(res.data.msg,()=>{
+                wx.navigateTo({
+                  url: '/pages/login/login',
+                })
+              })
             }
           }
         })
@@ -95,11 +101,9 @@ App({
     wx.getSetting({
       withSubscriptions: true,
       success(res) {
-        console.log(res)
         wx.requestSubscribeMessage({
           tmplIds: tmplIds,
           success(res) {
-            console.log(res)
           },
           complete(res) {
             callback && callback();

@@ -3,23 +3,63 @@
 	<image src="{{src}}" class="avaimg" bindtap="uploadimg"></image>
 	<view class="iptbox">
 		<view class="it">
-			<text space="ensp">账号* </text>
+			<text space="ensp">账号*   </text>
 			<input disabled placeholder="{{name}}" value="{{name}}" bindinput="nameInput" type="text"></input>
 		</view>
 		<view class="it">
-			<text space="ensp">姓名  </text>
-			<input class="{{!flag?'black':''}}" focus='{{!flag}}' disabled="{{flag}}" placeholder="{{username}}" value="{{username}}" bindinput="usernameInput" type="text"></input>
+			<text space="ensp">姓名    </text>
+			<input class="{{!flag?'black':''}}" focus='{{!flag}}' disabled='{{flag}}' placeholder="{{username}}"
+				value="{{username}}" bindinput="usernameInput" type="text"></input>
 		</view>
 		<view class="it">
-			<text>手机号</text>
-			<input class="{{!flag?'black':''}}" disabled="{{flag}}" maxlength="11" placeholder="{{phone}}" bindinput="phoneInput" value="{{phone}}" type="number"></input>
+			<text space="ensp">性别    </text>
+			<van-radio-group value="{{ sexindex }}" disabled="{{deptId!==null||flag}}" class="checkbox"  bind:change="onChange">
+				<van-radio name="{{item.value}}" disabled='{{deptId!=null||flag}}' style="margin-right:50rpx;" wx:for="{{sexlist}}" wx:key='{{item.value}}'>{{item.text}}</van-radio>
+			</van-radio-group>
 		</view>
 		<view class="it">
-			<text space="ensp">邮箱  </text>
-			<input class="{{!flag?'black':''}}" disabled="{{flag}}"  placeholder="{{emailt}}" value="{{emailt}}" bindinput="emailInput" type="email"></input>
+			<text space="ensp">邮箱    </text>
+			<input class="{{!flag?'black':''}}" disabled="{{flag}}" placeholder="{{emailt}}" value="{{emailt}}"
+				bindinput="emailInput" type="email"></input>
 		</view>
+		<view class="it">
+			<text space="ensp">职位    </text>
+			<view style="flex:1;display: flex;justify-content: center;">
+				<van-dropdown-menu style="margin-left: 50rpx;flex:1;height:60rpx;" >
+					<van-dropdown-item bind:change="onChangepo" value="{{ posindex }}" disabled='{{deptId!==null||flag}}' options="{{ poslist }}" />
+				</van-dropdown-menu>
+			</view>
+		</view>
+
+		<view class="it">
+			<text space="ensp">手机号  </text>
+			<input class="{{!flag?'black':''}}" disabled="{{flag}}" maxlength="11" placeholder="{{phone}}"
+				bindinput="phoneInput" value="{{phone}}" type="number"></input>
+		</view>
+		
+		<view class="it">
+			<text space="ensp">所属部门</text>
+			<view style="flex:1;display: flex;justify-content: center;">
+				<van-dropdown-menu style="margin-left: 50rpx;flex:1;height:60rpx;">
+					<van-dropdown-item  bind:change="onChangedept" value="{{ index }}" disabled='{{deptId!==null||flag}}' options="{{ deptlist }}" />
+				</van-dropdown-menu>
+			</view>
+		</view>
+		<view class="it" >
+			<text space="ensp">用户类型</text>
+			<view style="flex:1;display: flex;justify-content: center;">
+				<van-dropdown-menu style="margin-left: 50rpx;flex:1;height:60rpx;">
+					<van-dropdown-item bind:change="onChangeusert"  value="{{ usertindex }}" disabled='{{deptId!==null||flag}}' options="{{ usertlist }}" />
+				</van-dropdown-menu>
+			</view>
+		</view>
+		<!-- <view class="it">
+			<text space="ensp">警员编号</text>
+			<input class="{{!flag&&deptId===null?'black':''}}" disabled='{{deptId!==null||flag}}' placeholder="{{policeNumber}}" value="{{policeNumber}}"
+				bindinput="emailpoliceNumber" type="email"></input>
+		</view> -->
 	</view>
-  <view wx:if='{{flag}}' class="btn" bindtap="btn">编辑</view>
+	<view wx:if='{{flag}}' class="btn" bindtap="btn">编辑</view>
 	<view wx:else class="btns">
 		<view bindtap="close" class="close">取消</view>
 		<view bindtap="ok" class="ok">确定</view>

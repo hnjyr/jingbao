@@ -78,7 +78,11 @@ Page({
     // 去掉最后一个逗号
     clothesCasualLabel=clothesCasualLabel.substring(0,clothesCasualLabel.length-1);
     clothesPoliceLabel=clothesPoliceLabel.substring(0,clothesPoliceLabel.length-1);
-    app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8', 'VmPsKts5U5lAYmhtQZfgv5dWZh_mbm_CPjpoFfvOEuM'],()=>{
+    if(!clothesCasualLabel && !clothesPoliceLabel) {
+      app.showError('请先选择一件衣服！');
+      return false;
+    }
+    app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs', 'w9YYPOrqNy0QL_d7JlWi2q54MCJo-GzvRQVmz4We0BU'],()=>{
       http(url.saveWashRecord,{
         clothesCasualLabel,
         clothesPoliceLabel,
@@ -203,7 +207,6 @@ Page({
       let date = new Date(timesStamp + 24 * 60 * 60 * 1000 * i).getTime();
       let day = new Date(timesStamp + 24 * 60 * 60 * 1000 * i).getDate();
       let week = new Date(timesStamp + 24 * 60 * 60 * 1000 * i).getDay();
-      console.log(day)
       weekList.push({
         day:day,
         week:`周${list[week]}`,

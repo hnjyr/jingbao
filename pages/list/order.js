@@ -1,4 +1,4 @@
-// pages/list/order.js
+// pages/list/order.js     
 const app=getApp();
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
@@ -120,6 +120,10 @@ Page({
     allPrice = 0;
     obj.amount = 1;
     obj.price = parseFloat(obj.price);
+    if(obj.remaining == 0) {
+      app.showError('剩余库存不足！');
+      return false;
+    }
     if(list.length == 0) {
       list.push(obj)
     }else {
@@ -133,7 +137,6 @@ Page({
           app.showError('剩余库存不足！')
           return false;
         }
-        console.log(list[flag].amount)
         list[flag].amount = list[flag].amount+1;
       }
     }
@@ -156,7 +159,6 @@ Page({
   getTagList() {
     let _this = this;
     http(url.orderTag,{},(res)=>{
-      console.log(res);
       if(res.code == 0) {
         _this.setData({
           tagList:res.data,
@@ -178,7 +180,6 @@ Page({
       page:page,
       [type]:labelId
     },(res)=>{
-      console.log(this.data.tolower);
       if(res.code == 0) {
         if(!this.data.tolower) {
           _this.setData({

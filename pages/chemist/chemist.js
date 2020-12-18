@@ -89,7 +89,6 @@ Page({
     http(url.shopgoodslabel,{
       shopId:'7'
     },(res)=>{
-      console.log(res)
       if(res.code == 0) {
         this.setData({
           tagList:res.page.list,
@@ -113,7 +112,6 @@ Page({
       limit:limit,
       page:page,
     },(res)=>{
-      console.log(res)
       if(res.code == 0) {
         if(!this.data.tolower) {
           this.setData({

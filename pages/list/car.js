@@ -99,7 +99,6 @@ Page({
         totalPrice += parseFloat(parseFloat(selectArr[i].amount) * parseFloat(selectArr[i].shopGoodsEntity.price));
       }
       totalPrice = parseFloat(totalPrice.toFixed(2)); //乘法有点问题, 需要保留一下小数
-      console.log("计算价格:", totalPrice)
       this.setData({
         totalPrice: totalPrice
       })
@@ -171,7 +170,6 @@ Page({
     }
     this.calculateTotal(); //计算一次价格
 
-    console.log("已选择的商品:", selectArr)
     this.setData({ //重置数据
       cartData: cartData,
       selectArr: selectArr
@@ -185,14 +183,15 @@ Page({
     if (types == 'minus') { //减
       var amount = cartData[index].amount;
       if (amount <= 1) { //不允许商品数量小于1 ,  都添加到购物车了还要减到0是几个意思? 反正有个删除按钮
-        return;
+        cartData.splice(index,1)
       } else {
         cartData[index].amount--;
-        this.setData({
-          cartData: cartData
-        })
-        this.calculateTotal(); //计算价格
       }
+      this.setData({
+        cartData: cartData.length == 0?[]:cartData,
+        selectArr:cartData
+      })
+      this.calculateTotal(); //计算价格
     }
     if (types == "add") { //加
       if(cartData[index].remaining == cartData[index].amount) {
@@ -205,6 +204,7 @@ Page({
       })
       this.calculateTotal(); //计算价格
     }
+    wx.setStorageSync('carList', this.data.cartData);
   },
   //删除商品 
   deleteshopTap: function () { //要删除 肯定是已经选中了的商品, 所以肯定在 selectArr里面

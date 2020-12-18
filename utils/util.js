@@ -23,7 +23,22 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const throttle = (fn, gapTime)=> {
+  if (gapTime == null || gapTime == undefined) {
+    gapTime = 1500
+  }
+  let _lastTime = null
+  return ()=>{
+    let _nowTime = + new Date()
+    if (_nowTime - _lastTime > gapTime || !_lastTime) {
+      fn.apply(this, arguments)
+      _lastTime = _nowTime
+    }
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
-  formatEndTime:formatEndTime
+  formatEndTime:formatEndTime,
+  throttle:throttle,
 }

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "申请列表",
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index",
+    "van-divider": "@vant/weapp/divider/index"
+  }
+}

@@ -1,0 +1,65 @@
+/* pages/repair/detail.wxss */
+page {
+  background-color: #f1f2f3;
+  padding: 20rpx;
+}
+.sp_box {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 60rpx;
+}
+.sp_li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.sp_div {
+  flex:1;
+  flex-shrink: 0;
+}
+.sp_span {
+  font-size: 28rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #999999;
+}
+.sp_p {
+  font-size: 28rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333;
+}
+.imgBox {
+  display: flex;
+  flex-wrap: wrap;
+}
+.imgBox image {
+  width: 140rpx;
+  height: 140rpx;
+  margin:  20rpx 20rpx 0 0;
+}
+.radio {
+  display: flex;
+}
+.rad {
+  margin-right: 40rpx;
+}
+.dt_btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 28rpx;
+}
+.dt_btn .btn {
+  border-radius: 40rpx;
+  padding: 10rpx 26rpx;
+  border: 1rpx solid #999999;
+  color:#2963E0;
+}
+.dt_btn .btn:last-child {
+  color: #fff;
+  background-color: #2963E0;
+  border-color: transparent;
+}

@@ -1,0 +1,100 @@
+<!--申请列表-->
+<view class="container">
+  <view class="li_top">
+    <view class="li_cont {{active == index?'active':''}}" wx:for="{{tabList}}" wx:key='tab' data-i='{{index}}'
+      bindtap="tabClick">{{item}}</view>
+  </view>
+
+  <scroll-view wx:if='{{dataList.length > 0}}' class="center_box" scroll-y="true" refresher-enabled='true'
+    refresher-triggered='{{refresh}}' bindscrolltolower='bottom' bindrefresherrefresh='refreshTap'>
+    <view class="c_it" wx:if='{{active == 0&&type == 1}}' wx:for="{{dataList}}" wx:key='data' bindtap="navTap" data-i='{{index}}'>
+      <view class="it_top">
+        <view class="it_time">{{item.createTime}}</view>
+        <view class="it_status">待审核</view>
+      </view>
+      <view class="it_bot">
+        <image mode="aspectFill" class="image" src="{{ imgUrl + item.shopGoodsEntityList[0].imageId }}"></image>
+        <view class="c_right">
+          <view class="c_right_oneline">{{item.deptName}}</view>
+          <view class="c_right_twoline">{{ item.shopGoodsName }}</view>
+          <view class="c_right_threeline">{{ item.applyContent }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="c_it" wx:if='{{active == 0&&type == 2}}' wx:for="{{dataList}}" wx:key='data' bindtap="navTap" data-i='{{index}}'>
+      <view class="it_top">
+        <view class="it_time">{{item.createTime}}</view>
+        <view class="it_status">待审核</view>
+      </view>
+      <view class="it_bot">
+        <image mode="aspectFill" class="image" src="{{ imgUrl + item.shopGoodsEntityList[0].imageId }}"></image>
+        <view class="c_right">
+          <view class="c_right_oneline">{{item.deptName}}</view>
+          <view class="c_right_twoline">{{ item.shopGoodsName }}</view>
+          <view class="c_right_threeline">{{ item.applyContent }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="c_it" wx:if='{{active == 0&&type == 3}}' wx:for="{{dataList}}" wx:key='data' bindtap="navTap" data-i='{{index}}'>
+      <view class="it_top">
+        <view class="it_time">{{item.createTime}}</view>
+        <view class="it_status">待维修</view>
+      </view>
+      <view class="it_bot">
+        <image mode="aspectFill" class="image" src="{{ imgUrl + item.shopGoodsEntityList[0].imageId }}"></image>
+        <view class="c_right">
+          <view class="c_right_oneline">{{item.deptName}}</view>
+          <view class="c_right_twoline">{{ item.shopGoodsEntityList[0].goodsName }}</view>
+          <view class="c_right_threeline">{{ item.applyContent }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="c_it" wx:if='{{active == 1&&type == 1 }}' wx:for="{{dataList}}" wx:key='data' bindtap="navTap" data-i='{{index}}'>
+      <view class="it_top">
+        <view class="it_time">{{item.applyEntity.createTime}}</view>
+        <view class="it_status">已审核</view>
+      </view>
+      <view class="it_bot">
+        <image mode="aspectFill" class="image" src="{{ imgUrl + item.applyEntity.shopGoodsEntityList[0].imageId }}">
+        </image>
+        <view class="c_right">
+          <view class="c_right_oneline">{{item.applyEntity.deptName}}</view>
+          <view class="c_right_twoline">{{ item.applyEntity.shopGoodsEntityList[0].goodsName || '' }}</view>
+          <view class="c_right_threeline">{{ item.applyEntity.applyContent }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="c_it" wx:if='{{active == 1&&type == 2 }}' wx:for="{{dataList}}" wx:key='data' bindtap="navTap" data-i='{{index}}'>
+      <view class="it_top">
+        <view class="it_time">{{item.createTime}}</view>
+        <view class="it_status">已审核</view>
+      </view>
+      <view class="it_bot">
+        <image mode="aspectFill" class="image" src="{{ imgUrl + item.shopGoodsEntityList[0].imageId }}">
+        </image>
+        <view class="c_right">
+          <view class="c_right_oneline">{{item.deptName}}</view>
+          <view class="c_right_twoline">{{ item.shopGoodsEntityList[0].goodsName || '' }}</view>
+          <view class="c_right_threeline">{{ item.applyContent }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="c_it" wx:if='{{active == 1&&type == 3 }}' wx:for="{{dataList}}" wx:key='data' bindtap="navTap" data-i='{{index}}'>
+      <view class="it_top">
+        <view class="it_time">{{item.createTime}}</view>
+        <view class="it_status">已维修</view>
+      </view>
+      <view class="it_bot">
+        <image mode="aspectFill" class="image" src="{{ imgUrl + item.shopGoodsEntityList[0].imageId }}">
+        </image>
+        <view class="c_right">
+          <view class="c_right_oneline">{{item.deptName}}</view>
+          <view class="c_right_twoline">{{ item.shopGoodsEntityList[0].goodsName || '' }}</view>
+          <view class="c_right_threeline">{{ item.applyContent }}</view>
+        </view>
+      </view>
+    </view>
+    <van-divider contentPosition="center" customStyle="font-size: 30rpx;margin:10rpx;">{{text}}</van-divider>
+  </scroll-view>
+  <van-empty description="暂无数据" wx:else />
+</view>

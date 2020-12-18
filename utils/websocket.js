@@ -13,7 +13,8 @@ var heartBeatTimeOut = null;
 // 终止重新连接
 var connectSocketTimeOut = null;
 var i = 1
-const url = '114.242.23.225:8086/zhjb/websocket' //socket链接地址，需要在微信后台配置
+// const url = '122.51.69.116:8082/zhjb/websocket' 
+const url = 'gaapp.yantai.gov.cn/zhjb/websocket' //socket链接地址，需要在微信后台配置
 var webSocket = {
   connectSocket: function (userId) {
     // wx.showLoading({
@@ -24,7 +25,7 @@ var webSocket = {
     socketClose = false
     socketMsgQueue = []
     wx.connectSocket({
-      url: 'ws://' + url + '/' + userId,
+      url: 'wss://' + url + '/' + userId,
       header: {
         "X-Requested-With": "WXCHART",
         "Cookie": wx.getStorageSync('cookie'),

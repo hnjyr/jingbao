@@ -1,0 +1,17 @@
+<!-- 下发 -->
+<view class="container">
+	<van-radio-group value="{{ radio }}" bind:change="onChange" wx:for="{{dataList}}" wx:key='data' bindtap="onClick" data-name='{{index}}'>
+		<view class="c_it">
+			<view class="it_cont">
+				<image mode="aspectFill" class="image" src="{{ imgUrl + item.avatar }}"></image>
+				<text>{{item.nickName}}</text>
+			</view>
+			<van-radio slot="right-icon" name="{{index}}" />
+		</view>
+	</van-radio-group>
+	<!-- <van-empty description="暂无数据" wx:else/> -->
+	<view class="btns">
+		<view class="btn" bindtap="back">返回</view>
+		<view class="btn" bindtap="send">发送</view>
+	</view>
+</view>

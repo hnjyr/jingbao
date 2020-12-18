@@ -16,7 +16,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     this.setData({
       status:options.status
     })
@@ -42,8 +41,30 @@ Page({
       type:6,
       subOpenId:wx.getStorageSync('userInfo').wxOpenId
     },res=>{
+      console.log(res)
       if(res.code == 0) {
-        console.log(res.data.wechatPrePaymentOrderParam)
+        let str = '全民付预支付订单响应参数';
+        let obj = JSON.parse(JSON.parse(res.data.wechatPrePaymentOrderParam)[0][str]);
+        let zf = obj.miniPayRequest;
+        console.log(obj)
+        wx.requestPayment({
+          timeStamp:zf.timeStamp,
+          nonceStr:zf.nonceStr,
+          package:zf.package,
+          signType:zf.signType,
+          paySign:zf.paySign,
+          success(res) {
+            console.log(res)
+            if(res.errMsg == 'requestPayment:ok') {
+              app.showSuccess('支付成功！',()=>{
+                wx.navigateBack();
+              })
+            }
+          },
+          complete(res) {
+            console.log(res)
+          }
+        })
       }
     },'POST','json')
   },

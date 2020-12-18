@@ -29,7 +29,7 @@
 
 		<scroll-view class="c_right {{curid==1?'c_left_box':''}}" scroll-y refresher-enabled='true' refresher-triggered='{{refresh}}' bindrefresherrefresh='refreshTap' bindscrolltolower='tolower'>
 			<view class="box" wx:if='{{curid == 1}}'>
-				<view class="c_right_it" wx:for='{{jcLists.list}}' wx:key='*this' bindtap="navTab" data-i='{{index}}'>
+				<view class="c_right_it" wx:for='{{jcLists.list}}' wx:key='li' bindtap="navTab" data-i='{{index}}'>
 					<image src="{{imgUrl+item.shopGoodsEntity.imageId}}" style="width:233rpx;height:187rpx;"></image>
 					<view style="display:flex;justify-content: space-between;align-items: center;">
 						<view>{{item.shopGoodsEntity.goodsName}}</view>

@@ -43,6 +43,10 @@ Page({
     let list = JSON.parse(JSON.stringify(this.data.carList)),
     obj = this.data.mealInfo;
     obj.amount = 1;
+    if(obj.remaining == 0) {
+      app.showError('剩余库存不足！');
+      return false;
+    }
     if(list.length == 0) {
       list.push(obj)
     }else {

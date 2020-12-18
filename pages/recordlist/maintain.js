@@ -119,7 +119,7 @@ Page({
       this.setData({
         page: this.data.page + 1
       })
-      this.getDataList()
+      this.data.type == 1 ? this.getWxList() : this.getYyList();
     } else {
       this.setData({
         text: '没有更多!'

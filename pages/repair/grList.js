@@ -14,7 +14,10 @@ Page({
     page:1,
     dataList:[],
     refresh:false,
-    text:'上拉加载更多'
+    text:'上拉加载更多',
+    radio:0,
+    professionId:'',
+    createUserId:'',
   },
   refreshTap(e) {
     this.setData({
@@ -24,6 +27,50 @@ Page({
     })
     this.getDataList();
   },
+  onChange(event) {
+    this.setData({
+      radio: Number(event.detail),
+    });
+  },
+  onClick(event) {
+    const { name } = event.currentTarget.dataset;
+    this.setData({
+      radio: Number(name),
+    });
+  },
+  // 返回
+  back() {
+    wx.navigateBack()
+  },
+  // 发送
+  send() {
+    let data = this.data.dataList[this.data.radio],
+    operation = data.userName,
+    operationId = data.userId,
+    operationPhone = data.mobile,
+    professionId = this.data.professionId,
+    repairDate = this.data.repairDate;
+    http(url.repairrecordSave,{
+      operation,
+      operationId,
+      operationPhone,
+      professionId,
+      repairDate,
+    },res=>{
+      app.showSuccess('成功！',()=>{
+        var pages=getCurrentPages();//页面指针数组
+        var prepage=pages[pages.length-3];//上一页面指针
+        prepage.setData({
+          page:1,
+          dataList:[]
+        });//操作上一页面
+        prepage.getDataList()
+        wx.navigateBack({
+          delta: 2,
+        });
+      })
+    },'POST','json')
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -31,23 +78,14 @@ Page({
     let userInfo = wx.getStorageSync('userInfo');
     this.setData({
       userInfo,
-      status:options.status
+      status:options.status,
+      professionId:options.professionId,
+      repairDate:new Date(options.applyDate).getTime()
     })
     wx.setNavigationBarTitle({
       title: options.status==1?'订餐记录':'消费记录',
     })
     this.getDataList();
-  },
-  // 跳转
-  navTap(e) {
-    let i = e.currentTarget.dataset.i;
-    wx.setStorage({
-      data: this.data.dataList[i],
-      key: 'orderDetail',
-    })
-    wx.navigateTo({
-      url: '/pages/order/order',
-    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -67,16 +105,16 @@ Page({
     this.setData({
       text:''
     })
-    let createUserId = this.data.userInfo.userId,
-    shopType = '1',
-    limit = this.data.limit,
-    page = this.data.page,
-    str = this.data.status == 1?'shopType':'paystatus';
-    http(url.orderingList,{
-      createUserId,
-      [str]:shopType,
-      limit,
-      page
+    let deptId = this.data.userInfo.deptId,
+    isDisables = '1',
+    position = this.data.userInfo.position,
+    noRole = '1',
+    page = this.data.page;
+    http(url.sysList,{
+      deptId,
+      isDisables,
+      position,
+      noRole
     },res=>{
       if(res.code == 0) {
         const totalPage=res.page.totalPage

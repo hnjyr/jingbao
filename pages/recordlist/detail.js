@@ -24,7 +24,6 @@ Page({
           http(url.updateByNoticeId, {
             noticeId: this.data.dataInfo.noticeId
           }, res => {
-            console.log(res)
           })
         }
       }

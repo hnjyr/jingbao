@@ -22,6 +22,17 @@
 		<text class="price">￥{{ dataInfo.subsidyPrice || 0 }}</text>
 	</view>
 
+	<view class="shops" wx:for='{{shoplist}}' wx:key='{{item.shopId}}'>
+		<view class="onleft">
+			<image src="{{imgUrl+item.goodsImgId}}" alt="" style="width:200rpx;height:160rpx;"></image>
+			<view class="right">
+				<view class="name">{{item.goodsName}}</view>
+				<view class="jiae">￥{{item.price}}</view>
+			</view>
+		</view>
+		<view>x {{item.piece}}</view>
+	</view>
+
 	<!-- 按钮 -->
 	<view class="zf_box">
 		<view class="zf_price" wx:if="{{dataInfo.payState == 0}}">

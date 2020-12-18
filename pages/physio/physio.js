@@ -48,12 +48,12 @@ Page({
       app.showError('请选择预约场地！')
       return false;
     }
-    let beginTime = this.data.dataList[this.data.activeTime].beginTime,
-    endTime = this.data.dataList[this.data.activeTime].endTime,
-    manageId = this.data.dataList[this.data.activeTime].manageId,
+    let beginTime = this.data.dataList[this.data.activeTimeDay].beginTime,
+    endTime = this.data.dataList[this.data.activeTimeDay].endTime,
+    manageId = this.data.dataList[this.data.activeTimeDay].manageId,
     mobile = this.data.userInfo.mobile,
     reserveUserName = this.data.userInfo.userName;
-    app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8', 'VmPsKts5U5lAYmhtQZfgv5dWZh_mbm_CPjpoFfvOEuM'], () => {
+    app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs', 'w9YYPOrqNy0QL_d7JlWi2q54MCJo-GzvRQVmz4We0BU'], () => {
       http(url.saveRecord,{
         beginTime,
         endTime,
@@ -96,7 +96,6 @@ Page({
       endDate:endDate,
       shopId:'15'
     },res=>{
-      console.log(res)
       if(res.data[endDate] && res.code == 0) {
         res.data[endDate][0].flag = true;
         this.setData({

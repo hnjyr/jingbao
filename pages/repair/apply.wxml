@@ -1,95 +1,96 @@
 <!-- 提交维修申请 -->
 <view class="container">
   <!-- 信息 -->
-  <view class="ha_info">
-    <van-cell-group>
-      <van-field
-        value="{{ userInfo.userName }}"
-        clearable
-        label="维修人姓名："
-        placeholder="请输入姓名"
-        maxlength="{{10}}"
-        readonly = '{{ userInfo.userName }}'
-      />
+  <view wx:if='{{type!=1}}'>
+    <view class="ha_info">
+      <van-cell-group>
+        <van-field value="{{ userInfo.userName }}" clearable label="维修人姓名：" placeholder="请输入姓名" maxlength="{{10}}"
+          readonly='{{ userInfo.userName }}' />
 
-      <van-field
-        value="{{ userInfo.mobile }}"
-        clearable
-        label="维修人手机号："
-        placeholder="请输入手机号"
-        maxlength='{{11}}'
-        border="{{ false }}"
-        readonly = '{{ userInfo.mobile }}'
-      />
-    </van-cell-group>
-  </view>
-  <view class="ha_info">
-    <van-cell-group>
-      <van-field
-        value="{{ goodsName }}"
-        clearable
-        label="维修装备名称："
-        placeholder="请输入维修装备名称"
-        maxlength="{{44}}"
-        readonly = '{{ goodsName }}'
-      />
+        <van-field value="{{ userInfo.mobile }}" clearable label="维修人手机号：" placeholder="请输入手机号" maxlength='{{11}}'
+          border="{{ false }}" readonly='{{ userInfo.mobile }}' />
+      </van-cell-group>
+    </view>
+    <view class="ha_info">
+      <van-cell-group>
+        <van-field value="{{ goodsName }}" clearable label="维修装备名称：" placeholder="请输入维修装备名称" maxlength="{{44}}"
+          readonly='{{ goodsName }}' />
 
-      <van-field
-        value="{{ address }}"
-        clearable
-        label="维修地点部门："
-        placeholder="请输维修地点部门"
-        maxlength='{{20}}'
-        border="{{ false }}"
-        readonly = '{{ address }}'
-      />
+        <van-field value="{{ address }}" clearable label="维修地点部门：" placeholder="请输维修地点部门" maxlength='{{20}}'
+          border="{{ false }}" readonly='{{ address }}' />
 
-      <view class="timebox">
-        <text>维修预约时间：</text>
-        <view class="timesele" bindtap="timeSelect">
-          <text wx:if='{{!applyTime}}'>请选择</text>
-          <text wx:else>{{applyTime}}</text>
-          <van-icon name="arrow" size='16px'/>
+        <view class="timebox">
+          <text>维修预约时间：</text>
+          <view class="timesele" bindtap="timeSelect">
+            <text wx:if='{{!applyTime}}'>请选择</text>
+            <text wx:else>{{applyTime}}</text>
+            <van-icon name="arrow" size='16px' />
+          </view>
         </view>
-      </view>
-      <van-field
-        type='textarea'
-        value="{{ applyContent }}"
-        clearable
-        placeholder="请填写你维修的问题"
-        maxlength='{{100}}'
-        border="{{ false }}"
-        autosize
-        bind:change='contInput'
-        wx:if="{{!show}}"
-      />
-    </van-cell-group>
+        <van-field type='textarea' value="{{ applyContent }}" clearable placeholder="请填写你维修的问题" maxlength='{{100}}'
+          border="{{ false }}" autosize bind:change='contInput' wx:if="{{!show}}" />
+      </van-cell-group>
+    </view>
+    <view class="up_date">
+      <view class="up_h2">上传图片</view>
+      <van-uploader accept="image" file-list="{{ fileList }}" max-count="2" bind:after-read="afterRead"
+        deletable='{{true}}' bind:delete='deleteImgs' />
+    </view>
   </view>
-  <view class="up_date">
-    <view class="up_h2">上传图片</view>
-    <van-uploader
-      accept="image"
-      file-list="{{ fileList }}"
-      max-count="2"
-      bind:after-read="afterRead"
-      deletable='{{false}}'
-    />
-  </view>
-  <van-action-sheet show="{{ showTime }}" close-on-click-overlay='{{true}}'>
-    <van-datetime-picker
-    type="date"
-    value="{{ currentDate }}"
-    bind:confirm="timeConfirm"
-    min-date="{{ minDate }}"
-    formatter="{{ formatter }}"
-    />
-  </van-action-sheet>
+  <view wx:if='{{type==1}}'>
+    <view class="ha_info">
+      <van-cell-group>
+        <van-field value="{{ dataInfo.shopGoodsEntityList[0].goodsName }}" clearable label="维修人装备：" placeholder="请输入装备" maxlength="{{10}}"
+          readonly='{{ dataInfo.shopGoodsEntityList[0].goodsName }}' />
+        <van-field value="{{ dataInfo.repairRecordEntity.createUserName }}" clearable label="维修人姓名：" placeholder="请输入申请人姓名" maxlength="{{10}}"
+          readonly='{{ dataInfo.repairRecordEntity.createUserName }}' />
 
+        <van-field value="{{ dataInfo.repairRecordEntity.operationPhone }}" clearable label="维修人手机号：" placeholder="请输入手机号" maxlength='{{11}}'
+          border="{{ false }}" readonly='{{ dataInfo.repairRecordEntity.operationPhone }}' />
+        <van-field value="{{ dataInfo.repairType == '1'?'维修':'换件' }}" clearable label="维修类型：" placeholder="请输入类型" maxlength="{{10}}"
+          readonly='{{ dataInfo.repairType }}' />
+      </van-cell-group>
+    </view>
+    <view class="ha_info ha_imgbox">
+      <image class="ha_img" mode="aspectFill" wx:for="{{ imgList }}" wx:key='img' src="{{ imgUrl + item.id }}" data-i='{{index}}' bindtap="lookImg"></image>
+    </view>
+    <view class="ha_info" wx:if="{{!show}}">
+      <van-cell-group>
+        <van-field value="{{ userInfo.userName }}" clearable label="维修员姓名：" placeholder="请输入维修员姓名" maxlength="{{44}}"
+          readonly='{{ userInfo.userName }}' />
+        <van-field value="{{ userInfo.mobile }}" clearable label="维修员手机号：" placeholder="请输入手机号" maxlength='{{11}}'
+          border="{{ false }}" readonly='{{ userInfo.mobile }}' />
+        <van-field value="{{ dataInfo.deptName }}" clearable label="维修地点部门：" placeholder="请输维修地点部门" maxlength='{{20}}'
+          border="{{ false }}" readonly='{{ dataInfo.deptName }}' />
+
+        <view class="timebox">
+          <text>维修完成时间：</text>
+          <view class="timesele" bindtap="timeSelect">
+            <text wx:if='{{!applyTime}}'>请选择</text>
+            <text wx:else>{{applyTime}}</text>
+            <van-icon name="arrow" size='16px' />
+          </view>
+        </view>
+        <van-field type='textarea' value="{{ dataInfo.applyContent }}" clearable placeholder="请填写你维修的问题" maxlength='{{100}}'
+          border="{{ false }}" autosize bind:change='contInput' readonly='{{ dataInfo.applyContent }}' wx:if="{{!show}}" />
+      </van-cell-group>
+    </view>
+    <view class="up_date">
+      <view class="up_h2">上传图片</view>
+      <van-uploader accept="image" file-list="{{ fileList }}" max-count="2" bind:after-read="afterRead" deletable='{{true}}' bind:delete='deleteImgs'/>
+    </view>
+  </view>
   <view class="app_btns">
     <view class="app_btn" bindtap="backTap">返回</view>
-    <view class="app_btn" bindtap="onClickShow">提交</view>
+    <view class="app_btn" wx:if='{{type == 1}}' bindtap="onClickShows">提交</view>
+    <view class="app_btn" wx:else bindtap="onClickShow">提交</view>
   </view>
 
+
+  <van-action-sheet show="{{ showTime }}" close-on-click-overlay='{{true}}'>
+    <van-datetime-picker type="date" value="{{ currentDate }}" bind:confirm="timeConfirm" min-date="{{ minDate }}"
+      formatter="{{ formatter }}" />
+  </van-action-sheet>
   <van-overlay show="{{ show }}" bind:click="onClickHide">
     <view class="wrapper">
       <view class="block" catch:tap="noop">

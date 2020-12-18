@@ -65,7 +65,6 @@ Page({
       limit:this.data.limit,
       // page:this.data.page,
     },(res)=>{
-      console.log(res)
       if(res.code == 0) {
         this.setData({
           dataList:res.page.list

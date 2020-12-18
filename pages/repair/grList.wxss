@@ -1,0 +1,48 @@
+/* pages/repair/grList.wxss */
+page {
+  background-color: #f1f2f3;
+  padding: 20rpx;
+  padding-bottom: 100rpx;
+}
+.c_it {
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 12rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+.c_it image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 40rpx;
+}
+.c_it .it_cont {
+  display: flex;
+  align-items: center;
+}
+.c_it .it_cont text {
+  font-size: 30rpx;
+  color: #333;
+}
+.btns {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  color: #999;
+  text-align: center;
+  line-height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+.btns .btn {
+  flex:1;
+}
+.btns .btn:last-child {
+  background-color: #2963E0;
+  color: #fff;
+}

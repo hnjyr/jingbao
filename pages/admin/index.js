@@ -14,7 +14,7 @@ Page({
       {
         text:'订餐记录',
         imgsrc:'/images/admin/Ordermeal.png',
-        url:'/pages/recordlist/dining'
+        url:'/pages/recordlist/dining?status=1'
       },{
         text:'维修记录',
         imgsrc:'/images/admin/maintain.png',
@@ -44,7 +44,7 @@ Page({
   },
   navTo(e){
     if(e.currentTarget.dataset.url == '/pages/index/code') {
-      app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8'],()=>{
+      app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs'],()=>{
         wx.navigateTo({
           url: e.currentTarget.dataset.url,
         })
@@ -54,6 +54,15 @@ Page({
         url: e.currentTarget.dataset.url,
       })
     }
+  },
+  // 获取用户信息
+  getinfo() {
+    const that = this
+    http(url.getuserinfo, {}, res => {
+      if (res.code == 0) {
+        wx.setStorageSync('userInfo', res.user);
+      }
+    }, 'GET', 'json')
   },
   
   // showimg(){
@@ -96,6 +105,7 @@ Page({
         src:this.data.imgUrl + userInfo.avatar
       })
       // this.showimg(userInfo.avatar)
+      // this.getinfo()
     }else {
       Toast('请先登录~');
     }

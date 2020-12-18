@@ -45,9 +45,8 @@
 				<input style="margin-left:20rpx;" placeholder="0.00" value='{{jine}}' bindinput="jineInput"></input>
 			</view>
 		</view>
-		<view class="jine">选择支付方式</view>
+		<!-- <view class="jine">选择支付方式</view>
 		<view class="line3">
-			<!-- 微信 -->
 			<view class="it" bindtap="check" data-id='2'>
 				<view class="left">
 					<image src="/images/admin/wx.png" style="width:40rpx;height:40rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
@@ -56,7 +55,6 @@
 				<image wx:if='{{curid==2}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>
 				<view wx:else class="yuan"></view>
 			</view>
-			<!-- 支付宝 -->
 			<view class="it none" bindtap="check" data-id='1'>
 				<view class="left">
 					<image src="/images/admin/zfb.png" style="width:40rpx;height:40rpx;margin-right:30rpx;border-radius: 15rpx;"></image>
@@ -65,7 +63,7 @@
 				<image wx:if='{{curid==1}}' src="/images/login.png" style="width:30rpx;height:30rpx;border-radius: 15rpx;"></image>
 				<view wx:else class="yuan"></view>
 			</view>
-		</view>
+		</view> -->
 		<view class="btn" bindtap="recordsave">立即充值</view>
 	</view>
 </view>

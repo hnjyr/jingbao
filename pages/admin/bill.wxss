@@ -13,6 +13,9 @@ page{
   font-weight: 500;
   margin: 0 30rpx;
 }
+.it image {
+  flex-shrink: 0;
+}
 .center_box{
   height: 100vh;
 }

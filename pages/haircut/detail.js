@@ -57,7 +57,11 @@ Page({
         obj = v
       }
     }
-    app.getDyInfo(['rgp_p1GDSy1k-FuoSzdGIFxslcu2s436wpUlHnLiKU8', 'VmPsKts5U5lAYmhtQZfgv5dWZh_mbm_CPjpoFfvOEuM'], () => {
+    if(!obj.beginTime) {
+      app.showError('请选择预约时间！');
+      return false;
+    }
+    app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs', 'w9YYPOrqNy0QL_d7JlWi2q54MCJo-GzvRQVmz4We0BU'], () => {
       http(url.shSave, {
         beginTime: obj.beginTime,
         endTime: obj.endTime,
@@ -106,7 +110,6 @@ Page({
       shopId:'9',
       resourceId:this.data.info.resourceId
     },res=>{
-      console.log(res)
       if(res.data[endDate] && res.code == 0) {
         res.data[endDate][0].flag = true;
         this.setData({

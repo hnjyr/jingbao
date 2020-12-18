@@ -11,8 +11,18 @@ Page({
     name: '',
     username: '',
     phone: '',
-    emailt:'',
-    flag: true
+    emailt: '',
+    flag: true,
+    // radio: '1',
+    deptlist: [],
+    index: 0,
+    policeNumber: "", //警员编号
+  },
+  // 性别切换
+  onChange(event) {
+    this.setData({
+      sexindex: event.detail,
+    });
   },
 
   /**
@@ -20,24 +30,120 @@ Page({
    */
   onLoad: function (options) {
     let res = wx.getStorageSync('userInfo')
-    console.log(res)
     this.setData({
       name: res.userName,
       username: res.nickName,
       phone: res.mobile,
       emailt: res.email,
-      ava: res.avatar
+      ava: res.avatar,
+      deptId: res.deptId, //是否需要完善  null要完善
+      index: res.deptId,
+      posindex: res.position,
+      usertindex: res.userType,
+      policeNumber: res.policeNumber,
+      sexindex: res.sex
     })
-    // console.log(this.data.email)
-    this.getinfo()
+    this.getdeptId()
+    this.getslist('sex', 1)
+    this.getslist('position', 2)
+    this.getslist('userType', 3)
     this.showimg(this.data.ava)
+    wx.setNavigationBarTitle({
+      title: this.data.deptId == null ? '用户信息完善' : "个人信息"
+    })
+  },
+  // 获取性别，职位，用户类型列表
+  getslist(type, status) {
+    const that = this
+    http(url.listByCache + type, {}, res => {
+      if (res.code == 0) {
+        let list = []
+        const lists = res.data
+        lists.forEach((it, index) => {
+          var obj = {
+            text: it.value,
+            value: it.code
+          }
+          list.push(obj)
+          if (status == 1) {
+            that.setData({
+              sexlist: list,
+            })
+            if (that.data.deptId == null) {
+              list.forEach((it, index) => {
+                if (it.text == "男") {
+                  that.setData({
+                    sexindex: lists[index].code
+                  })
+                }
+              })
+            }
+          } else if (status == 2) {
+            that.setData({
+              poslist: list,
+            })
+            if (that.data.deptId == null) {
+              that.setData({
+                posindex: lists[0].code
+              })
+            }
+          } else {
+            that.setData({
+              usertlist: list,
+            })
+            if (that.data.deptId == null) {
+              that.setData({
+                usertindex: lists[0].code
+              })
+            }
+          }
+        });
+      }
+    }, 'POST', 'json')
+  },
+  // 获取用户部门列表
+  getdeptId() {
+    const that = this
+    http(url.deptlist, {}, res => {
+      let list = []
+      res.forEach((it, index) => {
+        var obj = {
+          text: it.name,
+          value: it.deptId
+        }
+        list.push(obj)
+        that.setData({
+          deptlist: list,
+        })
+        if (that.data.deptId == null) {
+          that.setData({
+            index: res[0].deptId
+          })
+        }
+      });
+    }, 'GET', 'json')
+  },
+  onChangepo(e) {
+    this.setData({
+      posindex: e.detail
+    })
+  },
+  onChangedept(e) {
+    this.setData({
+      index: e.detail
+    })
+  },
+  onChangeusert(e) {
+    this.setData({
+      usertindex: e.detail,
+    })
   },
   /**
    * 匹配Email地址
    */
   isEmail(str) {
     if (str == null || str == "") return false;
-    var result = str.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
+    var result = str.match(/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/);
     if (result == null) return false;
     return true;
   },
@@ -53,13 +159,17 @@ Page({
       username: e.detail.value
     })
   },
+  emailpoliceNumber(e) {
+    this.setData({
+      policeNumber: e.detail.value
+    })
+  },
   phoneInput(e) {
     this.setData({
       phone: e.detail.value
     })
   },
   emailInput(e) {
-    console.log(e)
     this.setData({
       emailt: e.detail.value
     })
@@ -75,12 +185,18 @@ Page({
     })
   },
   ok() {
+    const that = this
     const {
       name,
       username,
       phone,
       emailt,
       ava,
+      sexindex,
+      posindex,
+      usertindex,
+      index,
+      policeNumber
     } = this.data;
     if (username.trim() == '') {
       app.showError('姓名不能为空');
@@ -90,18 +206,29 @@ Page({
       app.showError('手机号不能为空或格式不对');
       return false;
     }
-    if (this.data.emailt!=''&&this.data.emailt!=null){
-      if(!this.isEmail(emailt)) {
-        app.showError('邮箱格式不正确');
-        return false;
-      }
+    if (emailt == '') {
+      app.showError('邮箱不能为空');
+      return false;
     }
+    if (!this.isEmail(emailt)) {
+      app.showError('邮箱格式不正确');
+      return false;
+    }
+    // if (policeNumber == '') {
+    //   app.showError('警员编号不能为空');
+    //   return false;
+    // }
     http(url.updateInfo, {
       "avatar": ava,
       "email": emailt,
       "mobile": phone,
       "nickName": username,
-      "userName": name
+      "userName": name,
+      "sex": sexindex,
+      "deptId": index,
+      "position": posindex,
+      "userType": usertindex,
+      // "policeNumber": policeNumber
     }, res => {
       if (res.code == 0) {
         app.showSuccess('修改成功！')
@@ -110,12 +237,18 @@ Page({
         userinfo.email = emailt
         userinfo.nickName = username
         userinfo.mobile = phone
-        wx.setStorageSync('userInfo', userinfo)
+        userinfo.deptId = index, //是否需要完善  null要完善
+        userinfo.position = posindex,
+        userinfo.userType = usertindex,
+        userinfo.policeNumber = policeNumber,
+        userinfo.sex = sexindex
+        wx.setStorageSync('userInfo', userinfo);
+        // 获取用户信息
         setTimeout(() => {
           wx.navigateTo({
             url: '/pages/admin/index',
           })
-        }, 300)
+        }, 150)
       }
     }, 'POST', 'json')
   },
@@ -186,7 +319,6 @@ Page({
   getinfo() {
     const that = this
     http(url.getuserinfo, {}, res => {
-      console.log(res)
       if (res.code == 0) {
         that.setData({
           name: res.user.userName,
@@ -195,6 +327,7 @@ Page({
           email: res.user.email,
           ava: res.user.avatar
         })
+        wx.setStorageSync('userInfo', res.user);
       }
     }, 'GET', 'json')
   },
@@ -209,15 +342,10 @@ Page({
         "Content-Type": "application/form-data"
       },
       success: (res) => {
-          let url = 'data:image/png;base64,' + wx.arrayBufferToBase64(res.data)
-          that.setData({
-            src: url
-          })
-          // var userInfo=wx.getStorageSync('userInfo')
-          // // let newuserInfo={...userInfo,imgsrc:url}
-          // // console.log('新',newuserInfo)
-          // // return false
-          // wx.setStorageSync('userInfo', newuserInfo)
+        let url = 'data:image/png;base64,' + wx.arrayBufferToBase64(res.data)
+        that.setData({
+          src: url
+        })
       }
     })
   },
@@ -233,7 +361,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

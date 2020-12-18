@@ -1,11 +1,12 @@
 module.exports = function (url, data, fun, method='POST',header){
-    data={
-      ...data
-    }
+    // data={
+    //   ...data
+    // }
     const App = getApp();
     wx.showNavigationBarLoading();
     wx.showLoading({
       title: '加载中',
+      mask:true
     })
     header = header == 'json'?'application/json':'application/x-www-form-urlencoded'
     wx.request({

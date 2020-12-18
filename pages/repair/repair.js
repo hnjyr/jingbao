@@ -64,7 +64,6 @@ Page({
       "labelType":"1",
       "shopId":"12",
     },res=>{
-      console.log(res);
       this.setData({
         dataList:res.page.list,
         list:res.page.list[0].goodsList
