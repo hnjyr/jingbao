@@ -22,7 +22,7 @@
     <swiper class="swiper" autoplay='{{true}}' interval='4000' duration='1000' circular='true' vertical='{{true}}'>
       <block wx:for="{{ lunboList }}" wx:key="lb">
         <swiper-item>
-          <view class="ann_right">{{index+1}}. {{item.noticeValue}}</view>
+          <view class="ann_right line2">{{index+1}}. {{item.noticeValue}}</view>
         </swiper-item>
       </block>
     </swiper>

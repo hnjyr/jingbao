@@ -31,7 +31,8 @@ Page({
     ],
     userInfo:'',
     src:'',
-    imgUrl:url.imgUrl
+    imgUrl:url.imgUrl,
+    isRed:false
   },
 
   /**
@@ -54,6 +55,20 @@ Page({
         url: e.currentTarget.dataset.url,
       })
     }
+  },
+  // 获取消息红点
+  getRed() {
+    http(url.getNoRead, {}, res => {
+      console.log(res)
+      if (res.code == 0) {
+        if(res.count > 0) {
+          this.setData({
+            isRed:true
+          })
+        }
+        // wx.setStorageSync('userInfo', res.user);
+      }
+    }, 'GET', 'json')
   },
   // 获取用户信息
   getinfo() {
@@ -104,6 +119,7 @@ Page({
         userInfo:userInfo,
         src:this.data.imgUrl + userInfo.avatar
       })
+      this.getRed();
       // this.showimg(userInfo.avatar)
       // this.getinfo()
     }else {

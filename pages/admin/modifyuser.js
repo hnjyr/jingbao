@@ -9,6 +9,7 @@ Page({
    */
   data: {
     name: '',
+    nickName:"",
     username: '',
     phone: '',
     emailt: '',
@@ -32,7 +33,7 @@ Page({
     let res = wx.getStorageSync('userInfo')
     this.setData({
       name: res.userName,
-      username: res.nickName,
+      nickName: res.nickName,
       phone: res.mobile,
       emailt: res.email,
       ava: res.avatar,
@@ -156,7 +157,7 @@ Page({
   },
   usernameInput(e) {
     this.setData({
-      username: e.detail.value
+      nickName: e.detail.value
     })
   },
   emailpoliceNumber(e) {
@@ -188,7 +189,7 @@ Page({
     const that = this
     const {
       name,
-      username,
+      nickName,
       phone,
       emailt,
       ava,
@@ -198,7 +199,7 @@ Page({
       index,
       policeNumber
     } = this.data;
-    if (username.trim() == '') {
+    if (nickName.trim() == '') {
       app.showError('姓名不能为空');
       return false;
     }
@@ -222,7 +223,7 @@ Page({
       "avatar": ava,
       "email": emailt,
       "mobile": phone,
-      "nickName": username,
+      "nickName": nickName,
       "userName": name,
       "sex": sexindex,
       "deptId": index,
@@ -235,7 +236,7 @@ Page({
         let userinfo = wx.getStorageSync('userInfo')
         userinfo.avatar = ava
         userinfo.email = emailt
-        userinfo.nickName = username
+        userinfo.nickName = nickName
         userinfo.mobile = phone
         userinfo.deptId = index, //是否需要完善  null要完善
         userinfo.position = posindex,
@@ -322,7 +323,7 @@ Page({
       if (res.code == 0) {
         that.setData({
           name: res.user.userName,
-          username: res.user.nickName,
+          nickName: res.user.nickName,
           phone: res.user.mobile,
           email: res.user.email,
           ava: res.user.avatar

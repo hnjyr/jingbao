@@ -1,15 +1,20 @@
 <!--班车-->
 <view class="container">
   <scroll-view class="vh_ul" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindrefresherrefresh='refreshTap' bindscrolltolower='tolower'>
-    <view class="vh_li" wx:for="{{dataList}}">
+    <view class="vh_li" wx:for="{{dataList}}" wx:key='index'>
+     <view class="vh_tit">
+      <view bindtap="positions" data-id='{{item.shopName}}'>
+        <van-icon name="location-o" size='24' />
+      </view>
       <view class="vh_h2">班车信息</view>
+     </view>
       <view class="vh_box">
         <image src="{{imgUrl + item.imageId}}"></image>
         <view class="vh_info">
           <view class="in_cp">车 牌 号：<text>{{item.shopName}}</text></view>
           <view class="in_sj">司    机：{{item.userName}}</view>
-          <view class="in_time">发车时间：{{item.businessTime}}</view>
-          <view class="in_phone">联系方式：{{item.mobilePhone}}</view>
+          <view class="in_time">发车时间：{{item.businessTime || ''}}</view>
+          <view class="in_phone">联系方式：{{item.mobilePhone || ''}}</view>
         </view>
       </view>
       <view class="vh_tip">

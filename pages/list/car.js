@@ -154,11 +154,12 @@ Page({
     var selectArr = this.data.selectArr; //已选择的商品数组
     cartData[index].checked = !cartData[index].checked //没选中的就要选中, 选中了的就取消选中状态
     if (cartData[index].checked) { //如果选中了, 就放到一选择的商品数组里
-      for (var i = 0; i < cartData.length; i++) {
-        if (cartData[i] == cartData[index]) {
-          selectArr.push(cartData[index])
-        }
-      }
+      // for (var i = 0; i < selectArr.length; i++) {
+      //   if (cartData[i] == selectArr[index]) {
+      //     selectArr.push(cartData[index])
+      //   }
+      // }
+      selectArr.push(cartData[index])
       this.judgmentAll(); //计算价格
     } else { //取消选中就从已选择的商品数组里移除
       for (var i = 0; i < selectArr.length; i++) {
@@ -187,15 +188,21 @@ Page({
       } else {
         cartData[index].amount--;
       }
+      let selectArr = JSON.parse(JSON.stringify(cartData));
       this.setData({
         cartData: cartData.length == 0?[]:cartData,
-        selectArr:cartData
+        selectArr:selectArr
       })
       this.calculateTotal(); //计算价格
     }
     if (types == "add") { //加
       if(cartData[index].remaining == cartData[index].amount) {
         app.showError('剩余库存不足！');
+        return false;
+      }
+      let limitedQuantity = cartData[index].shopGoodsEntity.limitedQuantity;
+      if(limitedQuantity == cartData[index].amount) {
+        app.showError(`每人限购${limitedQuantity}份！`);
         return false;
       }
       cartData[index].amount++; //加就不判断了, 加到二十二世纪去都行

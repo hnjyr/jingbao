@@ -42,6 +42,12 @@ Page({
     })
     this.getDataList();
   },
+  // 位置
+  positions(e) {
+    wx.navigateTo({
+      url: '/pages/vehicle/position?name=' + e.currentTarget.dataset.id,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -4,8 +4,8 @@
   <view wx:if='{{type!=1}}'>
     <view class="ha_info">
       <van-cell-group>
-        <van-field value="{{ userInfo.userName }}" clearable label="维修人姓名：" placeholder="请输入姓名" maxlength="{{10}}"
-          readonly='{{ userInfo.userName }}' />
+        <van-field value="{{ userInfo.nickName }}" clearable label="维修人姓名：" placeholder="请输入姓名" maxlength="{{10}}"
+          readonly='{{ userInfo.nickName }}' />
 
         <van-field value="{{ userInfo.mobile }}" clearable label="维修人手机号：" placeholder="请输入手机号" maxlength='{{11}}'
           border="{{ false }}" readonly='{{ userInfo.mobile }}' />
@@ -56,8 +56,8 @@
     </view>
     <view class="ha_info" wx:if="{{!show}}">
       <van-cell-group>
-        <van-field value="{{ userInfo.userName }}" clearable label="维修员姓名：" placeholder="请输入维修员姓名" maxlength="{{44}}"
-          readonly='{{ userInfo.userName }}' />
+        <van-field value="{{ userInfo.nickName }}" clearable label="维修员姓名：" placeholder="请输入维修员姓名" maxlength="{{44}}"
+          readonly='{{ userInfo.nickName }}' />
         <van-field value="{{ userInfo.mobile }}" clearable label="维修员手机号：" placeholder="请输入手机号" maxlength='{{11}}'
           border="{{ false }}" readonly='{{ userInfo.mobile }}' />
         <van-field value="{{ dataInfo.deptName }}" clearable label="维修地点部门：" placeholder="请输维修地点部门" maxlength='{{20}}'

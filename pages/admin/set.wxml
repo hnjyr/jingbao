@@ -8,6 +8,10 @@
     <text>修改密码</text>
     <van-icon name="arrow" color='#9F9FA0' size='14' />
   </navigator>
+  <navigator class="it" url='/pages/admin/faceImg' hover-class="none">
+    <text>人脸上传</text>
+    <van-icon name="arrow" color='#9F9FA0' size='14' />
+  </navigator>
   <!-- <view class="it" bindtap="clear">
     <text>清楚缓存</text>
     <van-icon name="arrow" color='#9F9FA0' size='14' />

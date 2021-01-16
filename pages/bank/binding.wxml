@@ -1,0 +1,79 @@
+<view class="container">
+  <!-- 到银行卡 -->
+  <view class="bankcard" bindtap="showAddbank">
+    <view>
+      <text>到账银行卡</text>
+      <text class="cardnum" wx:if="flag">{{cardnum}}</text>
+    </view>
+    <van-icon name="arrow" size="16px" color="#333333" />
+  </view>
+  <!-- 提现金额 -->
+  <view class="money">
+    <view>提现金额</view>
+    <view class="flex money_ipt">
+      <view>￥</view>
+      <input type="digit" value="{{amount}}" placeholder="0.00" bindinput="getAmount" />
+    </view>
+    <view class="money_num">当前可提现余额{{balance}}元</view>
+  </view>
+  <!-- 手机号码 -->
+  <view class="mobile">
+    <text>手机号码:</text>
+    <text>{{phone}}</text>
+  </view>
+  <!-- 验证码 -->
+  <view class="code flex">
+    <view>验证码：</view>
+    <input type="number" value="{{code}}" placeholder="输入验证码" maxlength="6" bindinput="getVerificationCode" />
+    <text class="getCode" bindtap="getCode">{{codes}}</text>
+  </view>
+  <!-- 提现 -->
+  <view class="btn" bindtap="withdrawal">提现</view>
+
+  <!-- 添加银行卡弹窗 -->
+  <van-popup show="{{ show }}" bind:close="onClose" class="popup">
+    <view class="add_bankcard">
+      <van-icon bindtap="onClose" class="goback" name="arrow-left" size="20px" color="#333333" />
+      <view class="bank_title">添加银行卡</view>
+      <div class="form">
+        <!-- <form bindsubmit="_submit"> -->
+          <view class="flex form_item">
+            <view>银行卡号</view>
+            <input type="number" placeholder="请输入银行卡号" value="{{bandCard}}" data-name="bandCard" name="bandCard" bindinput="getValue" maxlength="19"/>
+          </view>
+          <view class="flex form_item">
+            <view>身份证号</view>
+            <input type="text" placeholder="请输入身份证号" value="{{idCard}}" data-name="idCard" name="idCard" bindinput="getValue" maxlength="19" />
+          </view>
+          <view class="flex form_item">
+            <view>用户姓名</view>
+            <input type="text" placeholder="请输入用户姓名" value="{{name}}" data-name="name" name="name" bindinput="getValue" />
+          </view>
+          <view class="flex form_item">
+            <view>所属银行</view>
+            <input type="text" placeholder="请输入所属银行" value="{{bankName}}" data-name="bankName" name="bankName" bindinput="getValue" />
+          </view>
+          <!-- <button class="btn" formType="submit">添加</button> -->
+          <button class="btn" bindtap="_submit">添加</button>
+        <!-- </form> -->
+      </div>
+    </view>
+  </van-popup>
+
+  <!-- 选择银行卡弹窗 -->
+  <van-popup show="{{ showChooseBank }}" bind:close="onClose" class="popup">
+    <view class="choose_bank">
+      <view>选择银行卡</view>
+      <view class="banklist">
+        <view class="bank_item" wx:for="{{banklist}}" wx:key="index" bindtap="chooseBank" data-id="{{item.id}}" data-banname="{{item.bankName}}" data-banknum="{{item.bandCard}}">
+          <view>{{item.bankName}}({{item.bandCard}})</view>
+          <view catchtap="deleteBankCard" data-id="{{item.id}}">
+            <van-icon name="close" size="18" />
+          </view>
+        </view>
+      </view>
+      <view class="add_new" bindtap="addNew">添加新的银行卡</view>
+    </view>
+  </van-popup>
+  
+</view>

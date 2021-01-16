@@ -3,6 +3,7 @@ const app = getApp();
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
 const util = require('../../utils/util.js');
+let submitFlag = true;
 Page({
 
   /**
@@ -12,7 +13,8 @@ Page({
     radio: '1',
     dataList: [],
     userInfo: '',
-    type: 1
+    type: 1,
+    week:''
   },
 
   radioClick(event) {
@@ -26,7 +28,7 @@ Page({
 
   checktimer() {
     wx.navigateTo({
-      url: '/pages/haircut/time?type='+this.data.radio,
+      url: '/pages/haircut/time?type=' + this.data.radio,
     })
   },
   toogle(e) {
@@ -40,6 +42,7 @@ Page({
    */
   onLoad: function (options) {
     let userInfo = wx.getStorageSync('userInfo');
+    console.log(userInfo)
     this.setData({
       userInfo: userInfo
     })
@@ -65,16 +68,20 @@ Page({
       obj = {},
       haircutType = this.data.type,
       mobile = this.data.userInfo.mobile,
-      reserveUserName = this.data.userInfo.userName;
+      reserveUserName = this.data.userInfo.nickName;
     for (let v of list) {
       if (v.flag == true) {
         obj = v
       }
     }
-    if(!obj.beginTime) {
+    if (!obj.beginTime) {
       app.showError('请选择预约时间！');
       return false;
     }
+    if(!submitFlag) {
+      return false;
+    }
+    submitFlag = false;
     app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs', 'w9YYPOrqNy0QL_d7JlWi2q54MCJo-GzvRQVmz4We0BU'], () => {
       http(url.saveRecord, {
         beginTime: obj.beginTime,
@@ -85,7 +92,7 @@ Page({
         reserveType: 1,
         reserveUserName: reserveUserName,
         shopId: '9',
-        isAgent:this.data.radio == 2?1:'',
+        isAgent: this.data.radio == 2 ? 1 : '',
       }, (res) => {
         if (res.code == 0) {
           app.showSuccess('预约成功', () => {
@@ -96,6 +103,9 @@ Page({
         }
       }, 'POST', 'json')
     })
+    setTimeout(res => {
+      submitFlag = true;
+    }, 1000)
   },
   // 获取预约详情列表
   getDataList() {
@@ -105,20 +115,25 @@ Page({
       shopId: "9"
     }, (res) => {
       if (res.code == 0) {
-        if(JSON.stringify(res.data) == "{}") {
+        if (JSON.stringify(res.data) == "{}") {
           this.setData({
-            dataList: [{manageDate:util.formatEndTime(new Date()),flag:true}]
+            dataList: [{
+              manageDate: util.formatEndTime(new Date()),
+              flag: true
+            }]
           })
-        }else {
+        } else {
+          console.log(res.data)
           for (let v of res.data[util.formatEndTime(new Date())]) {
             v.week = '星期' + arr[new Date().getDay()];
+            // v.week = '星期' + arr[this.data.week];
           }
           res.data[util.formatEndTime(new Date())][0].flag = true;
           this.setData({
             dataList: res.data[util.formatEndTime(new Date())]
           })
         }
-        
+
       }
     }, 'GET')
   },

@@ -4,11 +4,11 @@
   <view class="ha_info">
     <van-cell-group>
       <van-field
-        value="{{ userInfo.userName }}"
+        value="{{ userInfo.nickName }}"
         clearable
         label="姓名"
         placeholder="请输入姓名"
-        readonly="{{ userInfo.userName }}"
+        readonly="{{ userInfo.nickName }}"
         maxlength="{{4}}"
       />
 
@@ -41,17 +41,18 @@
     </scroll-view>
   </view>
   <!-- 项目 -->
-  <view class="project" wx:if='{{proList}}'>
+  <view class="project" wx:if='{{proList}}' wx:for="{{proList.reserveManageList}}" wx:key='index' bindtap='onChange' data-i='{{index}}'>
     <view class="pro_box">
-      <image src="/images/default.png"></image>
+      <!-- <image src="/images/default.png"></image> -->
+      <image src="{{imgUrl + item.resourceImageId}}"></image>
       <view class="pro_info">
-        <view class="pro_h2">{{proList.resourceName}}</view>
+        <view class="pro_h2">{{item.resourceName}}</view>
         <view class="pro_num">
-          剩余：<text>{{proList.setNumber}}</text>
+          剩余：<text>{{item.setNumber}}</text>
         </view>
       </view>
     </view>
-    <van-checkbox value="{{ proList.flag }}" bind:change="onChange"></van-checkbox>
+    <van-checkbox value="{{ item.flag }}"></van-checkbox>
   </view>
 
   <view class="ti_btn" bindtap="submit">预约</view>

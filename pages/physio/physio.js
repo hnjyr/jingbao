@@ -3,6 +3,7 @@ const app=getApp();
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
 const util = require('../../utils/util.js');
+let submitFlag = true;
 Page({
 
   /**
@@ -14,7 +15,8 @@ Page({
     userInfo:'',
     dataList:[],
     proList:'',
-    activeTimeDay:0
+    activeTimeDay:0,
+    imgUrl:url.imgUrl
   },
 
   /**
@@ -44,15 +46,23 @@ Page({
   },
   // 提交
   submit() {
-    if(!this.data.proList.flag) {
+    let arr = this.data.proList.reserveManageList || [];
+    let obj = arr.find((item)=>{
+      return item.flag == true;
+    })
+    if(!obj) {
       app.showError('请选择预约场地！')
       return false;
     }
     let beginTime = this.data.dataList[this.data.activeTimeDay].beginTime,
     endTime = this.data.dataList[this.data.activeTimeDay].endTime,
-    manageId = this.data.dataList[this.data.activeTimeDay].manageId,
+    manageId = obj.manageId,
     mobile = this.data.userInfo.mobile,
-    reserveUserName = this.data.userInfo.userName;
+    reserveUserName = this.data.userInfo.nickName;
+    if(!submitFlag) {
+      return false;
+    }
+    submitFlag = false;
     app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs', 'w9YYPOrqNy0QL_d7JlWi2q54MCJo-GzvRQVmz4We0BU'], () => {
       http(url.saveRecord,{
         beginTime,
@@ -70,12 +80,22 @@ Page({
         }
       },'POST','json')
     })
-    
+    setTimeout(res=>{
+      submitFlag = true
+    },1000)
   },
   // 选择
   onChange(e) {
+    let i = e.currentTarget.dataset.i;
     let proList = this.data.proList;
-    proList.flag = !proList.flag;
+    if(proList.reserveManageList[i].setNumber == 0) {
+      // app.showError('暂无');
+      return false;
+    }
+    for(let v of proList.reserveManageList) {
+      v.flag = false;
+    }
+    proList.reserveManageList[i].flag = true;
     this.setData({
       proList
     })
@@ -84,7 +104,7 @@ Page({
   selectTime(e) {
     let i = e.currentTarget.dataset.i,
     proList = this.data.dataList[i];
-    proList.flag = true;
+    // proList.reserveManageList[0].flag = true;
     this.setData({
       activeTimeDay:i,
       proList:proList
@@ -97,7 +117,7 @@ Page({
       shopId:'15'
     },res=>{
       if(res.data[endDate] && res.code == 0) {
-        res.data[endDate][0].flag = true;
+        // res.data[endDate][0].reserveManageList[0].flag = true;
         this.setData({
           dataList:res.data[endDate],
           proList:res.data[endDate][0]

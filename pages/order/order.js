@@ -19,7 +19,7 @@ Page({
     npayPwds: '',
     keybord: ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'C', '0', 'X'],
     payPassword: '',
-    imgUrl:url.imgUrl
+    imgUrl: url.imgUrl
   },
 
   /**
@@ -35,7 +35,7 @@ Page({
     this.getbalance()
     this.getshoporders()
     // if(this.data.dataInfo.ordersState == 2){
-      
+
     // }
   },
   // 键盘输入
@@ -72,13 +72,13 @@ Page({
 
     if (cont.length == 6) {
       if (this.data.payPassword == 0) {
-        if(this.data.twoshow){
+        if (this.data.twoshow) {
           this.setPayMi()
           return
         }
         this.setData({
           twoshow: true
-        }) 
+        })
       } else {
         this.setData({
           show: false,
@@ -101,14 +101,14 @@ Page({
       if (payPassword == 1) { //已设置过支付密码
         this.setData({
           show: true,
-          npayPwds:'',
-          opayPwds:'',
+          npayPwds: '',
+          opayPwds: '',
         })
       } else { //显示设置支付密码在输入密码
         this.setData({
           show: true,
-          npayPwds:'',
-          opayPwds:'',
+          npayPwds: '',
+          opayPwds: '',
         })
       }
     } else { //开启免密支付不显示输入密码
@@ -133,6 +133,13 @@ Page({
     const that = this,
       a1 = this.data.opayPwds,
       a2 = this.data.npayPwds;
+    if (a1 != a2) {
+      wx.showToast({
+        title: '两次密码不一致',
+        icon: 'none'
+      })
+      return false
+    }
     wx.request({
       url: url.updatePayPassword,
       data: {
@@ -156,7 +163,7 @@ Page({
           app.showSuccess(res.data.msg);
           that.getbalance()
           that.setData({
-            payPassword:1
+            payPassword: 1
           })
         }
       }
@@ -217,7 +224,7 @@ Page({
       payPassword: that.data.opayPwds
     }, res => {
       if (res.code == 0) {
-        app.showSuccess(res.msg,()=>{
+        app.showSuccess(res.msg, () => {
           wx.navigateTo({
             url: '/pages/order/success',
           })
@@ -230,24 +237,24 @@ Page({
   },
 
   // 获取订详情 支付后
-  getshoporders(){//shoporders
+  getshoporders() { //shoporders
     const that = this
     wx.request({
-      url: url.shoporders+that.data.dataInfo.ordersId,
-      method:'GET',
-      header:{
+      url: url.shoporders + that.data.dataInfo.ordersId,
+      method: 'GET',
+      header: {
         "Cookie": wx.getStorageSync('cookie'),
       },
-      success:(res)=>{
-        if(res.data.code==0){
+      success: (res) => {
+        if (res.data.code == 0) {
           that.setData({
-            shoplist:res.data.data.ordersLinkEntityList
+            shoplist: res.data.data.ordersLinkEntityList
           })
-        }else{
+        } else {
           app.showError('获取商品失败')
         }
       },
-      fail:(err)=>{
+      fail: (err) => {
         app.showError('获取商品失败')
       }
     })

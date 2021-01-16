@@ -144,8 +144,13 @@ page {
 .swiper {
   width: 80%;
   height: 70rpx;
+  /* max-height: 120rpx; */
 }
 swiper-item {
   display: flex;
   align-items: center;
+  height: 70rpx;
+}
+swiper-item view {
+  /* height: 70rpx; */
 }

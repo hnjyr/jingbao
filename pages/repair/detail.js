@@ -62,7 +62,7 @@ Page({
     let applyId = this.data.dataObj.applyId,
     createTime = new Date().getTime(),
     opinionType = '1',
-    optionUserName = wx.getStorageSync('userInfo').userName,
+    optionUserName = wx.getStorageSync('userInfo').nickName,
     repairType = this.data.radio;
     http(url.applyopinionSave,{
       applyId,
@@ -90,7 +90,7 @@ Page({
     let applyId = this.data.dataObj.applyId,
     createTime = new Date().getTime(),
     opinionType = '1',
-    optionUserName = wx.getStorageSync('userInfo').userName,
+    optionUserName = wx.getStorageSync('userInfo').nickName,
     repairType = this.data.radio;
     http(url.applyopinionSave,{
       applyId,

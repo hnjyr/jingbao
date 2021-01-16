@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      name:wx.getStorageSync('userInfo').userName
+      name:wx.getStorageSync('userInfo').nickName
     })
   },
   // 退出登陆

@@ -43,6 +43,7 @@ Page({
     if(!submitFlag) {
       return false;
     }
+    submitFlag = false;
     const {
       username,
       pwd,
@@ -76,7 +77,6 @@ Page({
       },
       success: (res) => {
         if (res.data.code == 0) {
-          submitFlag = true;
           var Cookie = res.header['Set-Cookie'].split(';')[0];
           wx.setStorageSync('cookie', Cookie);
           wx.setStorageSync('userInfo', res.data.user);
@@ -105,6 +105,7 @@ Page({
                   "Cookie": wx.getStorageSync('cookie'),
                 },
                 success: (res) => {
+                  console.log(333)
                   if(res.data.code == 0) {
                     if(res.data.user.deptId){
                       wx.setStorageSync('userInfo', res.data.user);
@@ -122,6 +123,9 @@ Page({
                   }
                 }
               })
+            },
+            fail:(err) =>{
+              console.log(err)
             }
           })
         } else {
@@ -135,6 +139,9 @@ Page({
 
       }
     })
+    setTimeout(res=>{
+      submitFlag = true
+    },1000)
   },
 
   /**

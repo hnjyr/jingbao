@@ -15,13 +15,13 @@
   <view class="ha_info">
     <van-cell-group>
       <van-field
-        value="{{ userInfo.userName }}"
+        value="{{ userInfo.nickName }}"
         clearable
         label="姓名"
         placeholder="请输入姓名"
         readonly="{{ readonly }}"
-        maxlength="{{4}}"
-        readonly='{{userInfo.userName != ""}}'
+        maxlength="{{8}}"
+        readonly='{{userInfo.nickName != ""}}'
       />
 
       <van-field

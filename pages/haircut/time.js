@@ -56,8 +56,10 @@ Page({
   },
   toogleDay(e) {
     let i = e.currentTarget.dataset.i;
+    let week = e.currentTarget.dataset.week;
     this.setData({
-      weekActive:i
+      weekActive:i,
+      week
     })
     this.getDataList();
   },
@@ -75,6 +77,7 @@ Page({
   },
 
   backTap() {
+    let arr = ['日', '一', '二', '三', '四', '五', '六', ]
     let list = this.data.dataList;
     let pages=getCurrentPages();//页面指针数组
     let prepage=pages[pages.length-2];//上一页面指针
@@ -82,6 +85,7 @@ Page({
       v.flag = false
     }
     list[this.data.active].flag = true;
+    // list[this.data.active].week = this.data.week.replace(/周/,'星期')
     prepage.setData({
       dataList:list,
 
@@ -92,6 +96,7 @@ Page({
   getDataList() {
     let arr = ['日', '一', '二', '三', '四', '五', '六', ];
     let dateTime = util.formatEndTime(new Date(this.data.weekList[this.data.weekActive].date));
+    console.log(dateTime)
     http(url.manageTime,{
       endDate:dateTime,
       shopId:"9"
@@ -99,7 +104,7 @@ Page({
       if(res.code == 0) {
         if(res.data[dateTime]) {
           for(let v of res.data[dateTime]) {
-            v.week = '星期'+arr[new Date().getDay()];
+            v.week = '星期'+arr[new Date(dateTime.replace(/-/g,"/")).getDay()];
             v.flag = false;
           }
           res.data[dateTime][0].flag = true;

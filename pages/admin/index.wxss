@@ -91,6 +91,17 @@
   font-family: Source Han Sans CN;
   font-weight: 500;
   color: #343434;
+  position: relative;
+}
+.red::after {
+  content: "";
+  position: absolute;
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background-color: red;
+  top: 0;
+  right: 40rpx;
 }
 .n_text{
   width: 100%;

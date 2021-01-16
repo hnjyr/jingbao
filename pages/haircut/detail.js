@@ -3,6 +3,7 @@ const app=getApp();
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
 const util = require('../../utils/util.js');
+let submitFlag = true;
 Page({
 
   /**
@@ -51,16 +52,21 @@ Page({
       haircutType = this.data.type,
       mobile = this.data.userInfo.mobile,
       resourceId= this.data.userInfo.userId,
-      reserveUserName = this.data.userInfo.userName;
-    for (let v of list) {
-      if (v.flag == true) {
-        obj = v
-      }
-    }
+      reserveUserName = this.data.userInfo.nickName;
+    // for (let v of list) {
+    //   if (v.flag == true) {
+    //     obj = v
+    //   }
+    // }
+    obj = list[this.data.activeTimeDay];
     if(!obj.beginTime) {
       app.showError('请选择预约时间！');
       return false;
     }
+    if(!submitFlag) {
+      return false;
+    }
+    submitFlag = false;
     app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs', 'w9YYPOrqNy0QL_d7JlWi2q54MCJo-GzvRQVmz4We0BU'], () => {
       http(url.shSave, {
         beginTime: obj.beginTime,
@@ -84,6 +90,9 @@ Page({
         }
       }, 'POST', 'json')
     })
+    setTimeout(res=>{
+      submitFlag = true
+    },1000)
   },
   // 选择
   onChange(e) {
@@ -128,7 +137,8 @@ Page({
   seleTime(e) {
     let i = e.currentTarget.dataset.i;
     this.setData({
-      activeTime:i
+      activeTime:i,
+      activeTimeDay:0
     })
     this.getDayList(util.formatEndTime(new Date(this.data.weekList[i].date)))
   },

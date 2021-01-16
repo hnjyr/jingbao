@@ -45,7 +45,7 @@ Page({
   // 发送
   send() {
     let data = this.data.dataList[this.data.radio],
-    operation = data.userName,
+    operation = data.nickName,
     operationId = data.userId,
     operationPhone = data.mobile,
     professionId = this.data.professionId,
@@ -107,7 +107,8 @@ Page({
     })
     let deptId = this.data.userInfo.deptId,
     isDisables = '1',
-    position = this.data.userInfo.position,
+    position = '4',
+    // position = this.data.userInfo.position,
     noRole = '1',
     page = this.data.page;
     http(url.sysList,{

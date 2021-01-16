@@ -1,0 +1,7 @@
+<!--pages/vehicle/position.wxml-->
+<view wx:if='{{isOpenLocationAuth == 3}}'>
+  <button class="btn" open-type="openSetting" bindopensetting="hqTap">获取授权</button>
+</view>
+<view wx:if='{{isOpenLocationAuth == 1}}'>
+  <map name="位置" longitude='{{mLong}}' scale='13' latitude='{{mLat}}' markers='{{marker}}'></map>
+</view>

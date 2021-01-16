@@ -2,6 +2,7 @@
 const app=getApp();
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
+let submitFlag = true;
 Page({
 
   /**
@@ -23,13 +24,17 @@ Page({
     })
   },
   saveOrder(e) {
-    let createUserName = this.data.userInfo.userName,
+    if(!submitFlag) {
+      return false;
+    }
+    submitFlag = false;
+    let createUserName = this.data.userInfo.nickName,
         mobile = this.data.userInfo.mobile,
         list = wx.getStorageSync('carList'),
         price = this.data.price,
         arr = [],
         shopId = list[0].shopId;
-    if(this.data.userInfo.userName&&this.data.userInfo.mobile) {
+    if(this.data.userInfo.nickName&&this.data.userInfo.mobile) {
       for(let v of list) {
         arr.push({
           createTime:new Date().getTime(),
@@ -61,9 +66,11 @@ Page({
             })
           }
         },'POST','json')
-      })
-      
+      }) 
     }
+    setTimeout(res=>{
+      submitFlag = true
+    },1000)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

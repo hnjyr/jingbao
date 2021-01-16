@@ -28,12 +28,14 @@
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
+    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "enableEngineNative": false,
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
@@ -252,6 +254,53 @@
           "name": "充值",
           "pathName": "pages/admin/type",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "绑定银行卡",
+          "pathName": "pages/bank/binding",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/haircut/haircut",
+          "pathName": "pages/haircut/haircut",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "人脸上传",
+          "pathName": "pages/admin/faceImg",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "班车",
+          "pathName": "pages/vehicle/vehicle",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "班车定位",
+          "pathName": "pages/vehicle/position",
+          "query": "name=鲁F2578警",
+          "scene": null
+        },
+        {
+          "name": "pages/admin/modifyuser",
+          "pathName": "pages/admin/modifyuser",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/list/info",
+          "pathName": "pages/list/info",
           "scene": null
         }
       ]

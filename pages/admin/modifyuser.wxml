@@ -8,13 +8,13 @@
 		</view>
 		<view class="it">
 			<text space="ensp">姓名    </text>
-			<input class="{{!flag?'black':''}}" focus='{{!flag}}' disabled='{{flag}}' placeholder="{{username}}"
-				value="{{username}}" bindinput="usernameInput" type="text"></input>
+			<input class="{{!flag?'black':''}}" focus='{{!flag}}' disabled='{{flag}}' placeholder="{{nickName}}"
+				value="{{nickName}}" bindinput="usernameInput" type="text"></input>
 		</view>
 		<view class="it">
 			<text space="ensp">性别    </text>
-			<van-radio-group value="{{ sexindex }}" disabled="{{deptId!==null||flag}}" class="checkbox"  bind:change="onChange">
-				<van-radio name="{{item.value}}" disabled='{{deptId!=null||flag}}' style="margin-right:50rpx;" wx:for="{{sexlist}}" wx:key='{{item.value}}'>{{item.text}}</van-radio>
+			<van-radio-group value="{{ sexindex }}" class="checkbox"  bind:change="onChange">
+				<van-radio name="{{item.value}}" disabled='{{flag}}' style="margin-right:50rpx;" wx:for="{{sexlist}}" wx:key='{{item.value}}'>{{item.text}}</van-radio>
 			</van-radio-group>
 		</view>
 		<view class="it">

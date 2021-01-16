@@ -53,5 +53,13 @@ g = {
   repairrecordUpdate:url+'logistic/repairrecord/update',// 维修员提交
   attachmentList:url+'sys/attachment/list',// 图片组获取图片
   deleteImg:url+'sys/attachment/delete',// 删除图片
+  getbanklist:url+'pay/bandcard/list',//获取银行卡列表
+  addbankcard:url+'pay/bandcard/save', // 添加银行卡
+  withdrawal:url+'pay/record/qmfPayment', //提现
+  deletebank:url+'pay/bandcard/delete', // 删除银行卡
+  sendVerificationCode:url+'sys/user/open/sendVerificationCode', //获取验证码
+  updateFace:url+'sys/user/updateFace', //人脸上传
+  getOneBcLocation:url+'bcQrCode/open/getOneBcLocation?deviceName=', //车辆定位
+  getNoRead:url+'app/appnotice/getNoRead', //消息红点
 } 
 module.exports = g;

@@ -137,6 +137,11 @@ Page({
           app.showError('剩余库存不足！')
           return false;
         }
+        let limitedQuantity = obj.shopGoodsEntity.limitedQuantity;
+        if(limitedQuantity == list[flag].amount) {
+          app.showError(`每人限购${limitedQuantity}份！`);
+          return false;
+        }
         list[flag].amount = list[flag].amount+1;
       }
     }

@@ -2,7 +2,7 @@
 <view class="container">
   <view class="in_box">
     <text>取餐人</text>
-    <input type="text" placeholder="请填写取餐人姓名" maxlength="10" value='{{userInfo.userName}}'/>
+    <input type="text" placeholder="请填写取餐人姓名" maxlength="10" value='{{userInfo.nickName}}'/>
   </view>
   <view class="in_box">
     <text>手机号</text>
