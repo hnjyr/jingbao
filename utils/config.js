@@ -61,5 +61,16 @@ g = {
   updateFace:url+'sys/user/updateFace', //人脸上传
   getOneBcLocation:url+'bcQrCode/open/getOneBcLocation?deviceName=', //车辆定位
   getNoRead:url+'app/appnotice/getNoRead', //消息红点
+  verify:url+'logistics/visitorregister/open/verify', //验证用户是否存在
+  fkSave:url+'logistics/visitorregister/open/save', //保存访客信息
+  todayList:url+'logistics/visitorregister/todayList', //访客信息
+  agreeOrRefuse:url+'logistics/visitorregister/agreeOrRefuse', //同意拒绝
+  getOpenId:url+'logistics/visitorregister/open/getOpenId', //获取openid
+  opinionSave:url+'logistics/feedback/save', //意见箱
+  yjTag:url+'logistics/shopgoodslabel/list', //应急标签
+  yjTagList:url+'logistics/shopgoods/list', //应急标签列表 || 应急搜索框
+  saveForZhuangbei:url+'logistics/shoporders/saveForZhuangbei', //应急提交
+  yjCrList:url+'logistics/shoporders/list', //出入库记录
+  yjInfo:url+'logistics/shoporders/info/', //出入库详情 ordersId  订单id，追加在接口后面
 } 
 module.exports = g;

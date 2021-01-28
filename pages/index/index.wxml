@@ -1,5 +1,9 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container" style="padding-top:{{pHei + pTop + 10 + 'px'}}">
+  <view class="nav" style="padding-top:{{pTop + 'px'}};height:{{pHei + pTop + 10 + 'px'}};">
+    <text class="{{active == 1?'active':''}}" bindtap="titToogle" data-i='1'>后勤</text>
+    <text class="{{active == 2?'active':''}}" bindtap="titToogle" data-i='2' wx:if='{{yjShow}}'>应急物资</text>
+  </view>
   <!-- 头部图片 -->
   <view class="img_box">
     <image src="/images/banner.png"></image>

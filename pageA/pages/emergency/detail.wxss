@@ -1,0 +1,55 @@
+/* pages/list/detail.wxss */
+.dt_image {
+  width: 100%;
+}
+.info {
+  padding: 30rpx;
+  border-bottom: 20rpx solid #f0f1f2;
+}
+.dt_h2 {
+  font-size: 34rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #222222;
+  margin-bottom: 10rpx;
+}
+.dt_ys {
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #999;
+  margin-bottom: 15rpx;
+}
+.dt_price {
+  font-size: 34rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FF8400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dt_price view {
+  width: 260rpx;
+  font-size: 30rpx;
+  text-align: center;
+  padding: 8rpx 0;
+  background-color: #FF7E00;
+  border-radius: 30rpx;
+  color: #fff;
+}
+.info_xq {
+  padding: 30rpx;
+}
+.info_xq .dt_h3 {
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #222222;
+}
+.dt_info{
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+}

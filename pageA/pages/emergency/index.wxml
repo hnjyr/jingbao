@@ -1,0 +1,63 @@
+<!--pageA/pages/emergency/index.wxml-->
+<view class="container" style="padding-top:{{pHei + pTop + 10 + 'px'}}">
+  <view class="nav" style="padding-top:{{pTop + 'px'}};height:{{pHei + pTop + 10 + 'px'}};">
+    <text class="{{active == 1?'active':''}}" bindtap="titToogle" data-i='1'>后勤</text>
+    <text class="{{active == 2?'active':''}}" bindtap="titToogle" data-i='2'>应急物资</text>
+  </view>
+	<view class="search">
+    <view class="search_box">
+      <van-search
+        value="{{ value }}"
+        placeholder="搜索"
+        bind:change="onChange1"
+        bind:search="onSearch"
+        background="#f1f1f1"
+        shape="round"
+      >
+        <!-- <view slot="action" class="search_btn" bind:tap="onClick">搜索</view> -->
+      </van-search>
+    </view>
+    <navigator url="/pageA/pages/emergency/list" class="search_yj" hover-class="none">
+      <image src="/images/yjx.png"></image>
+    </navigator>
+  </view>
+  <view class="center_box flex">
+		<scroll-view class="c_left" scroll-y>
+			<van-sidebar custom-class='v_sidebar' active-key="{{ activeKey }}" bind:change="onChange">
+				<van-sidebar-item title="{{item.labelName}}" wx:for='{{tagList}}' wx:key='index1' />
+			</van-sidebar>
+		</scroll-view>
+
+
+		<scroll-view class="c_right {{curid==1?'c_left_box':''}}" scroll-y refresher-enabled='true' refresher-triggered='{{refresh}}' bindrefresherrefresh='refreshTap' bindscrolltolower='tolower'>
+			
+			<view class="box">
+				<view class="c_right_it" wx:for='{{dataList.list}}' wx:key='index' bindtap="navTabs" data-i='{{index}}'>
+					<image src="{{imgUrl+item.imageId}}" style="width:233rpx;height:187rpx;"></image>
+					<view class="jc_name line2">{{item.goodsName}}</view>
+					<view class="jc_kc">{{item.remark}}</view>
+					<view class="c_num flex_between">
+						<text>库存：{{item.inventory || 0}}</text>
+						<van-icon name="add" color="#FF8400" size="22" catchtap="addCar" data-i='{{index}}'/>
+					</view>
+				</view>
+			</view>
+			<view class="null" wx:if='{{!tolower}}'>暂无更多数据</view>
+			
+		</scroll-view>
+	</view>
+
+	<view class="position_btm flex_between">
+		<view style="padding-top:0rpx; ">
+			<view class="imgbox">
+				<image wx:if='{{carList.length == 0}}' src="/images/list/cart.png" style="width:52.44rpx;height:52.44rpx;"></image>
+				<image wx:else  bindtap="jsTap" src="/images/list/curcart.png" style="width:100%;height:100%;"></image>
+			</view>
+			<text class="kong" wx:if='{{carList.length == 0}}'>物资为空</text>
+			<text class="kong" style="color:#FB4E44;" wx:else>合计 {{allPrice}}</text>
+		</view>
+		<view class="settle" wx:if='{{carList.length == 0}}'>领取</view>
+		<view class="settle" style="background-color:#FF7E00;" wx:else bindtap="jsTap">领取</view>
+	</view>
+</view>
+

@@ -89,11 +89,38 @@ Page({
     ],
     lunboList:[],
     userInfo:'',
+    pTop:"",
+    pHei:"",
+    active:1,
+    yjShow:false,
   },
   onLoad: function () {
+    let list = wx.getStorageSync('dataList') || [],
+      yjShow = false;
+    if(list.length != 0) {
+      for(let v of list) {
+        if(v.roleId == 123 || v.roleId == 124) {
+          yjShow = true;
+        }
+      }
+    }
     this.setData({
-      userInfo:wx.getStorageSync('userInfo')
+      userInfo:wx.getStorageSync('userInfo'),
+      pTop:wx.getSystemInfoSync().statusBarHeight,
+      pHei:wx.getMenuButtonBoundingClientRect().height,
+      yjShow
     })
+  },
+  titToogle(e) {
+    let i = e.currentTarget.dataset.i;
+    this.setData({
+      active:i
+    })
+    if(i == 2) {
+      wx.navigateTo({
+        url: '/pageA/pages/emergency/index',
+      })
+    }
   },
   onReady: function () {
     if(wx.getStorageSync('cookie')) {

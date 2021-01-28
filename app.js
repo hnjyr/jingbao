@@ -4,15 +4,14 @@ const url = require('/utils/config.js');
 const http = require('/utils/http.js');
 App({
   globalData: {
-    height: 20
+    height: 20,
+    server:false,
   },
   onLaunch: function () {
-
     // 登录
     if(!wx.getStorageSync('cookie')) {
       this.loginMini();
     }
-
     wx.getSystemInfo({
       success: (res) => {
         wx.setStorage({
@@ -22,8 +21,9 @@ App({
       }
     })
   },
-  globalData: {
-    userInfo: null
+  onShow() {
+    // 正式和测试服务器
+    this.globalData.server = !url.host.includes('gaapp');
   },
   // 登录
   loginMini() {

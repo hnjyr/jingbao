@@ -20,7 +20,11 @@ Page({
     npayPwds: '',
     keybord: ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'C', '0', 'X'],
     payPassword: '1',
-    ordersId:''
+    ordersId:'',
+    srcSuccess:'/images/success.mp3',
+    srcError:'/images/error.mp3',
+    successCtx:'',
+    errorCtx:'',
   },
 
   /**
@@ -48,6 +52,7 @@ Page({
         code = data.status;
         switch (code) {
           case 1:
+            _this.successCtx.play();
             app.showError(data.message,()=>{
               wx.navigateBack()
             })
@@ -61,6 +66,7 @@ Page({
             })
             break;
           case 3:
+            _this.errorCtx.play();
             app.showError(data.message,()=>{
               wx.navigateTo({
                 url: '/pages/admin/type',
@@ -75,6 +81,7 @@ Page({
             })
             break;
           case 5:
+            _this.errorCtx.play();
             app.showError(data.message,()=>{
               wx.navigateBack();
             })
@@ -183,7 +190,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    // 获取音频标签
+    this.successCtx = wx.createAudioContext('mySuccess');
+    this.errorCtx = wx.createAudioContext('myError');
   },
 
   /**

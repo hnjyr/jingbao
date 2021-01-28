@@ -1,0 +1,47 @@
+/* pageA/pages/emergency/listDetail.wxss */
+.li_top {
+  padding: 20rpx 40rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.li_cz {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 16rpx;
+  justify-content: space-between;
+  font-weight: 500;
+}
+.li_cz text {
+  color: red;
+}
+.li_time {
+  color: #999;
+  font-size: 28rpx;
+}
+.li_li {
+  padding: 20rpx 40rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+  font-size: 28rpx;
+}
+.li_li image {
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+.li_con {
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 140rpx;
+  flex:1;
+}
+.li_add {
+  justify-content: space-between;
+  width: 100%;
+}
+.li_adds {
+  color: #999;
+}
+.li_num {
+  color: red;
+}

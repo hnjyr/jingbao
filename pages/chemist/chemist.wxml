@@ -1,17 +1,22 @@
 <!--pages/chemist/chemist.wxml-->
 <view class="container">
   <view class="search">
-    <van-search
-      value="{{ value }}"
-      placeholder="搜索"
-      bind:change="onChange1"
-      bind:search="onSearch"
-      background="#f1f1f1"
-      shape="round"
-      use-action-slot
-    >
-      <view slot="action" class="search_btn" bind:tap="onClick">搜索</view>
-    </van-search>
+    <view class="search_box">
+      <van-search
+        value="{{ value }}"
+        placeholder="搜索"
+        bind:change="onChange1"
+        bind:search="onSearch"
+        background="#f1f1f1"
+        shape="round"
+        use-action-slot
+      >
+        <view slot="action" class="search_btn" bind:tap="onClick">搜索</view>
+      </van-search>
+    </view>
+    <navigator url="/pages/chemist/opinion" class="search_yj" hover-class="none">
+      <image src="/images/yjx.png"></image>
+    </navigator>
   </view>
   <!-- 内容 -->
   <view class="che_box">
@@ -29,7 +34,7 @@
           <view class="li_h2">{{item.goodsName}}</view>
           <view class="li_info">{{item.description}}</view>
           <view class="li_price">￥{{item.price}}</view>
-          <view class="li_tip">库存<text>{{item.inventory || 0}}</text>份</view>
+          <!-- <view class="li_tip">库存<text>{{item.inventory || 0}}</text>份</view> -->
         </view>
       </view>
       <view class="null" wx:if='{{!tolower && dataList.length !=0}}'>暂无更多数据</view>

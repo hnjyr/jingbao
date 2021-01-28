@@ -42,7 +42,6 @@ Page({
    */
   onLoad: function (options) {
     let userInfo = wx.getStorageSync('userInfo');
-    console.log(userInfo)
     this.setData({
       userInfo: userInfo
     })
@@ -123,12 +122,17 @@ Page({
             }]
           })
         } else {
-          console.log(res.data)
           for (let v of res.data[util.formatEndTime(new Date())]) {
             v.week = '星期' + arr[new Date().getDay()];
-            // v.week = '星期' + arr[this.data.week];
+            v.beginTime = v.beginTime.replace(/-/g,"/");
+            if(new Date().getTime() > new Date(v.beginTime).getTime()) {
+              v.setNumber = 0
+            }
           }
-          res.data[util.formatEndTime(new Date())][0].flag = true;
+          let obj = res.data[util.formatEndTime(new Date())].find((item)=>{
+            return item.setNumber > 0
+          })
+          obj.flag = true;
           this.setData({
             dataList: res.data[util.formatEndTime(new Date())]
           })

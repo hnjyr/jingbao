@@ -14,25 +14,35 @@ Page({
       {
         text:'订餐记录',
         imgsrc:'/images/admin/Ordermeal.png',
-        url:'/pages/recordlist/dining?status=1'
+        url:'/pages/recordlist/dining?status=1',
+        flag:true
       },{
         text:'维修记录',
         imgsrc:'/images/admin/maintain.png',
-        url:'/pages/recordlist/maintain?type=1'
+        url:'/pages/recordlist/maintain?type=1',
+        flag:true
       },{
         text:'预约记录',
         imgsrc:'/images/admin/makeAppointment.png',
-        url:'/pages/recordlist/maintain?type=2'
+        url:'/pages/recordlist/maintain?type=2',
+        flag:true
       },{
         text:'消息通知',
         imgsrc:'/images/admin/buydrug.png',
-        url:'/pages/recordlist/consume'
+        url:'/pages/recordlist/consume',
+        flag:true
+      },{
+        text:'访客预约',
+        imgsrc:'/images/admin/fk.png',
+        url:'/pages/visitor/handle',
+        flag:app.globalData.server
       }
     ],
     userInfo:'',
     src:'',
     imgUrl:url.imgUrl,
-    isRed:false
+    isRed:false,
+    server:app.globalData.server
   },
 
   /**

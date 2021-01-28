@@ -1,0 +1,215 @@
+/* pageA/pages/emergency/index.wxss */
+.nav {
+  width: 100%;
+  background-color: #2963E0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #fff;
+  font-weight: 500;
+  font-family: Source Han Sans CN;
+  padding-left: 30rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 36rpx;
+}
+.nav text {
+  margin-right: 30rpx;
+  border-bottom: 1rpx solid transparent;
+  padding-bottom: 4rpx;
+}
+.nav .active {
+  border-bottom: 1rpx solid #fff;
+}
+
+/* pages/list/order.wxss */
+/* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
+.container {
+  height: 100vh;
+  background-color: #fff;
+  overflow-y: hidden;
+}
+
+.nav-wrap {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  z-index: 9999999;
+}
+
+.nav_date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav_date text {
+  padding: 4rpx 24rpx;
+  background-color: #fff;
+  color: #2963DF;
+  border: 1rpx solid #2963DF;
+  border-radius: 6rpx;
+  font-size: 28rpx;
+  margin: 10rpx 20rpx;
+}
+.nav_date .active {
+  background-color: #2963DF;
+  color: #fff;
+}
+.headbox {
+  position: fixed;
+  width: 100vw;
+  height: 140rpx;
+  background-color: #2963DF;
+}
+
+.nav_btns {
+  justify-content: space-around;
+  background-color: #2963DF;
+}
+
+.n_it {
+  padding: 24rpx 13rpx;
+  color: #fff;
+  border-bottom: 5rpx solid #2963DF;
+}
+
+.current {
+  border-bottom: 5rpx solid #FF8400;
+}
+
+.c_left {
+  height: 74.7vh;
+  border-right: 1rpx solid #EBEBEB;
+}
+
+.v_sidebar {
+  max-height: 100%;
+  padding: 0 0 100rpx 0;
+
+}
+
+.v_sidebar .van-sidebar-item--selected {
+  border-color: var(--sidebar-selected-border-color, #259CEE);
+}
+
+scroll-view{
+  width: 190rpx;
+}
+
+.v_sidebar .van-sidebar-item {
+  border-bottom: 2rpx solid #EBEBEB;
+  /* padding:32rpx 36rpx;
+  padding-right: 46rpx; */
+}
+
+.position_btm{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 110rpx;
+  border-top: 1rpx solid #CCCCCC;
+  background-color: #fff;
+}
+.imgbox{
+  position: absolute;
+  bottom: 33rpx;
+  left: 31rpx;
+  width: 110rpx;
+  height: 110rpx;
+  background: linear-gradient(-45deg, #E5E2E2 0%, #CFCACA 100%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.kong{
+  margin-left: 150rpx;
+  font-size: 30rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #9A9A9A;
+}
+
+.settle{
+  box-sizing: border-box;
+  height: 100%;
+  padding: 32rpx 82rpx;
+  background: #CCCCCC;
+  font-size: 33rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.c_right{
+  flex: 1;
+  padding: 0 21rpx;
+  min-height: 74.7vh;
+  max-height: 74.7vh;
+}
+
+.box{
+  padding-bottom:130rpx;
+}
+.c_right_it{
+  width: 230rpx;
+  margin: 22rpx 10rpx 0;
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #343434;
+}
+
+.c_num{
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FF8400;
+}
+
+.center_box{
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.jc_kc {
+  font-size: 24rpx;
+  color: #999;
+}
+.jc_name {
+  font-size: 28rpx;
+  color: #333;
+  max-width: 100%;
+}
+
+
+.search {
+  background-color: #f1f1f1;
+  padding: 0 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search_box {
+  flex:1;
+}
+.search .search_btn {
+  background-color: #2963E0;
+  color:#fff;
+  width: 110rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 8rpx;
+  text-align: center;
+}
+.search_yj image {
+  width: 50rpx;
+  height: 50rpx;
+}

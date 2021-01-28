@@ -5,6 +5,12 @@ page {
 .search {
   background-color: #f1f1f1;
   padding: 0 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search_box {
+  flex:1;
 }
 .search .search_btn {
   background-color: #2963E0;
@@ -14,6 +20,10 @@ page {
   line-height: 60rpx;
   border-radius: 8rpx;
   text-align: center;
+}
+.search_yj image {
+  width: 50rpx;
+  height: 50rpx;
 }
 .che_box {
   height: calc(100% - 108rpx);
@@ -52,7 +62,7 @@ page {
   overflow:hidden;
   text-overflow:ellipsis; 
   white-space:nowrap; 
-  width: 80%;
+  width: 96%;
   font-size: 32rpx;
   font-family: Source Han Sans CN;
   font-weight: 500;

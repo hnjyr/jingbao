@@ -24,6 +24,7 @@
     "pages/vehicle/position",
     "pages/chemist/chemist",
     "pages/chemist/detail",
+    "pages/chemist/opinion",
     "pages/chemist/search",
     "pages/laundry/laundry",
     "pages/haircut/detail",
@@ -39,7 +40,22 @@
     "pages/admin/type",
     "pages/admin/modifypwd",
     "pages/admin/faceImg",
-    "pages/bank/binding"
+    "pages/bank/binding",
+    "pages/visitor/visitor",
+    "pages/visitor/handle"
+  ],
+  "subpackages":[
+    {
+      "root":"pageA",
+      "pages":[
+        "pages/emergency/index",
+        "pages/emergency/detail",
+        "pages/emergency/car",
+        "pages/emergency/list",
+        "pages/emergency/listDetail",
+        "pages/emergency/search"
+      ]
+    }
   ],
   "window": {
     "backgroundTextStyle": "light",

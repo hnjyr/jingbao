@@ -1,0 +1,176 @@
+/* pages/visitor/visitor.wxss */
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.container {
+  padding: 0 30rpx;
+  padding-bottom: 50rpx;
+}
+.vs_li {
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #E8E8E8;
+}
+.vs_li .li_text {
+  font-size: 30rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+}
+.vs_li .li_text .vs_bt{
+  color: #FF0000;
+}
+.vs_li .li_text .vs_name{
+  color: #333333;
+  text-align: justify;
+  display: flex;
+  justify-content: space-between;
+  width: 122rpx;
+}
+.li_ri {
+  font-size: 30rpx;
+}
+.li_ri .rate {
+  transform: rotate(90deg);
+}
+.vs_li:last-child {
+  padding-bottom: 0;
+  border: none;
+}
+.li_ri textarea {
+  width: 100%;
+  height: 200rpx;
+  background: #F2F3F5;
+  border-radius: 17rpx;
+  resize: none;
+  margin-top: 20rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.btn {
+  padding: 20rpx 0;
+  width: 600rpx;
+  margin: 30rpx auto;
+  text-align: center;
+  background-color: #2963E0;
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+}
+.add {
+  justify-content: center;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+}
+.add text {
+  margin-left: 10rpx;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+  z-index: 999;
+}
+
+.block {
+  width: 600rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+
+}
+.bg_tit {
+  background: linear-gradient(270deg, #4753E8, #4987EE);
+  border-radius: 20rpx 20rpx 0 0;
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 90rpx;
+  text-align: center;
+}
+.bg_cont {
+  padding: 28rpx 36rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+.bg_li {
+  background: #EEEEEE;
+  border-radius: 4rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.bg_li .bg_le {
+  width: 130rpx;
+}
+.bg_cont .btn {
+  width: 100%;
+  border-radius: 8rpx;
+}
+.menu .van-dropdown-menu {
+  height: 30rpx;
+  background-color: transparent;
+}
+.menu .van-dropdown-item {
+  width: 380rpx;
+  left: 260rpx;
+}
+.vs_tx {
+ 
+}
+.vs_tx .li_text .vs_name {
+  width: 195rpx;
+}
+.vs_tx .li_ri {
+  padding-left: 60rpx;
+}
+.vs_tx .li {
+  justify-content: space-between;
+  font-size: 28rpx;
+  padding-top: 20rpx;
+}
+.vs_tx .li_name text{
+  margin-right: 15rpx;
+}
+.vs_tx .li_code {
+  color: #666;
+}
+.li_info {
+  flex-shrink: 0;
+}
+.li_peo {
+  position: relative;
+}
+.li_peo .peo_ul {
+  position: absolute;
+  right: 0;
+  bottom: -50rpx;
+  width: 100%;
+  background-color: #fff;
+  border: 1rpx solid #ccc;
+  border-radius: 8rpx;
+  padding: 8rpx;
+  z-index: 9999;
+  color: #666;
+  font-size: 28rpx;
+}
+.li_peo .peo_ul text {
+  margin-right: 14rpx;
+}
+.time_ri {
+  font-size: 26rpx;
+}
+.ri_btn {
+  padding: 5rpx 16rpx;
+  text-align: center;
+  background-color: #2963E0;
+  color: #fff;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+}
+.flex1 {
+  flex:1;
+}

@@ -1,0 +1,24 @@
+<!--pages/chemist/search.wxml-->
+<view class="container">
+  <view class="search">
+    <van-search value="{{ searchText }}" placeholder="搜索" bind:change="onChange" bind:search="onSearch" background="#f1f1f1"
+      shape="round" use-action-slot>
+      <view slot="action" class="search_btn" bind:tap="onClick">搜索</view>
+    </van-search>
+  </view>
+  <!-- 搜索 -->
+  <view class="che_box" wx:if='{{dataList.length != 0}}'>
+    <scroll-view class="che_right" scroll-y="true" >
+      <view class="che_li" wx:for='{{dataList}}' wx:key='index' data-i='{{index}}' bindtap="navTag">
+        <image mode="aspectFill" src="{{ imgUrl + item.imageId }}"></image>
+        <view class="che_li_cont">
+          <view class="li_h2">{{item.goodsName}}</view>
+          <view class="li_info">{{item.remark}}</view>
+          <view class="li_price">库存：{{item.inventory}}</view>
+          <!-- <view class="li_tip">库存<text>{{item.inventory || 0}}</text></view> -->
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <van-empty image="search" description="暂无数据" wx:else/>
+</view>

@@ -42,4 +42,8 @@
       </view>
     </view>
   </van-popup>
+
+  <!-- 语音成功 -->
+  <audio  src="{{srcSuccess}}" id="mySuccess" ></audio>
+  <audio  src="{{srcError}}" id="myError" ></audio>
 </view>

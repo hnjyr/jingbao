@@ -14,6 +14,7 @@ Page({
     pwd: '',
     loginType: 'wx',
     showPws:true,
+    server:app.globalData.server
   },
 
   /**
@@ -105,7 +106,6 @@ Page({
                   "Cookie": wx.getStorageSync('cookie'),
                 },
                 success: (res) => {
-                  console.log(333)
                   if(res.data.code == 0) {
                     if(res.data.user.deptId){
                       wx.setStorageSync('userInfo', res.data.user);

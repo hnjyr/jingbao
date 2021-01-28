@@ -40,7 +40,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.13.1",
-  "appid": "wxeb062408603cba22",
+  "appid": "wx9828ddefd66296a6",
   "projectname": "%E6%99%BA%E6%85%A7%E8%AD%A6%E4%BF%9D%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F",
   "debugOptions": {
     "hidedInDevtools": []
@@ -301,6 +301,55 @@
         {
           "name": "pages/list/info",
           "pathName": "pages/list/info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "访客预约",
+          "pathName": "pages/visitor/visitor",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "访客处理",
+          "pathName": "pages/visitor/handle",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "意见箱",
+          "pathName": "pages/chemist/opinion",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "应急物资",
+          "pathName": "pageA/pages/emergency/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "物资详情",
+          "pathName": "pageA/pages/emergency/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "应急购物侧",
+          "pathName": "pageA/pages/emergency/car",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "应急库出入库列表",
+          "pathName": "pageA/pages/emergency/list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "出入库详情",
+          "pathName": "pageA/pages/emergency/listDetail",
+          "query": "id=700",
           "scene": null
         }
       ]

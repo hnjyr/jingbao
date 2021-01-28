@@ -16,6 +16,8 @@
       </view>
       <image src="/images/login/hidepwd.png" style="width:40rpx;height:34rpx;" bindtap="toogle"></image>
     </view>
+    <!-- 正式版不上 -->
+    <navigator class="fk" url="/pages/visitor/visitor" wx:if="{{server}}">访客预约</navigator>
     <view class="confirm" bindtap="confirm">确认</view>
     <!-- <view class="forgetpwd">忘记密码 ？</view> -->
   </view>

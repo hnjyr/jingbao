@@ -71,7 +71,7 @@ Page({
     shopType = '1',
     limit = this.data.limit,
     page = this.data.page,
-    str = this.data.status == 1?'shopType':'paystatus';
+    str = this.data.status == 1?'shopType':'payState';
     http(url.orderingList,{
       createUserId,
       [str]:shopType,

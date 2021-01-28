@@ -1,0 +1,9 @@
+{
+  "navigationStyle":"custom",
+  "usingComponents": {
+    "van-sidebar": "@vant/weapp/sidebar/index",
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-search": "@vant/weapp/search/index"
+  }
+}

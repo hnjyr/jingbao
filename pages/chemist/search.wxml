@@ -15,9 +15,10 @@
           <view class="li_h2">{{item.goodsName}}</view>
           <view class="li_info">{{item.description}}</view>
           <view class="li_price">￥{{item.price}}</view>
-          <view class="li_tip">库存<text>{{item.inventory || 0}}</text>份</view>
+          <!-- <view class="li_tip">库存<text>{{item.inventory || 0}}</text>份</view> -->
         </view>
       </view>
     </scroll-view>
+    
   </view>
 </view>

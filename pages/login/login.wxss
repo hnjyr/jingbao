@@ -34,6 +34,20 @@
   padding: 25.53rpx 29rpx;
   margin-bottom: 45rpx;
 }
+.it:last-child {
+  margin-bottom: 0;
+}
+.fk {
+  font-size: 28rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #2963E0;
+  margin-bottom: 45rpx;
+  margin-top: -30rpx;
+  text-align: right;
+  position: absolute;
+  right: 70rpx;
+}
 .flex{
   justify-content: flex-start;
 }

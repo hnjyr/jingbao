@@ -1,0 +1,24 @@
+<!--pageA/pages/emergency/listDetail.wxml-->
+<view class="container">
+  <view class="li_top">
+    <view class="li_cz flex">
+      <view>操作人：{{dataInfo.createUserName}}</view>
+      <text>{{dataInfo.ordersType == 7?'已入库':'已出库'}}</text>
+    </view>
+    <view class="li_time">
+      <view>时间：{{dataInfo.createTime}}</view>
+    </view>
+  </view>
+  <view class="li_ul">
+    <view class="li_li flex" wx:for='{{dataInfo.ordersLinkEntityList}}' wx:key='index'>
+      <image src="{{imgUrl + item.goodsImgId}}" mode="aspectFill"></image>
+      <view class="li_con flex">
+        <view class="li_name">{{item.goodsName}}</view>
+        <view class="li_add flex">
+          <view class="li_adds">{{item.remark}}</view>
+          <view class="li_num">数量：{{item.piece}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

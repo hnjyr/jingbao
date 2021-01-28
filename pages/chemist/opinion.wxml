@@ -1,0 +1,6 @@
+<!--意见箱-->
+<view class="container">
+  <textarea name="" placeholder="请输入意见反馈" maxlength="1000" value="{{content}}" bindinput="inputChange" data-name='content'></textarea>
+  <input type="text" placeholder="请输入联系方式" maxlength="11" value="{{mobile}}" bindinput="inputChange" data-name='mobile' />
+  <view class="btn" bindtap="submit">提交</view>
+</view>

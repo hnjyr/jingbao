@@ -2,6 +2,7 @@
 const app=getApp();
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
+const util = require('../../utils/util.js');
 Page({
 
   /**
@@ -32,7 +33,9 @@ Page({
     carList:[],
     allPrice:'',
     refresh:false,
-    tolower:false
+    tolower:false,
+    activeDate:1,
+    jcDate:util.formatEndTime(new Date())
   },
 
   /**
@@ -41,6 +44,17 @@ Page({
   onLoad: function (options) {
     this.getShopList(1,1,1);
     this.getTagList();
+  },
+  toogleDate(e) {
+    let i = e.currentTarget.dataset.i;
+    let time = new Date().getTime();
+    time = time + (i - 1)*60*24*60*1000;
+    console.log(time)
+    this.setData({
+      activeDate:i,
+      jcDate:util.formatEndTime(new Date(time))
+    })
+    this.getShopList(1,1,this.data.jcList[this.data.activeKey1].labelId)
   },
   // 下拉刷新
   refreshTap(e) {
@@ -177,14 +191,19 @@ Page({
   getShopList(classify, page, labelId) {
     let _this = this,
     limit = this.data.limit,
+    jcDate = this.data.jcDate,
     kayStr = classify == 2?'dcList':'jcLists',
     type = classify == 2?'labelId':'type';
-    http(url.ordering,{
+    let data = {
       classify:classify,
       limit:limit,
       page:page,
       [type]:labelId
-    },(res)=>{
+    }
+    if(classify == 1) {
+      data.date = jcDate;
+    }
+    http(url.ordering,data,(res)=>{
       if(res.code == 0) {
         if(!this.data.tolower) {
           _this.setData({

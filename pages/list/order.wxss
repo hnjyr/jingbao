@@ -13,15 +13,24 @@
   z-index: 9999999;
 }
 
-/* 标题要居中 */
-.nav-title {
-  font-size: 39rpx;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
-  line-height: 38rpx;
+.nav_date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
+.nav_date text {
+  padding: 4rpx 24rpx;
+  background-color: #fff;
+  color: #2963DF;
+  border: 1rpx solid #2963DF;
+  border-radius: 6rpx;
+  font-size: 28rpx;
+  margin: 10rpx 20rpx;
+}
+.nav_date .active {
+  background-color: #2963DF;
+  color: #fff;
+}
 .headbox {
   position: fixed;
   width: 100vw;
@@ -49,7 +58,7 @@
   border-right: 1rpx solid #EBEBEB;
 }
 .c_left_box {
-  height: 92vh;
+  height: 86.5vh;
 }
 .v_sidebar {
   max-height: 100%;

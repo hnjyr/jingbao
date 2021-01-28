@@ -52,7 +52,7 @@ page {
   overflow:hidden;
   text-overflow:ellipsis; 
   white-space:nowrap; 
-  width: 90%;
+  width: 96%;
   font-size: 32rpx;
   font-family: Source Han Sans CN;
   font-weight: 500;

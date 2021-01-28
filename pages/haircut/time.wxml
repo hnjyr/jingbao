@@ -8,7 +8,7 @@
   </scroll-view>
   <view class="time_box" >
     <view class="time_li {{item.flag?'active':''}}" wx:for="{{dataList}}" wx:key='li' data-i='{{index}}' bindtap="toogle">
-      <view class="time_yy">可预约</view>
+      <view class="time_yy">{{item.setNumber > 0?'可预约':'不可预约'}}</view>
       <view class="time_ti">{{item.manageTime}}</view>
       <view class="time_dui">√</view>
     </view>

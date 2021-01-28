@@ -40,7 +40,7 @@
 	</view>
 
 	<view class="navterboxs flex">
-		<view class="n_it flex {{isRed == true&&index == 3?'red':''}}" wx:for='{{list}}' wx:key='list' bindtap="navTo" data-url='{{item.url}}'>
+		<view class="n_it flex {{isRed == true&&index == 3?'red':''}}" wx:for='{{list}}' wx:key='list' bindtap="navTo" data-url='{{item.url}}' wx:if="{{item.flag}}">
 			<image src="{{item.imgsrc}}" style="width:80rpx;height:80rpx;"></image>
 			<view class="n_text">{{item.text}}</view>
 		</view>

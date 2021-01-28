@@ -1,0 +1,90 @@
+<!--我的访客预约-->
+<view class="container">
+  <view class="ha_tab">
+    <text class="{{active == index?'active':''}}" wx:for='{{tabList}}' wx:key='index' data-i='{{index}}' bindtap="tabClick">{{item}}</text>
+  </view>
+  <view class="ha_h4">{{tabList[active]}}访客数量：{{allNum}}人</view>
+  <scroll-view wx:if='{{dataList.length > 0}}' class="scroll {{active == 0?'fir':''}}" scroll-y="true" refresher-enabled='true'
+    refresher-triggered='{{refresh}}' bindscrolltolower='bottom' bindrefresherrefresh='refreshTap'>
+    <view class="ha_h"></view>
+    <van-checkbox-group value="{{ result }}" bind:change="onChange">
+      <view class="ha_li" wx:for='{{dataList}}' wx:key='data' data-i='{{index}}'
+        data-id='{{ item.registerId }}' bindtap="navTap">
+        <view class="ha_check" wx:if="{{active == 0}}">
+          <van-checkbox
+            class="checkboxes-{{ index }}"
+            name="{{ item.registerId }}"
+            shape="square"
+            icon-size='14'
+          />
+        </view>
+        <view class="li_fi li_pub">
+          <view class="li_box">
+            <view class="li_name">访客姓名</view>
+            <view class="li_bot">{{item.visitorName}}</view>
+          </view>
+          <view class="li_box">
+            <view class="li_name">单位</view>
+            <view class="li_bot line1">{{item.visitorDept || '暂无'}}</view>
+          </view>
+          <view class="li_box">
+            <view class="li_name">联系方式</view>
+            <view class="li_bot">{{item.visitorMobile}}</view>
+          </view>
+          
+        </view>
+        <view class="li_se li_pub">
+          <view class="li_box">
+            <view class="li_name">来访时间</view>
+            <view class="li_bot">{{item.visitorStartTime || '暂无'}}</view>
+          </view>
+          <view class="li_box" wx:if='{{active == 1}}'>
+            <view class="li_name">审批状态</view>
+            <view class="li_bot" wx:if='{{item.registerState == 1}}'>待审批</view>
+            <view class="li_bot" wx:if='{{item.registerState == 2}}'>不通过</view>
+            <view class="li_bot" wx:if='{{item.registerState == 3}}'>已通过</view>
+          </view>
+          <!-- <view class="li_box" wx:if='{{active == 1}}'>
+            <view class="li_name">来访状态</view>
+            <view class="li_bot" wx:if='{{item.arriveState == 1}}'>未到达</view>
+            <view class="li_bot" wx:if='{{item.arriveState == 2}}'>已到达</view>
+            <view class="li_bot" wx:if='{{item.arriveState == 3}}'>已离开</view>
+          </view> -->
+          
+          <view class="li_box">
+            <view class="li_name">来访人数</view>
+            <view class="li_bot">{{item.visitorNumber || 1}}</view>
+          </view>
+        </view>
+        <view class="li_tr li_pub li_had">
+          <view class="li_box" wx:if='{{active == 0 || active == 2}}'>
+            <view class="li_name">来访事由</view>
+            <view class="li_bot">{{item.visitorReason || '暂无'}}</view>
+          </view>
+          <view class="li_box" wx:if='{{active == 1}}'>
+            <view class="li_name">审批理由</view>
+            <view class="li_bot">{{item.remark || '暂无'}}</view>
+          </view>
+        </view>
+      </view>
+    </van-checkbox-group>
+  </scroll-view>
+  <van-empty description="暂无数据" wx:else />
+  <view class="btns" wx:if='{{active == 0 && dataList.length != 0}}'>
+    <view class="btn" bindtap="spClick" data-i='2'>拒绝</view>
+    <view class="btn" bindtap="spClick" data-i='1'>同意</view>
+  </view>
+  <van-dialog
+    use-slot
+    title="审批意见"
+    show="{{ show }}"
+    show-cancel-button
+    bind:close="onClose"
+    bind:confirm="confirm"
+    confirm-button-color="#2963E0"
+  >
+    <view class="inp">
+      <textarea placeholder="请输入审批意见" placeholder-class="ploClass" value="{{remark}}" bindinput="textInp"></textarea>
+    </view>
+  </van-dialog>
+</view>

@@ -1,0 +1,16 @@
+<!--菜品详情-->
+<view class="container">
+  <image class="dt_image" src="{{imgUrl + mealInfo.imageId}}"></image>
+  <view class="info">
+    <view class="dt_h2">{{mealInfo.goodsName}}</view>
+    <view class="dt_ys">{{mealInfo.remark}}</view>
+    <view class="dt_price">
+      <text>库存：{{mealInfo.inventory}}</text>
+      <view bindtap="addCar">+领取物资</view>
+    </view>
+  </view>
+  <view class="info_xq">
+    <view class="dt_h3">物资详情</view>
+    <view class="dt_info">{{mealInfo.description || '暂无'}}</view>
+  </view>
+</view>

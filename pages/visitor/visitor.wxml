@@ -1,0 +1,222 @@
+<!--访客预约-->
+<view class="container" wx:if='{{!showBg}}'>
+  <view>
+    <view class="vs_li flex">
+      <view class="li_text flex">
+        <text class="vs_bt">*</text>
+        <view class="vs_name">
+          <text>姓</text>
+          <text>名</text>
+        </view>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri">
+        <input type="text" value="{{form.visitorName}}" bindinput="inputChange" data-name='form.visitorName' placeholder="请输入您的姓名" maxlength="6" />
+      </view>
+    </view>
+    <view class="vs_li flex">
+      <view class="li_text flex">
+        <text class="vs_bt">*</text>
+        <text class="vs_name">证件类型</text>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri flex" bindtap="typeSelect">
+        <text>{{form.type}}</text>
+        <view class="rate">
+          <van-icon name="play" />
+        </view>
+      </view>
+    </view>
+    <view class="vs_li flex">
+      <view class="li_text flex">
+        <text class="vs_bt">*</text>
+        <view class="vs_name">
+          <text>证</text>
+          <text>件</text>
+          <text>号</text>
+        </view>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri">
+        <input type="text" value="{{form.certifyNumber}}" bindinput="inputChange" data-name='form.certifyNumber' placeholder="请输入您的证件号" maxlength="18" />
+      </view>
+    </view>
+    <view class="vs_li flex">
+      <view class="li_text flex">
+        <text class="vs_bt">*</text>
+        <text class="vs_name">联系方式</text>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri">
+        <input type="text" value="{{form.visitorMobile}}" bindinput="inputChange" data-name='form.visitorMobile' placeholder="请输入您的联系方式" maxlength="11" />
+      </view>
+    </view>
+    <view class="vs_li flex">
+      <view class="li_text flex">
+        <text class="vs_bt">*</text>
+        <text class="vs_name">访客单位</text>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri">
+        <input type="text" value="{{form.visitorDept}}" bindinput="inputChange" data-name='form.visitorDept' placeholder="请输入访客单位" maxlength="50" />
+      </view>
+    </view>
+    <view class="vs_li flex">
+      <view class="li_text flex">
+        <text class="vs_bt">*</text>
+        <text class="vs_name">访问时间</text>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri time_ri" bindtap="timeSelect">
+        <!-- <input type="text" /> -->
+        <text wx:if='{{!applyTime}}'>请选择开始时间</text>
+        <text wx:else>{{applyTime}}</text>
+      </view>
+      <view class="li_ri" style="margin:0 10rpx;">
+        -
+      </view>
+      <view class="li_ri time_ri" bindtap="timeSelect1">
+        <!-- <input type="text" /> -->
+        <text wx:if='{{!applyTime1}}'>请选择结束时间</text>
+        <text wx:else>{{applyTime1}}</text>
+      </view>
+    </view>
+    <view class="vs_ul" wx:if='{{form.visitorRegisterLinkEntities.length == 0}}'>
+      <view class="vs_li flex add" bindtap="add">
+        <van-icon name="add" size='24' color='#3785FD' />
+        <text>添加添加同行访客</text>
+      </view>
+    </view>
+    <view class="vs_li vs_tx" wx:else>
+      <view class="li_text flex">
+        <text class="vs_bt">*</text>
+        <view class="vs_name">
+          同行访客信息
+        </view>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri">
+        <view class="li flex" wx:for="{{form.visitorRegisterLinkEntities}}" wx:key='index'>
+          <view class="li_info">
+            <view class="li_name">
+              <text>{{item.visitorName}}</text>
+              <text>{{item.visitorDept}}</text>
+            </view>
+            <view class="li_code">{{item.certifyNumber}}</view>
+          </view>
+          <view class="li_close" bindtap="delTap" data-i='{{index}}'>
+            <van-icon name="clear" color='red' size='22'/>
+          </view>
+        </view>
+
+        <view class="vs_ul">
+          <view class="vs_li flex add" bindtap="add">
+            <van-icon name="add" size='24' color='#3785FD' />
+            <text>添加添加同行访客</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="vs_li flex">
+      <view class="li_text flex">
+        <text class="vs_bt">*</text>
+        <view class="vs_name">
+          <text>被</text>
+          <text>访</text>
+          <text>人</text>
+        </view>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri li_peo flex flex1">
+        <input type="text" placeholder="被访人姓名" maxlength="10" value="{{peoName}}" bindinput="inputChange" data-name='peoName'/>
+        <view class="ri_btn" bindtap="search">查询</view>
+        <view class="peo_ul" wx:if='{{listShow}}'>
+          <view class="peo_li" wx:for='{{dpList}}' wx:key='index' bindtap="seTrue" data-i='{{index}}'>
+            <text>{{item.nickName}}</text>
+            <text>{{item.mobile}}</text>
+            <text>{{item.deptName}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="vs_li flex">
+      <view class="li_text flex">
+        <text class="vs_bt" style="opacity:0;">*</text>
+        <view class="vs_name">
+          <text>车</text>
+          <text>牌</text>
+          <text>号</text>
+        </view>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri">
+        <input type="text" value="{{form.carNumber}}" bindinput="inputChange" data-name='form.carNumber' maxlength="100" placeholder="多个车牌号，以逗号隔开" />
+      </view>
+    </view>
+    <view class="vs_li">
+      <view class="li_text flex">
+        <text class="vs_bt">*</text>
+        <text class="vs_name">来访事由</text>
+        <text class="vs_fh">：</text>
+      </view>
+      <view class="li_ri">
+        <textarea name="" id="" cols="30" rows="10" value="{{form.visitorReason}}" bindinput="inputChange" data-name='form.visitorReason' maxlength="200" ></textarea>
+      </view>
+    </view>
+  </view>
+  <view class="btn" bindtap="submit">提交</view>
+</view>
+
+  <van-action-sheet show="{{ show }}" close-on-click-overlay='true' bind:click-overlay='close'>
+    <van-picker show-toolbar columns="{{ columns }}" bind:confirm="onConfirm" bind:cancel="onCancel" value-key='text' />
+  </van-action-sheet>
+  <van-overlay show="{{ showBg }}" bind:click="onClickHide">
+    <view class="wrapper">
+      <view class="block" catch:tap="noop" >
+        <view class="bg_tit">添加同行访客</view>
+        <view class="bg_cont">
+          <view class="bg_li flex">
+            <view class="bg_le">姓名</view>
+            <view class="bg_ri">
+              <input type="text" placeholder="请输入姓名" maxlength="6" value="{{listObj.visitorName}}" bindinput="inputChange" data-name='listObj.visitorName'/>
+            </view>
+          </view>
+          <view class="bg_li flex">
+            <view class="bg_le">证件类型</view>
+            <view class="bg_ri">
+              <van-dropdown-menu class="menu" overlay='{{false}}'>
+                <van-dropdown-item bind:change="onChangeusert"  value="{{ listObj.certifyType }}" options="{{ columns }}" />
+              </van-dropdown-menu>
+            </view>
+          </view>
+          <view class="bg_li flex">
+            <view class="bg_le">证件号</view>
+            <view class="bg_ri">
+              <input type="text" placeholder="请输入证件号" maxlength="18" value="{{listObj.certifyNumber}}" bindinput="inputChange" data-name='listObj.certifyNumber'/>
+            </view>
+          </view>
+          <view class="bg_li flex">
+            <view class="bg_le">联系方式</view>
+            <view class="bg_ri">
+              <input type="text" placeholder="请输入手机号" maxlength="11" value="{{listObj.visitorMobile}}" bindinput="inputChange" data-name='listObj.visitorMobile'/>
+            </view>
+          </view>
+          <view class="bg_li flex">
+            <view class="bg_le">访客单位</view>
+            <view class="bg_ri">
+              <input type="text" placeholder="请输入访客单位" maxlength="50" value="{{listObj.visitorDept}}" bindinput="inputChange" data-name='listObj.visitorDept'/>
+            </view>
+          </view>
+          <view class="btn" bindtap="addInfo">添加</view>
+        </view>
+      </view>
+    </view>
+  </van-overlay>
+
+  <van-action-sheet show="{{ showTime }}" close-on-click-overlay='{{true}}'>
+    <van-datetime-picker type="datetime" value="{{ currentDate }}" bind:confirm="timeConfirm" min-date="{{ minDate }}"/>
+  </van-action-sheet>
+  <van-action-sheet show="{{ showTime1 }}" close-on-click-overlay='{{true}}'>
+    <van-datetime-picker type="datetime" value="{{ currentDate1 }}" bind:confirm="timeConfirm1" min-date="{{ minDate }}"/>
+  </van-action-sheet>

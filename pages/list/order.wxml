@@ -1,19 +1,15 @@
 <!--pages/list/order.wxml-->
 <!-- 订餐列表 -->
 <view class="container">
-	<!-- 顶部自定义 -->
-	<!-- <view class="headbox" style="padding-top:{{height*2 + 20}}rpx;">
-		<view class="nav-title flex" style="line-height:{{height*2+44}}rpx;">
-			<van-icon bindtap="back" name="arrow-left" color="#fff" size="24px" />
-			<text style="padding-left:30rpx;">{{tittext}}</text>
-		</view>
-	</view> -->
-
 	<view class="nav_btns flex" >
 		<view class="n_it {{curid==1?'current':''}}" bindtap="check" data-id='1'>就餐</view>
 		<view class="n_it {{curid==2?'current':''}}" bindtap="check" data-id='2'>订餐</view>
 	</view>
-
+	<view class="nav_date" wx:if='{{curid == 1}}'>
+		<text class="{{activeDate == 1?'active':''}}" data-i="1" bindtap="toogleDate">今天</text>
+		<text class="{{activeDate == 2?'active':''}}" data-i="2" bindtap="toogleDate">明天</text>
+		<text class="{{activeDate == 3?'active':''}}" data-i="3" bindtap="toogleDate">后天</text>
+	</view>
 	<view class="center_box flex">
 		<scroll-view class="c_left c_left_box" wx:if='{{curid==1}}' scroll-y>
 			<van-sidebar custom-class='v_sidebar' active-key="{{ activeKey1 }}" bind:change="onChange1">

@@ -66,14 +66,18 @@ Page({
   toogle(e) {
     let i = e.currentTarget.dataset.i,
       dataList = this.data.dataList;
-      for(let v of dataList) {
-        v.flag = false;
-      }
-      dataList[i].flag = true;
-      this.setData({
-        dataList:dataList,
-        active:i
-      })
+    if(this.data.dataList[i].setNumber <= 0) {
+      app.showError('该时间段不可预约！');
+      return false;
+    }
+    for(let v of dataList) {
+      v.flag = false;
+    }
+    dataList[i].flag = true;
+    this.setData({
+      dataList:dataList,
+      active:i
+    })
   },
 
   backTap() {
@@ -96,7 +100,6 @@ Page({
   getDataList() {
     let arr = ['日', '一', '二', '三', '四', '五', '六', ];
     let dateTime = util.formatEndTime(new Date(this.data.weekList[this.data.weekActive].date));
-    console.log(dateTime)
     http(url.manageTime,{
       endDate:dateTime,
       shopId:"9"
@@ -106,8 +109,15 @@ Page({
           for(let v of res.data[dateTime]) {
             v.week = '星期'+arr[new Date(dateTime.replace(/-/g,"/")).getDay()];
             v.flag = false;
+            v.beginTime = v.beginTime.replace(/-/g,"/");
+            if(new Date().getTime() > new Date(v.beginTime).getTime()) {
+              v.setNumber = 0
+            }
           }
-          res.data[dateTime][0].flag = true;
+          let obj = res.data[util.formatEndTime(new Date())].find((item)=>{
+            return item.setNumber > 0
+          })
+          obj.flag = true;
         }else {
           res.data[dateTime] = [];
         }

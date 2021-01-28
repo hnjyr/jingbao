@@ -1,0 +1,19 @@
+<!--pages/recordlist/dining.wxml-->
+<!-- 订餐记录 -->
+<view class="container">
+	<scroll-view wx:if='{{dataList.length > 0}}' class="center_box" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindscrolltolower='bottom' bindrefresherrefresh='refreshTap'>
+		<view class="c_it flex_between" wx:for="{{dataList}}" wx:key='data' bindtap="navTap" data-i='{{index}}'>
+			<image mode="aspectFill" class="image" src="{{ imgUrl + item.imageId }}"></image>
+			<view class="c_right">
+				<view class="c_right_oneline flex_between">
+					<text>操作人：{{ item.createUserName }}</text>
+					<text class="red" wx:if='{{item.ordersType == 7}}'>已入库</text>
+					<text class="red" wx:if='{{item.ordersType == 8}}'>已出库</text>
+				</view>
+				<view class="c_right_threeline flex_between">下单时间：{{ item.createTime }}</view>
+			</view>
+		</view>
+		<van-divider contentPosition="center" customStyle="font-size: 30rpx;margin:10rpx;">{{text}}</van-divider>
+	</scroll-view>
+	<van-empty description="暂无数据" wx:else/>
+</view>
