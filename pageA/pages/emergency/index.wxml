@@ -18,7 +18,7 @@
       </van-search>
     </view>
     <navigator url="/pageA/pages/emergency/list" class="search_yj" hover-class="none">
-      <image src="/images/yjx.png"></image>
+      <image src="/images/ml.png"></image>
     </navigator>
   </view>
   <view class="center_box flex">
