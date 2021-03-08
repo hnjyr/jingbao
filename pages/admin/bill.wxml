@@ -3,9 +3,20 @@
 	<scroll-view class="center_box" wx:if='{{list.length > 0}}' scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindscrolltolower='bottom' bindrefresherrefresh='refreshTap'>
 		<view class="it" wx:for='{{list}}' wx:key='*this'>
 			<view class="it" style="border:none;padding:0;">
-				<image src="/images/admin/zfm.png" style="width:60rpx;height:60rpx;margin-right:30rpx;"></image>
+				<image src="/images/admin/zfm.png" style="width:50rpx;height:50rpx;margin-right:30rpx;margin-top:5rpx;"></image>
 				<view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 0}}'>未支付</view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 1}}'>已成功</view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 2}}'>已关闭</view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 3}}'>已撤销</view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 4}}'>待退款</view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 5}}'>退款成功</view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 6}}'>交易结束，不可退款</view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 7}}'>提待现</view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 8}}'>提现成功</view>
+					<view style="font-size:30rpx;" wx:if='{{item.status == 9}}'>提现失败</view>
 					<view style="font-size:30rpx;color:#999;">{{item.body || '暂无'}}</view>
+					<view style="font-size:30rpx;color:#999;">{{item.createTime || ''}}</view>
 				</view>
 			</view>
 			<text>{{item.isRecharge==1?'+':'-'}}{{item.amount}}</text>

@@ -14,7 +14,8 @@ Page({
     dataList: [],
     userInfo: '',
     type: 1,
-    week:''
+    week:'',
+    selectFlag:false
   },
 
   radioClick(event) {
@@ -83,10 +84,10 @@ Page({
     submitFlag = false;
     app.getDyInfo(['5JWugDNNHLwmdQGqr0JLrZqTh7-2WuRXI2JC3vH8tYs', 'w9YYPOrqNy0QL_d7JlWi2q54MCJo-GzvRQVmz4We0BU'], () => {
       http(url.saveRecord, {
-        beginTime: obj.beginTime,
-        endTime: obj.endTime,
+        beginTime: obj.beginTime.replace(/\//g,"-"),
+        endTime: obj.endTime.replace(/\//g,"-"),
         haircutType: haircutType,
-        manageId: obj.manageId,
+        // manageId: obj.manageId,非领导不需要
         mobile: mobile,
         reserveType: 1,
         reserveUserName: reserveUserName,
@@ -132,7 +133,13 @@ Page({
           let obj = res.data[util.formatEndTime(new Date())].find((item)=>{
             return item.setNumber > 0
           })
-          obj.flag = true;
+          if(obj) {
+            obj.flag = true;
+          }else {
+            this.setData({
+              selectFlag:true
+            })
+          }
           this.setData({
             dataList: res.data[util.formatEndTime(new Date())]
           })

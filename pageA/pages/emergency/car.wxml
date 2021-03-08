@@ -40,8 +40,8 @@
   <view class="fs_12 fc_333" catchtap="allcheckTap">全选</view>
   <view class="fc_333 fs_12 totalPrice {{selectArr.length==0?'whiteView':''}}">合计：{{totalPrice}}</view>
   <!-- <view class="btn clearbtn fs_12" bindtap="toApply">去结算({{selectArr.length}})</view> -->
-  <view class="btn clearbtn fs_12" wx:if='{{selectArr.length == 0}}'>领取</view>
-  <view class="btn clearbtn fs_12 selects" wx:if='{{selectArr.length>0}}' bindtap="toApply">领取</view>
+  <view class="btn clearbtn fs_12" wx:if='{{selectArr.length == 0}}'>提交</view>
+  <view class="btn clearbtn fs_12 selects" wx:if='{{selectArr.length>0}}' bindtap="toApply">提交</view>
 
   <van-dialog
     use-slot

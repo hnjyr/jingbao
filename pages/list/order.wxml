@@ -2,8 +2,8 @@
 <!-- 订餐列表 -->
 <view class="container">
 	<view class="nav_btns flex" >
-		<view class="n_it {{curid==1?'current':''}}" bindtap="check" data-id='1'>就餐</view>
-		<view class="n_it {{curid==2?'current':''}}" bindtap="check" data-id='2'>订餐</view>
+		<view class="n_it {{curid==1?'current':''}}" bindtap="check" data-id='1'>食谱</view>
+		<view class="n_it {{curid==2?'current':''}}" bindtap="check" data-id='2'>外卖</view>
 	</view>
 	<view class="nav_date" wx:if='{{curid == 1}}'>
 		<text class="{{activeDate == 1?'active':''}}" data-i="1" bindtap="toogleDate">今天</text>

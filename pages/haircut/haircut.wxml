@@ -44,6 +44,9 @@
       <text>{{item.manageDate}} {{item.week}}</text>
       <text>{{item.manageTime}}</text>
     </view>
+    <view class="time_box"wx:if='{{selectFlag}}'>
+      <text>请选择</text>
+    </view>
   </view>
   <!-- 项目 -->
   <view class="ha_pro">

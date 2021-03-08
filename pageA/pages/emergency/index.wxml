@@ -56,8 +56,8 @@
 			<text class="kong" wx:if='{{carList.length == 0}}'>物资为空</text>
 			<text class="kong" style="color:#FB4E44;" wx:else>合计 {{allPrice}}</text>
 		</view>
-		<view class="settle" wx:if='{{carList.length == 0}}'>领取</view>
-		<view class="settle" style="background-color:#FF7E00;" wx:else bindtap="jsTap">领取</view>
+		<view class="settle" wx:if='{{carList.length == 0}}'>提交</view>
+		<view class="settle" style="background-color:#FF7E00;" wx:else bindtap="jsTap">提交</view>
 	</view>
 </view>
 

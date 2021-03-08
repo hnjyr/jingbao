@@ -5,7 +5,7 @@
 		<view style="margin:30rpx 0;">{{balance}}</view>
 		<view class="box">
 			<navigator hover-class="none" url="/pages/admin/type?status=2">充值</navigator>
-			<navigator hover-class="none" url="/pages/admin/type?status=1">提现</navigator>
+			<navigator hover-class="none" url="/pages/bank/binding">提现</navigator>
 		</view>
 	</view>
 	<view class="bottom">

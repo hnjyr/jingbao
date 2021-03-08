@@ -111,11 +111,11 @@ Page({
       shopId:21,
       ordersType:radio == 1?8:7
     },res=>{
-      console.log(res)
       if(res.code == 0) {
         app.showSuccess(`${radio == 1?'出库':'入库'}成功！`,()=>{
-          wx.navigateTo({
-            url: 'url',
+          wx.removeStorageSync('wzList')
+          wx.redirectTo({
+            url: '/pageA/pages/emergency/listDetail?id='+res.data.ordersId,
           })
         })
       }
@@ -222,7 +222,7 @@ Page({
       this.judgmentAll(); //计算价格
     } else { //取消选中就从已选择的商品数组里移除
       for (var i = 0; i < selectArr.length; i++) {
-        if (selectArr[i].id == cartData[index].id) {
+        if (selectArr[i].goodsId == cartData[index].goodsId) {
           selectArr.splice(i, 1)
         }
       }
@@ -280,7 +280,7 @@ Page({
     if (selectArr.length) { //如果以选择的商品数组里有长度
       for (var i = 0; i < cartData.length; i++) {
         for (var j = 0; j < selectArr.length; j++) {
-          if (cartData[i].id == selectArr[j].id) { //把初始数据的对应id的数据删掉就好了
+          if (cartData[i].goodsId == selectArr[j].goodsId) { //把初始数据的对应id的数据删掉就好了
             cartData.splice(i, 1);
           }
         }

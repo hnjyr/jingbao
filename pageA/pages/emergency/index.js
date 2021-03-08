@@ -40,6 +40,26 @@ Page({
     })
 
   },
+  // 下拉刷新
+  refreshTap(e) {
+    this.data.refresh = true
+    this.setData({
+      page:1,
+      tolower:false
+    })
+    this.getShopList();
+  },
+  // 滑动加载
+  tolower(e) {
+    if(!this.data.tolower) {
+      return false;
+    }
+    this.setData({
+      page:this.data.page+1,
+      tolower:true,
+    })
+    this.getShopList();
+  },
   navTabs(e) {
     wx.setStorageSync('wzInfo', this.data.dataList.list[e.currentTarget.dataset.i]);
     wx.setStorageSync('wzList', this.data.carList);

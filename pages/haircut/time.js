@@ -92,7 +92,7 @@ Page({
     // list[this.data.active].week = this.data.week.replace(/周/,'星期')
     prepage.setData({
       dataList:list,
-
+      selectFlag:false
     })
     wx.navigateBack()
   },
@@ -117,7 +117,9 @@ Page({
           let obj = res.data[util.formatEndTime(new Date())].find((item)=>{
             return item.setNumber > 0
           })
-          obj.flag = true;
+          if(obj) {
+            obj.flag = true;
+          }
         }else {
           res.data[dateTime] = [];
         }

@@ -51,7 +51,7 @@ Page({
       list.push(obj)
     }else {
       let flag = list.findIndex((v)=>{
-        return v.id == obj.id;
+        return v.goodsId == obj.goodsId;
       })
       if(flag == -1) {
         list.push(obj)
