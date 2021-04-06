@@ -1,6 +1,6 @@
 <!--pages/admin/faceImg.wxml-->
 <view class="h1">人脸上传</view>
 <van-uploader accept="image" file-list="{{ fileList }}" max-count="1" bind:after-read="afterRead" deletable='{{true}}' bind:delete='deleteImgs'/>
-<view class="btn" bindtap="submit">提交</view>
+<view class="btn" bindtap="submit">提交</view> 
 
 

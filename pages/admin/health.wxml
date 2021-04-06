@@ -1,0 +1,28 @@
+<!--pages/admin/health.wxml-->
+<view class="container" >
+    <view class="input_box">
+        <text>发证日期</text>
+        <input type="text" placeholder="请输入发证日期(例：19xx-xx-xx)" bindinput="dateStartInput" value="{{dateStart}}"></input>
+    </view>
+    <view class="input_box">
+        <text>到期日期</text>
+        <input type="text" placeholder="请输入到期日期" bindinput="dateEndInput" value="{{dateEnd}}"></input>
+    </view>
+    <view class="input_box">
+        <text>发证单位</text>
+        <input type="text" placeholder="请输入发证单位" bindinput="unitInput" value="{{unit}}"></input>
+    </view>
+    <view class="input_box">
+        <text>证书编号</text>
+        <input type="text" placeholder="请输入证书编号" bindinput="numberInput" value="{{numberes}}"></input>
+    </view>
+    <view class="input_box2">
+        <text>证件照</text>
+        <view class="image_box">
+          <van-uploader  max-count="1" bind:after-read="afterRead">
+            <image class="imgSize" src="{{renxiang}}"></image>
+          </van-uploader>
+        </view>
+    </view>
+    <view class="btn" bindtap="submit">提交</view>
+</view>

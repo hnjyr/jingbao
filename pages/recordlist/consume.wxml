@@ -2,17 +2,29 @@
 <!-- 消息通知 -->
 <view class="container">
     <scroll-view wx:if='{{dataList.length > 0}}' class="scroll" scroll-y="true" refresher-enabled='true' refresher-triggered='{{refresh}}' bindscrolltolower='bottom' bindrefresherrefresh='refreshTap'>
-      <view class="mess_li {{ item.isRead == 2?'mess_show':''}}" wx:for='{{dataList}}' wx:key='data' data-i='{{index}}' data-id='{{ item.noticeId }}' bindtap="navTap">
+      <view bindlongpress="longpressClick" class="mess_li {{ item.isRead == 2?'mess_show':''}}" wx:for='{{dataList}}' wx:key='data' data-i='{{index}}' data-id='{{ item.noticeId }}' bindtap="navTap">
         <image src="/images/home/home_message.png"></image>
-        <view class="mess_cont">
+        <view class="mess_cont"> 
           <view class="mess_h2">{{item.noticeTitle}}</view>
           <view class="mess_p">{{item.noticeValue}}</view>
           <view class="mess_time">{{item.createDate}}</view>
         </view>
+        <view class="img_box" catchtap="chooseDelete" data-i="{{index}}">
+          <image wx:if="{{item.isfalse}}" src="/images/icon_yn@2x.png"></image>
+          <image wx:if="{{!item.isfalse}}" src="/images/iocn_ys@2x.png"></image>
+        </view>
       </view>
       <van-divider contentPosition="center" customStyle="font-size: 30rpx;margin:10rpx;">{{text}}</van-divider>
+      
     </scroll-view>
-
     <van-empty description="暂无数据" wx:else/>
 
 </view>
+<view class="bottom_btn">
+  <view class="img_box2" bindtap="allChooseBtn">
+    <image wx:if="{{allchoose}}" src="/images/icon_yn@2x.png"></image>
+    <image wx:if="{{!allchoose}}" src="/images/iocn_ys@2x.png"></image>
+    <text>全选</text>
+  </view>
+  <view bindtap="deleteBtn">删除</view>
+</view>    

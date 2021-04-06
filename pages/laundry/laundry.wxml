@@ -24,8 +24,8 @@
   <!-- 选择衣服 -->
   <view class="select_yf">
     <view class="yf_ul">
-      <view class="yf_li {{active == 1?'active':''}}" bindtap="toogle" data-i='1'>便服</view>
-      <view class="yf_li {{active == 2?'active':''}}" bindtap="toogle" data-i='2'>警服</view>
+      <view class="yf_li {{active == 1?'active':''}}" bindtap="toogle" data-i='1'>警服</view>
+      <view class="yf_li {{active == 2?'active':''}}" bindtap="toogle" data-i='2'>便服</view>
     </view>
     <view class="yf_box" wx:if='{{active == 1}}'>
       <view class="box_li" wx:for='{{seleList1}}' wx:key='se1' data-i='{{index}}' bindtap="delYf1">

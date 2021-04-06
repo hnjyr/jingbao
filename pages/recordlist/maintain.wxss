@@ -1,3 +1,4 @@
+
 /* pages/recordlist/maintain.wxss */
 /* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
 .container{
@@ -21,7 +22,21 @@ scroll-view {
   padding: 20rpx;
   margin-bottom: 20rpx;
 }
-
+.top_box{
+  display: flex;
+  justify-content: space-between;
+}
+.tight_btn{
+  padding: 5rpx 12rpx;
+  border: 1rpx solid #2963E0;
+  font-size: 24rpx;
+  color: #2963E0;
+  border-radius: 8rpx;
+}
+.topStatus{
+  font-size: 24rpx;
+  color: #2963E0;
+}
 .c_oneline,
 .y_oneline{
   font-size: 30rpx;
@@ -76,4 +91,28 @@ scroll-view {
 
 .y_twoline{
   color: #000;
+}
+/* 取消预约弹框 */
+.popup_box .title{
+  font-size: 30rpx;
+  text-align: center;
+}
+.popup_box textarea{
+  margin: 20rpx 0;
+  padding: 10rpx;
+  background-color: #eee;
+  font-size: 24rpx;
+  color: #666666;
+}
+.btn_popup{
+  margin: 0 auto;
+  border-radius: 66rpx;
+  height: 66rpx;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2963E0;
+  text-align: center;
+  color: #fff;
 }

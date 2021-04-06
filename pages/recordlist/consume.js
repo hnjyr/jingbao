@@ -10,7 +10,8 @@ Page({
   data: {
     page:1,
     dataList:[],
-    refresh:false
+    refresh:false,
+    allchoose:true
   },
 
   /**
@@ -19,6 +20,35 @@ Page({
   onLoad: function (options) {
     this.getDataList()
 
+  },
+  // 长按删除
+  longpressClick(e){
+    let _this = this
+    let arr = []
+    arr.push(e.currentTarget.dataset.id)
+    wx.showModal({
+      title:"提示",
+      content:'是否确认删除',
+      success: function (res) {
+        if (res.confirm) {
+          http(url.appnoticeDelete,
+            arr
+          ,res=>{
+            if(res.code == 0) {
+              _this.data.refresh = true
+              _this.setData({
+                page:1,
+                dataList:[]
+              })
+              _this.getDataList();
+            }
+          },'Delete','json')
+        } else {
+          console.log('用户点击取消')
+        }
+ 
+      }
+    })
   },
   refreshTap(e) {
     this.data.refresh = true
@@ -72,13 +102,111 @@ Page({
             text:'上拉加载更多'
           })
         }
+        // 防止全选中时候分页加载出现数据未全选问题
+        if(!this.data.allchoose){
+          res.page.list.map(item=>{
+            item.isfalse = false
+          })
+        }else{
+          res.page.list.map(item=>{
+            item.isfalse = true
+          })
+        }
+       
         this.setData({
           dataList:this.data.dataList.concat(res.page.list),
           refresh:false,
           totalPage:totalPage,
         })
+        console.log(this.data.dataList)
       }
     })
+  },
+  // 多删
+  deleteBtn(){
+    let _this = this
+    let arr = []
+    let arrNum = []
+    arr = this.data.dataList
+    wx.showModal({
+      title:"提示",
+      content:'是否确认删除',
+      success: function (res) {
+        if (res.confirm) {
+          arr.map(item=>{
+            if(!item.isfalse){
+              arrNum.push(item.noticeId)
+            }
+          })
+          http(url.appnoticeDelete,
+            arrNum
+          ,res=>{
+            if(res.code == 0) {
+              _this.data.refresh = true
+              _this.setData({
+                page:1,
+                dataList:[]
+              })
+              _this.getDataList();
+            }
+          },'Delete','json')
+        } else {
+          console.log('用户点击取消')
+        }
+ 
+      }
+    })
+  },
+  // 全选操作
+  allChooseBtn(){
+    let arr;
+    arr = this.data.dataList
+   
+    if(this.data.allchoose){
+      arr.map((item,i)=>{
+          item.isfalse = !item.isfalse
+      })
+      this.setData({
+        allchoose:false,
+      })
+    }else{
+      arr.map((item,i)=>{
+          item.isfalse = !item.isfalse
+      })
+      this.setData({
+        allchoose:true,
+      })
+    }
+    this.setData({
+      dataList:arr,
+    })
+  },
+  // 选择操作
+  chooseDelete(e){
+    let arr;
+    let istrue=true;
+    arr = this.data.dataList
+    arr.map((item,i)=>{
+      if(i==e.currentTarget.dataset.i){
+        item.isfalse = !item.isfalse
+      }
+      if(item.isfalse){
+        istrue = false
+      }
+    })
+    if(!istrue){
+      this.setData({
+        allchoose:true
+      })
+    }else{
+      this.setData({
+        allchoose:false
+      })
+    }
+    this.setData({
+      dataList:arr,
+    })
+    
   },
   bottom(){
     if(this.data.page<this.data.totalPage){

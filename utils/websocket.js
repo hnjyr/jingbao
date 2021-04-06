@@ -12,11 +12,18 @@ var heartBeatFailCount = 0
 var heartBeatTimeOut = null;
 // 终止重新连接
 var connectSocketTimeOut = null;
+// id定义
+let id;
 var i = 1
 // const url = '122.51.69.116:8082/zhjb/websocket' 
 const url = 'gaapp.yantai.gov.cn/zhjb/websocket' //socket链接地址，需要在微信后台配置
 var webSocket = {
   connectSocket: function (userId) {
+    if(userId) {
+      id = userId
+    }else {
+      userId = id
+    }
     // wx.showLoading({
     //   title: '',
     //   mask: true,

@@ -29,10 +29,21 @@
 
     <!-- 预约 -->
     <view class="yuy_box" wx:else>
-      <view class=" y_it" wx:for="{{ yyDataList }}" wx:key='yy'>
-        <view class="y_oneline">
-          <text>{{item.shopName}}</text>
-          <text class="name">{{item.resourceEntity.resourceName}}</text>
+      <view class=" y_it" wx:for="{{ yyDataList }}" wx:key='yy'  data-id="{{item.resourceId}}">
+        <view class="top_box">
+          <view class="y_oneline">
+            <text>{{item.shopName}}</text>
+            <text class="name">{{item.resourceEntity.resourceName}}</text>
+          </view>
+          <view class="topStatus" wx:if="{{item.reserveState==1}}">成功</view>
+          <view class="topStatus" wx:if="{{item.reserveState==2}}">取消</view>
+          <view class="topStatus" wx:if="{{item.reserveState==3}}">进行中</view>
+          <view class="topStatus" wx:if="{{item.reserveState==4}}">完成</view>
+          <view class="topStatus" wx:if="{{item.reserveState==5}}">超时</view>
+          <view class="topStatus" wx:if="{{item.reserveState==6}}">待领取</view>
+          <view class="topStatus" wx:if="{{item.reserveState==7}}">已领取</view>
+          <view class="topStatus" wx:if="{{item.reserveState==8}}">已送达</view>
+          <view class="topStatus" wx:if="{{item.reserveState==9}}">资源已删除</view>
         </view>
         <view class="y_twoline">预约人：{{item.reserveUserName}}</view>
         <view class="y_twoline">预约时间：{{item.reserveTime}}</view>
@@ -41,9 +52,14 @@
           <text>创建时间：</text>
           <text>{{ item.createTime }}</text>
         </view>
-        <view class="y_twoline">
-          <text>备注：</text>
-          <text>{{ item.remark || '暂无' }}</text>
+        <view class="top_box">
+          <view class="y_twoline">
+            <text>备注：</text>
+            <text>{{ item.remark || '暂无' }}</text>
+          </view>
+          <view bindtap="longpressClick" data-id="{{item.reserveId}}" class="tight_btn" wx:if="{{(item.reserveType==1||item.reserveType==2||item.reserveType==6)&&item.reserveState==1}}">
+              取消
+          </view>
         </view>
       </view>
 
@@ -52,4 +68,15 @@
     <van-divider contentPosition="center" customStyle="font-size: 30rpx;margin:10rpx;">{{text}}</van-divider>
   </scroll-view>
   <van-empty description="暂无数据" wx:else/>
+  <van-popup show="{{show}}"  position="center" custom-style="padding:20rpx 30rpx;" bind:close="onClose">
+    <view class="popup_box">
+      <view class="title">提示</view>
+      <view>
+        <textarea value="{{feedback}}" name="" bindinput="inputContent" id="" cols="30" rows="10" placeholder="请输入取消原因"></textarea>
+      </view>
+      <view class="btn_popup" bindtap="btn_popupCan">
+        <text>确认取消</text>
+      </view>
+    </view>
+  </van-popup>
 </view>

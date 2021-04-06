@@ -29,7 +29,7 @@ Page({
       userInfo: userInfo
     })
     this.getWeekDay();
-    this.getClothesTag("3");
+    this.getClothesTag("2");
   },
   radioClick(event) {
     const {
@@ -53,7 +53,7 @@ Page({
 
   },
   submit() {
-    let seleList1 = this.data.seleList1,
+    let seleList1 = this.data.seleList1, 
       seleList2 = this.data.seleList2,
       clothesCasualLabel = '', //便服
       clothesPoliceLabel = '', //警服
@@ -181,7 +181,7 @@ Page({
     this.setData({
       active: i
     })
-    this.getClothesTag(i == 1 ? 3 : 2)
+    this.getClothesTag(i == 1 ? 2 : 3)
   },
   // 获取衣服标签接口
   getClothesTag(labelType) {

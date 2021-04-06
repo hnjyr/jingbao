@@ -114,7 +114,7 @@ Page({
   getDayList(endDate) {
     http(url.manageTime,{
       endDate:endDate,
-      shopId:'15'
+      shopType:'8'
     },res=>{
       if(res.data[endDate] && res.code == 0) {
         // res.data[endDate][0].reserveManageList[0].flag = true;

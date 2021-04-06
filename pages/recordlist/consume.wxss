@@ -5,6 +5,7 @@ page {
 }
 .scroll {
   height: 100vh;
+  padding-bottom: 88rpx;
 }
 .container{
   min-height: 100vh;
@@ -54,4 +55,38 @@ page {
 }
 .mess_time {
   text-align: right;
+}
+.img_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img_box image{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 52rpx 0 0 10rpx;
+}
+.bottom_btn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 0 30rpx;
+  height: 88rpx;
+  width: 750rpx;
+  background-color: #F5F5F5;
+  font-size: 28rpx;
+  color: #666666;
+}
+.img_box2{
+  display: flex;
+  align-items: center;
+}
+.img_box2 image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 10rpx;
+  margin-right:10rpx ;
 }

@@ -1,6 +1,6 @@
 // const url = 'http://122.51.69.116:8082/zhjb/', 
-// const url = 'http://114.242.23.225:8086/zhjb/', 
-const url = 'https://gaapp.yantai.gov.cn/zhjb/', 
+const url = 'http://114.242.23.225:8086/zhjb/', 
+// const url = 'https://gaapp.yantai.gov.cn/zhjb/', 
 g = {
   host:url,
   imgUrl:url + 'sys/attachment/open/download?attID=',
@@ -72,5 +72,10 @@ g = {
   saveForZhuangbei:url+'logistics/shoporders/saveForZhuangbei', //应急提交
   yjCrList:url+'logistics/shoporders/list', //出入库记录
   yjInfo:url+'logistics/shoporders/info/', //出入库详情 ordersId  订单id，追加在接口后面
+  userhealthcertificate:url+'logistics/userhealthcertificate/update',//添加修改健康证
+  infoUserId:url+'logistics/userhealthcertificate/infoUserId/',//获取健康证
+  appnoticeDelete:url+'app/appnotice/delete',//通知消息删除
+  cancelRecord:url+'logistics/reserverecord/cancelRecord',//取消预约
+ 
 } 
 module.exports = g;

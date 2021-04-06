@@ -42,12 +42,13 @@
     "pages/admin/faceImg",
     "pages/bank/binding",
     "pages/visitor/visitor",
-    "pages/visitor/handle"
+    "pages/visitor/handle",
+    "pages/admin/health"
   ],
-  "subpackages":[
+  "subpackages": [
     {
-      "root":"pageA",
-      "pages":[
+      "root": "pageA",
+      "pages": [
         "pages/emergency/index",
         "pages/emergency/detail",
         "pages/emergency/car",
@@ -71,7 +72,7 @@
   },
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   }
 }

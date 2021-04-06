@@ -112,7 +112,7 @@ Page({
     let arr = ['日', '一', '二', '三', '四', '五', '六', ]
     http(url.manageTime, {
       endDate: util.formatEndTime(new Date()),
-      shopId: "9"
+      shopType: "3"
     }, (res) => {
       if (res.code == 0) {
         if (JSON.stringify(res.data) == "{}") {

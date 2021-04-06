@@ -3,6 +3,9 @@ const app = getApp()
 const url = require('../../utils/config.js');
 const http = require('../../utils/http.js');
 const socket = require('../../utils/websocket.js');
+const QRCode = require('../../utils/weapp-qrcode.js')
+const sm4 = require('miniprogram-sm-crypto').sm4;
+let qrcode;
 let timer;
 Page({
 
@@ -25,27 +28,55 @@ Page({
     srcError:'/images/error.mp3',
     successCtx:'',
     errorCtx:'',
+    ling_show:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this;
+    let _this = this
+    // let decryptData = sm4.decrypt(encryptData, key)//解密
+    // 网络切换的时候网络监测
+   
+    wx.onNetworkStatusChange(function (res) {
+      console.log(res)
+      // 没网的时候进行展示网络的二维码（生成）
+      if(!res.isConnected){
+          this.ling_code()
+      }else{
+        // 有网的时候进行展示网络的二维码
+        _this.getCode()
+        _this.setData({
+          ling_show:false
+        })
+      }
+    })
     let userInfo = wx.getStorageSync('userInfo');
+    // 倒计时重新获取二维码
     timer = setInterval(()=>{
       this.setData({
         second:this.data.second - 1
       })
       if(this.data.second == 0) {
-        this.getCode();
-        this.setData({
-          second:30
-        })
+        if(!this.data.ling_show){
+          this.getCode();
+          this.setData({
+            second:30
+          })
+        }else{
+          this.ling_code();
+          this.setData({
+            second:30
+          })
+        }
       }
     },1000)
-    this.getCode();
-    
+    if(!this.data.ling_show){
+      this.getCode();
+    }else{
+      this.ling_code()
+    }
     socket.connectSocket(userInfo.userId);
     socket.onSocketMessageCallback = function(res) {
       let data = JSON.parse(res),
@@ -90,6 +121,24 @@ Page({
     };
     
   },
+  // 生成临时二维码
+  ling_code(){
+    let _this = this
+    const key = [0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef, 0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10];
+    let timestamp2 = (new Date()).valueOf();
+    let second = timestamp2+''+wx.getStorageSync('userInfo').userId
+    console.log(second)
+    let encryptData = sm4.encrypt(second, key); // 加密
+    qrcode = new QRCode('canvas', {
+        text: encryptData,
+        colorDark: "#DB2016",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+    });
+    _this.setData({
+      ling_show:true
+    })
+  },
   // 获取支付码
   getCode() {
     let _this = this;
@@ -106,6 +155,10 @@ Page({
         _this.setData({
           src:url,
         })
+      },
+      fail(){
+        // 生成临时二维码
+        _this.ling_code()
       }
     })
   },

@@ -87,7 +87,7 @@ Page({
   // 获取标签
   getTagList() {
     http(url.shopgoodslabel,{
-      shopId:'7'
+      shopType:'2'
     },(res)=>{
       if(res.code == 0) {
         this.setData({

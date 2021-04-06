@@ -33,7 +33,6 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true
@@ -355,6 +354,30 @@
         {
           "name": "pages/admin/bill",
           "pathName": "pages/admin/bill",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/admin/health",
+          "pathName": "pages/admin/health",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/recordlist/maintain",
+          "pathName": "pages/recordlist/maintain",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "二维码",
+          "pathName": "pages/index/code",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/recordlist/consume",
+          "pathName": "pages/recordlist/consume",
           "scene": null
         }
       ]

@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/hnjyr/jingbao#readme",
   "dependencies": {
-    "@vant/weapp": "^1.5.1"
+    "@vant/weapp": "^1.5.1",
+    "miniprogram-sm-crypto": "^0.2.5"
   },
   "devDependencies": {}
 }

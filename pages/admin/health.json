@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "健康证",
+  "usingComponents": {
+    "van-uploader": "@vant/weapp/uploader/index"
+
+  }
+}

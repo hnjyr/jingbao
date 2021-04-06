@@ -2,8 +2,13 @@
 <view class="container">
   <view class="ref">{{second}}秒后刷新</view>
   <!-- <image src="http://122.51.69.116:8082/zhjb/pay/purse/generatepayqrcode"></image> -->
-  <image src="{{src}}"></image>
-  
+  <image src="{{src}}" wx:if="{{!ling_show}}"></image>
+  <view class="lingshi_box" wx:if="{{ling_show}}">
+    <view class="canvas_box">
+      <canvas class='canvas' style="width:260px; height:260px;" canvas-id='canvas' bindlongtap='save'></canvas>
+    </view>
+    <text class="lingshi">临时二维码</text>
+  </view>
   <view class="tip">使用说明：</view>
   <view class="tip">1.用于就餐支付时，每个就餐时间只可支付一次</view>
   <view class="tip">2.乘坐班车时，扫码支付没有次数限制</view>
@@ -12,7 +17,7 @@
   <view class="tip">5.洗衣店送衣和领衣时，凭二维码进行登记身份校验</view>
   <view class="tip">6.室外运动场和澡堂进入时，扫码进行人员登记</view>
 
-
+ 
   <!-- 设置支付密码弹框 -->
   <van-popup position="bottom" show="{{ show }}" custom-style="height: 58%;padding:20rpx 30rpx;" bind:close="onClose">
     <view class="wx-page-content" wx:if='{{!twoshow}}'>

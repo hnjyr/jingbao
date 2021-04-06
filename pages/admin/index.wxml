@@ -60,6 +60,13 @@
 		</view>
 	</view>
 	<view class="btns">
+		<navigator class="b_it flex_between" url="/pages/admin/health">
+			<view class="b_it_left flex">
+				<image src="/images/admin/jiankang.png" style="width:45rpx;height:45rpx;margin-right:28rpx;"></image>
+				<text>健康证</text>
+			</view>
+			<van-icon name="arrow" size="20px" color="#CCCCCC" />
+		</navigator>
 		<view class="b_it flex_between" bindtap="toast">
 			<view class="b_it_left flex">
 				<image src="/images/admin/help.png" style="width:36rpx;height:36rpx;margin-right:37rpx;"></image>
